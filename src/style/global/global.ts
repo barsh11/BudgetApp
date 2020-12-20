@@ -33,6 +33,7 @@ export const generalStyles = css`
   --color-grey-light: #988d8b;
 
   --color-black: #000000;
+  --color-white: #ffffff;
 `;
 
 export const GlobalStyle = createGlobalStyle`

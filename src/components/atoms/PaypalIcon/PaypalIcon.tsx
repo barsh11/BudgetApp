@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     borderRadius: '50%',
     padding: '0.3rem',
     backgroundColor: 'var(--color-primary)',
-    stroke: 'white',
+    stroke: 'var(--color-white)',
     fill: 'var(--color-primary)',
   },
 });
