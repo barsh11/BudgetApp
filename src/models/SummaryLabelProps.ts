@@ -1,4 +1,4 @@
 export type SummaryLabelProps = {
-  isCancelled: boolean;
+  isCancelled?: boolean;
   company?: string;
 };

@@ -2,31 +2,16 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { SummaryLabelProps } from '../../../models/SummaryLabelProps';
 
-const getLabel = (company) => {
-  company === 'PayPal' ? (
-    <Typography>Deposit PayPal</Typography>
-  ) : (
-    <Typography>Deposit from {company}</Typography>
-  );
+const getLabel = (company?: string, isCancelled?: boolean) => {
+  if (isCancelled) return 'Cancelled';
+  if (company === 'Paypal') return 'Deposit PayPal';
+  return company ? `Deposit from ${company}` : '';
 };
 
-const SummaryLabel: React.FC<SummaryLabelProps> = (
-  props: SummaryLabelProps,
-) => {
-  let content;
-  if (props.isCancelled) {
-    content = <Typography>Cancelled</Typography>;
-  } else {
-    content = getLabel(props.company);
-  }
+const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled = false }) => {
+  const content = getLabel(company, isCancelled);
 
-  return (
-    <SummaryLabel
-      isCancelled={props.isCancelled}
-      company={props.company || null}>
-      {content}
-    </SummaryLabel>
-  );
+  return <Typography>{content}</Typography>;
 };
 
 export default SummaryLabel;
