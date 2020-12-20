@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import { SummaryLabelProps } from '../../../models/SummaryLabelProps';
 
 const getLabel = (company?: string, isCancelled?: boolean) => {
@@ -12,10 +13,10 @@ const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled = fals
   const content = getLabel(company, isCancelled);
 
   return (
-    <div>
+    <Box component="div">
       <Typography variant="body1">{content}</Typography>
       <Typography variant="body2">{date}</Typography>
-    </div>
+    </Box>
   );
 };
 
