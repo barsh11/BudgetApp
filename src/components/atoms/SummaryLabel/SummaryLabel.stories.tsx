@@ -5,4 +5,4 @@ export default {
   title: 'Summary/SummaryLabel',
 };
 
-export const common = () => <SummaryLabel company="Paypal" />;
+export const common = () => <SummaryLabel company="Paypal" date="4 march, 14:30" />;

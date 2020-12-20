@@ -8,10 +8,15 @@ const getLabel = (company?: string, isCancelled?: boolean) => {
   return company ? `Deposit from ${company}` : '';
 };
 
-const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled = false }) => {
+const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled = false, date }) => {
   const content = getLabel(company, isCancelled);
 
-  return <Typography>{content}</Typography>;
+  return (
+    <div>
+      <Typography variant="body1">{content}</Typography>
+      <Typography variant="body2">{date}</Typography>
+    </div>
+  );
 };
 
 export default SummaryLabel;
