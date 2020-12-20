@@ -1,6 +1,4 @@
-import { TypographyProps } from './TypographyProps';
-
-export type HistoryLabelProps = TypographyProps & {
+export type HistoryLabelProps = {
   isCancelled?: boolean;
   company?: string;
 };
