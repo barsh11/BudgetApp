@@ -1,34 +1,32 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-import { HistoryLabelProps } from '../../../models/HistoryLabelProps';
+import Typography from '@material-ui/core/Typography';
+import { SummaryLabelProps } from '../../../models/SummaryLabelProps';
 
 const getLabel = (company) => {
   company === 'PayPal' ? (
-    <Typography align="left" variant="subtitle2" display="block">
-      Deposit PayPal
-    </Typography>
+    <Typography>Deposit PayPal</Typography>
   ) : (
-    <Typography align="left" variant="subtitle2" display="block">
-      Deposit from {company}
-    </Typography>
+    <Typography>Deposit from {company}</Typography>
   );
 };
 
-const HistoryLabel: React.FC<HistoryLabelProps> = (
-  props: HistoryLabelProps,
+const SummaryLabel: React.FC<SummaryLabelProps> = (
+  props: SummaryLabelProps,
 ) => {
   let content;
   if (props.isCancelled) {
-    content = (
-      <Typography align="left" variant="subtitle2" display="block">
-        Cancelled
-      </Typography>
-    );
+    content = <Typography>Cancelled</Typography>;
   } else {
     content = getLabel(props.company);
   }
 
-  return <HistoryLabel>{content}</HistoryLabel>;
+  return (
+    <SummaryLabel
+      isCancelled={props.isCancelled}
+      company={props.company || null}>
+      {content}
+    </SummaryLabel>
+  );
 };
 
-export default HistoryLabel;
+export default SummaryLabel;

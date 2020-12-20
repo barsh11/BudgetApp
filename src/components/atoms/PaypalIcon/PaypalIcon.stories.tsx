@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import PaypalIcon from './PaypalIcon';
 
 export default {
-  title: 'SummaryIcons/PaypalIcon',
+  title: 'Summary/PaypalIcon',
   component: PaypalIcon,
 } as Meta;
 

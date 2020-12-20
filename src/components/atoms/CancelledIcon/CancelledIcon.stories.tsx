@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import CancelledIcon from './CancelledIcon';
 
 export default {
-  title: 'SummaryIcons/CancelledIcon',
+  title: 'Summary/CancelledIcon',
   component: CancelledIcon,
 } as Meta;
 

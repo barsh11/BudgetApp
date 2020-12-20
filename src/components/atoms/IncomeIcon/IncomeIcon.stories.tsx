@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import IncomeIcon from './IncomeIcon';
 
 export default {
-  title: 'SummaryIcons/IncomeIcon',
+  title: 'Summary/IncomeIcon',
   component: IncomeIcon,
 } as Meta;
 

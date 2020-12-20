@@ -1,4 +1,4 @@
-export type HistoryLabelProps = {
-  isCancelled?: boolean;
+export type SummaryLabelProps = {
+  isCancelled: boolean;
   company?: string;
 };
