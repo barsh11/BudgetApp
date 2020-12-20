@@ -6,9 +6,9 @@ const useStyles = makeStyles({
   iconStyle: {
     borderRadius: '50%',
     padding: '0.3rem',
-    backgroundColor: '#3a2d96',
+    backgroundColor: 'var(--color-primary)',
     stroke: 'white',
-    fill: '#3a2d96',
+    fill: 'var(--color-primary)',
   },
 });
 

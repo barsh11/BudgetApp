@@ -22,6 +22,17 @@ export const generalStyles = css`
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+
+  --color-primary: #3a2d96;
+
+  --color-secondary: #ff7b7d;
+
+  --color-tertiary: #fcead3;
+
+  --color-grey-dark: #3f3f46;
+  --color-grey-light: #988d8b;
+
+  --color-black: #000000;
 `;
 
 export const GlobalStyle = createGlobalStyle`
