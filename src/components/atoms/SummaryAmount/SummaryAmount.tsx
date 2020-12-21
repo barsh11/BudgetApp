@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     color: 'var(--color-grey-light)',
   },
   amountStyle: {
-    color: (amount) => (amount > 0 ? 'var(--color-primary)' : 'var(--color-black)'),
+    color: (amount) => (amount > 0 ? 'primary' : 'var(--color-black)'),
   },
 });
 
