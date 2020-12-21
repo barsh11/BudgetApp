@@ -29,6 +29,8 @@ export const generalStyles = css`
 
   --color-tertiary: #fcead3;
 
+  --color-forthtiary: #199fe6;
+
   --color-grey-dark: #3f3f46;
   --color-grey-light: #988d8b;
 
