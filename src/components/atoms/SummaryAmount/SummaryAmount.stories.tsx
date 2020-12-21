@@ -5,4 +5,4 @@ export default {
   title: 'Summary/SummaryAmount',
 };
 
-export const common = () => <SummaryAmount amount={4.72} currency="USD" />;
+export const common = () => <SummaryAmount amount={2200} currency="USD" />;
