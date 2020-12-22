@@ -5,9 +5,6 @@ import Box from '@material-ui/core/Box';
 import { UserDetailsProps } from '../../../models/UserDetailsProps';
 
 const useStyles = makeStyles({
-  userNameStyle: {
-    color: 'var(--color-black)',
-  },
   userEmailStyle: {
     color: 'var(--color-grey-light)',
   },
@@ -18,7 +15,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ userName, userEmail }) => {
 
   return (
     <Box component="div">
-      <Typography className={classes.userNameStyle} variant="h4" align="center">
+      <Typography variant="h4" align="center" color="textSecondary">
         {userName}
       </Typography>
       <Typography className={classes.userEmailStyle} variant="subtitle1" align="center">
