@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const DashboardExpenseIcon: React.FC = () => {
+const SidebarExpenseIcon: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -22,4 +22,4 @@ const DashboardExpenseIcon: React.FC = () => {
   );
 };
 
-export default DashboardExpenseIcon;
+export default SidebarExpenseIcon;

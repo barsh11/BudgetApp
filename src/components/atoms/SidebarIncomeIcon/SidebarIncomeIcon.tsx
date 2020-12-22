@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const DashboardIncomeIcon: React.FC = () => {
+const SidebarIncomeIcon: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -22,4 +22,4 @@ const DashboardIncomeIcon: React.FC = () => {
   );
 };
 
-export default DashboardIncomeIcon;
+export default SidebarIncomeIcon;
