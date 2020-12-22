@@ -12,10 +12,10 @@ const useStyles = makeStyles({
   },
 });
 
-const DashboardIcon: React.FC = () => {
+const CardsIcon: React.FC = () => {
   const classes = useStyles();
 
   return <CreditCardIcon className={classes.iconStyle} />;
 };
 
-export default DashboardIcon;
+export default CardsIcon;
