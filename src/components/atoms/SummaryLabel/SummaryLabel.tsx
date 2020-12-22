@@ -1,8 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { SummaryLabelProps } from '../../../models/SummaryLabelProps';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Box, { BoxProps } from '@material-ui/core/Box';
+
+type SummaryLabelProps = BoxProps &
+  TypographyProps & {
+    isCancelled?: boolean;
+    company?: string;
+    date: string;
+  };
 
 const useStyles = makeStyles({
   description: {

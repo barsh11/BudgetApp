@@ -1,8 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { UserDetailsProps } from '../../../models/UserDetailsProps';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Box, { BoxProps } from '@material-ui/core/Box';
+
+type UserDetailsProps = BoxProps &
+  TypographyProps & {
+    userName: string;
+    userEmail: string;
+  };
 
 const useStyles = makeStyles({
   userEmailStyle: {

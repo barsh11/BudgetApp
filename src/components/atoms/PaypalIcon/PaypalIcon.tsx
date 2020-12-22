@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgIcon } from '@material-ui/core';
+import { SvgIcon, SvgIconProps } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PaypalIcon: React.FC = () => {
+const PaypalIcon: React.FC<SvgIconProps> = () => {
   const classes = useStyles();
   return (
     <SvgIcon className={classes.iconStyle} color="primary">

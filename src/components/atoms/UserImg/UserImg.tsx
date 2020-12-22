@@ -1,7 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import { UserImgProps } from '../../../models/UserImgProps';
+import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
+
+type UserImgProps = AvatarProps & {
+  imgSrc: string;
+};
 
 const useStyles = makeStyles({
   imageStyle: {

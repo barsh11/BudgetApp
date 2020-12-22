@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgIcon } from '@material-ui/core';
+import { SvgIcon, SvgIconProps } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SidebarIncomeIcon: React.FC = () => {
+const SidebarIncomeIcon: React.FC<SvgIconProps> = () => {
   const classes = useStyles();
 
   return (

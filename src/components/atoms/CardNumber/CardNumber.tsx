@@ -1,6 +1,9 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { CardNumberProps } from '../../../models/CardNumberProps';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+
+type CardNumberProps = TypographyProps & {
+  cardNumber: number;
+};
 
 const getHiddenNumber = (number: number) => {
   let strNum = number.toString();
