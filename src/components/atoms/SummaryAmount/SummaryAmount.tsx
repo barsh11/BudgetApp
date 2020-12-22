@@ -1,8 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { SummaryAmountProps } from '../../../models/SummaryAmountProps';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Box, { BoxProps } from '@material-ui/core/Box';
+
+type SummaryAmountProps = BoxProps &
+  TypographyProps & {
+    amount: number;
+    currency: string;
+  };
 
 const getAmountColor = (amount: number) => {
   if (amount > 0) return 'var(--color-primary)';

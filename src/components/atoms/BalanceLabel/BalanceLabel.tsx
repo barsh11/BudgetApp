@@ -1,6 +1,10 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { BalanceLabelProps } from '../../../models/BalanceLabelProps';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+
+type BalanceLabelProps = TypographyProps & {
+  balance: number;
+  currency: string;
+};
 
 const getCurrencySymbol = (currency: string) => {
   switch (currency) {

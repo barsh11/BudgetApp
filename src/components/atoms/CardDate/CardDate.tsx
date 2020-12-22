@@ -1,7 +1,11 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { CardDateProps } from '../../../models/CardDateProps';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Box, { BoxProps } from '@material-ui/core/Box';
+
+type CardDateProps = BoxProps &
+  TypographyProps & {
+    cardDate: string;
+  };
 
 const CardDate: React.FC<CardDateProps> = ({ cardDate }) => (
   <Box component="div">

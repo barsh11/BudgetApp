@@ -1,7 +1,11 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { CardNameProps } from '../../../models/CardNameProps';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Box, { BoxProps } from '@material-ui/core/Box';
+
+type CardNameProps = BoxProps &
+  TypographyProps & {
+    cardName: string;
+  };
 
 const CardName: React.FC<CardNameProps> = ({ cardName }) => (
   <Box component="div">
