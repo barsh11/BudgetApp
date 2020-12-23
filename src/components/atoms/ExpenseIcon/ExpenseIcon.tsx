@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 const ExpenseIcon: React.FC<IconProps> = () => {
   const classes = useStyles();
 
-  return <UndoOutlinedIcon className={classes.iconStyle} />;
+  return <UndoOutlinedIcon className={classes.iconStyle} fontSize="large" />;
 };
 
 export default ExpenseIcon;

@@ -11,6 +11,9 @@ type SummaryLabelProps = BoxProps &
   };
 
 const useStyles = makeStyles({
+  box: {
+    margin: '0.7rem',
+  },
   description: {
     color: 'var(--color-grey-dark)',
   },
@@ -25,12 +28,12 @@ const getLabel = (company?: string, isCancelled?: boolean) => {
   return company ? `Deposit from ${company}` : '';
 };
 
-const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled = false, date }) => {
+const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled, date }) => {
   const classes = useStyles();
   const content = getLabel(company, isCancelled);
 
   return (
-    <Box component="div">
+    <Box className={classes.box} component="div">
       <Typography className={classes.description} variant="subtitle1">
         {content}
       </Typography>
