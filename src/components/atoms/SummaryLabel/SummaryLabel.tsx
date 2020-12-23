@@ -11,6 +11,9 @@ type SummaryLabelProps = BoxProps &
   };
 
 const useStyles = makeStyles({
+  box: {
+    margin: '0.7rem',
+  },
   description: {
     color: 'var(--color-grey-dark)',
   },
@@ -30,7 +33,7 @@ const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled = fals
   const content = getLabel(company, isCancelled);
 
   return (
-    <Box component="div">
+    <Box className={classes.box} component="div">
       <Typography className={classes.description} variant="subtitle1">
         {content}
       </Typography>

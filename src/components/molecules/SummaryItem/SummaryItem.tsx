@@ -24,7 +24,13 @@ const SWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 25%;
+  width: 20%;
+`;
+
+const SLeftWrapper = styled.div`
+  display: flex;
+  flex-direction: cloumn;
+  align-items: center;
 `;
 
 const getItemIcon = (type: 'expense' | 'income' | 'cancel', isPaypal?: boolean) => {
@@ -51,8 +57,10 @@ const SummaryItem: React.FC<SummaryItemProps> = ({
 
   return (
     <SWrapper>
-      <Suspense fallback={<FallbackIcon />}>{icon}</Suspense>
-      <SummaryLabel isCancelled={isCancelled} company={company} date={date} />
+      <SLeftWrapper>
+        <Suspense fallback={<FallbackIcon />}>{icon}</Suspense>
+        <SummaryLabel isCancelled={isCancelled} company={company} date={date} />
+      </SLeftWrapper>
       <SummaryAmount amount={amount} currency={currency} />
     </SWrapper>
   );
