@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 const FallbackIcon: React.FC<IconProps> = () => {
   const classes = useStyles();
 
-  return <OutlinedFlagIcon className={classes.iconStyle} />;
+  return <OutlinedFlagIcon className={classes.iconStyle} fontSize="large" />;
 };
 
 export default FallbackIcon;
