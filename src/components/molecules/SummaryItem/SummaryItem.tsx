@@ -58,7 +58,7 @@ const SummaryItem: React.FC<SummaryItemProps> = ({
   return (
     <SWrapper>
       <SLeftWrapper>
-        <Suspense fallback={<FallbackIcon />}>{icon}</Suspense>
+        <Suspense fallback={<FallbackIcon location="summary" />}>{icon}</Suspense>
         <SummaryLabel isCancelled={isCancelled} company={company} date={date} />
       </SLeftWrapper>
       <SummaryAmount amount={amount} currency={currency} />

@@ -6,17 +6,14 @@ import { IconProps } from '@material-ui/core/Icon';
 const useStyles = makeStyles({
   iconStyle: {
     fill: 'var(--color-white)',
-    opacity: '0.6',
-    '&:hover': {
-      opacity: '1.0',
-    },
+    marginRight: '1rem',
   },
 });
 
 const DashboardIcon: React.FC<IconProps> = () => {
   const classes = useStyles();
 
-  return <DashboardOutlinedIcon className={classes.iconStyle} />;
+  return <DashboardOutlinedIcon className={classes.iconStyle} fontSize="large" />;
 };
 
 export default DashboardIcon;
