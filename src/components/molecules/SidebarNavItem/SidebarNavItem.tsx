@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import FallbackIcon from '../../atoms/FallbackIcon/FallbackIcon';
+import capitalize from '../../../utils/capitalize';
 
 const CardsIcon = React.lazy(() => import('../../atoms/CardsIcon/CardsIcon'));
 const DashboardIcon = React.lazy(() => import('../../atoms/DashboardIcon/DashboardIcon'));
@@ -45,7 +46,7 @@ const SidebarNavItem: React.FC<SidebarNavItemProps> = ({ label }) => {
     <SWrapper>
       <Suspense fallback={<FallbackIcon location="sidebar" />}>{icon}</Suspense>
       <Typography color="textPrimary" variant="h6">
-        {label.toUpperCase()}
+        {capitalize(label)}
       </Typography>
     </SWrapper>
   );
