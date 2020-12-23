@@ -10,6 +10,9 @@ type UserDetailsProps = BoxProps &
   };
 
 const useStyles = makeStyles({
+  boxStyle: {
+    marginTop: '1rem',
+  },
   userEmailStyle: {
     color: 'var(--color-grey-light)',
   },
@@ -19,7 +22,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ userName, userEmail }) => {
   const classes = useStyles();
 
   return (
-    <Box component="div">
+    <Box component="div" className={classes.boxStyle}>
       <Typography variant="h4" align="center" color="textSecondary">
         {userName}
       </Typography>
