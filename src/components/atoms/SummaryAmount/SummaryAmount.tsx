@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import Box, { BoxProps } from '@material-ui/core/Box';
+import formatNumber from '../../../utils/formatNumber';
 
 type SummaryAmountProps = BoxProps &
   TypographyProps & {
@@ -16,8 +17,8 @@ const getAmountColor = (amount: number) => {
 };
 
 const getAmountSign = (amount: number) => {
-  if (amount > 0) return `+${amount}`;
-  return `${amount}`;
+  if (amount > 0) return `+`;
+  return ``;
 };
 
 const useStyles = makeStyles({
@@ -40,6 +41,7 @@ const SummaryAmount: React.FC<SummaryAmountProps> = ({ amount, currency }: Summa
     <Box component="div">
       <Typography className={amountStyle} variant="h6" align="right">
         {getAmountSign(amount)}
+        {formatNumber(amount)}
       </Typography>
       <Typography className={currencyStyle} variant="subtitle1" align="right">
         {currency}

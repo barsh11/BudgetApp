@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import formatNumber from '../../../utils/formatNumber';
 
 type BalanceLabelProps = TypographyProps & {
   balance: number;
@@ -14,8 +15,6 @@ const getCurrencySymbol = (currency: string) => {
       return '$';
   }
 };
-
-const formatNumber = (number: number) => number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
 const BalanceLabel: React.FC<BalanceLabelProps> = ({ balance, currency }) => {
   const content = `${getCurrencySymbol(currency)}${formatNumber(balance)}`;
