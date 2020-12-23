@@ -24,6 +24,7 @@ export const generalStyles = css`
   box-sizing: inherit;
 
   --color-primary: #3a2d96;
+  --color-primary-light: #473a9d;
 
   --color-secondary: #ff7b7d;
 

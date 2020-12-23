@@ -15,10 +15,10 @@ const SWrapper = styled.div`
   align-items: center;
 
   background-color: var(--color-tertiary-light);
-
-  width: 15%;
   padding: 2.5rem;
   border-radius: 1rem;
+
+  width: 15%;
 `;
 
 const SummaryItem: React.FC<SummaryUserInfoProps> = ({ imgSrc, userName, userEmail }) => (

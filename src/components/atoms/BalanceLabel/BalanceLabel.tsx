@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import formatNumber from '../../../utils/formatNumber';
 
@@ -6,6 +7,12 @@ type BalanceLabelProps = TypographyProps & {
   balance: number;
   currency: string;
 };
+
+const useStyles = makeStyles({
+  labelStyle: {
+    marginBottom: '1.5rem',
+  },
+});
 
 const getCurrencySymbol = (currency: string) => {
   switch (currency) {
@@ -17,10 +24,11 @@ const getCurrencySymbol = (currency: string) => {
 };
 
 const BalanceLabel: React.FC<BalanceLabelProps> = ({ balance, currency }) => {
+  const classes = useStyles();
   const content = `${getCurrencySymbol(currency)}${formatNumber(balance)}`;
 
   return (
-    <Typography variant="h3" color="textPrimary">
+    <Typography className={classes.labelStyle} variant="h3" color="textPrimary">
       {content}
     </Typography>
   );
