@@ -2,7 +2,7 @@ import React from 'react';
 import FallbackIcon from './FallbackIcon';
 
 export default {
-  title: 'Summary/FallbackIcon',
+  title: 'AcrossApp/FallbackIcon',
 };
 
-export const common = () => <FallbackIcon>common FallbackIcon</FallbackIcon>;
+export const common = () => <FallbackIcon location="sidebar">common FallbackIcon</FallbackIcon>;
