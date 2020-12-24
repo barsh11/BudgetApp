@@ -1,4 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import '../../index.css';
+
+const font = "'Ubuntu', sans-serif";
 
 const theme = createMuiTheme({
   palette: {
@@ -12,6 +15,9 @@ const theme = createMuiTheme({
       primary: 'white',
       secondary: 'black',
     },
+  },
+  typography: {
+    fontFamily: font,
   },
 });
 
