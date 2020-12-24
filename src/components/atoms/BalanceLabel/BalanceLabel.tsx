@@ -28,7 +28,7 @@ const BalanceLabel: React.FC<BalanceLabelProps> = ({ balance, currency }) => {
   const content = `${getCurrencySymbol(currency)}${formatNumber(balance)}`;
 
   return (
-    <Typography className={classes.labelStyle} variant="h3" color="textPrimary">
+    <Typography className={classes.labelStyle} variant="h4" color="textPrimary">
       {content}
     </Typography>
   );
