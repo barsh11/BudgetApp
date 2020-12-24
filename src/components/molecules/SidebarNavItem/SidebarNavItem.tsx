@@ -10,7 +10,7 @@ const SidebarExpenseIcon = React.lazy(() => import('../../atoms/SidebarExpenseIc
 const SidebarIncomeIcon = React.lazy(() => import('../../atoms/SidebarIncomeIcon/SidebarIncomeIcon'));
 
 type SidebarNavItemProps = TypographyProps & {
-  label: 'cards' | 'dashboard' | 'expenses' | 'incomes';
+  label: string;
 };
 
 const SWrapper = styled.div`
@@ -26,7 +26,7 @@ const SWrapper = styled.div`
   width: 10%;
 `;
 
-const getItemIcon = (label: 'cards' | 'dashboard' | 'expenses' | 'incomes') => {
+const getItemIcon = (label: string) => {
   switch (label) {
     case 'cards':
       return <CardsIcon />;

@@ -9,7 +9,7 @@ const ExpenseIcon = React.lazy(() => import('../../atoms/ExpenseIcon/ExpenseIcon
 const IncomeIcon = React.lazy(() => import('../../atoms/IncomeIcon/IncomeIcon'));
 const PaypalIcon = React.lazy(() => import('../../atoms/PaypalIcon/PaypalIcon'));
 
-type SummaryItemProps = {
+export type SummaryItemProps = {
   isCancelled?: boolean;
   company?: string;
   date: string;
@@ -44,15 +44,7 @@ const getItemIcon = (type: 'expense' | 'income' | 'cancel', isPaypal?: boolean) 
   }
 };
 
-const SummaryItem: React.FC<SummaryItemProps> = ({
-  isCancelled = false,
-  company,
-  date,
-  amount,
-  currency,
-  type,
-  isPaypal = false,
-}) => {
+const SummaryItem: React.FC<SummaryItemProps> = ({ isCancelled, company, date, amount, currency, type, isPaypal }) => {
   const icon = getItemIcon(type, isPaypal);
 
   return (
