@@ -7,9 +7,7 @@ import CardNumber from '../../atoms/CardNumber/CardNumber';
 import img from '../../../assets/images/card.jpg';
 
 type CreditCardProps = TypographyProps & {
-  cardNumber: number;
-  cardName: string;
-  cardDate: string;
+  data: { cardNumber: number; cardName: string; cardDate: string };
 };
 
 const SWrapper = styled.div`
@@ -31,17 +29,21 @@ const SBottomWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const SidebarBalance: React.FC<CreditCardProps> = ({ cardNumber, cardName, cardDate }) => (
-  <SWrapper>
-    <Typography variant="h6" align="left" color="textPrimary">
-      Card
-    </Typography>
-    <CardNumber cardNumber={cardNumber} />
-    <SBottomWrapper>
-      <CardName cardName={cardName} />
-      <CardDate cardDate={cardDate} />
-    </SBottomWrapper>
-  </SWrapper>
-);
+const SidebarBalance: React.FC<CreditCardProps> = (props) => {
+  const { data } = props;
+
+  return (
+    <SWrapper>
+      <Typography variant="h6" align="left" color="textPrimary">
+        Card
+      </Typography>
+      <CardNumber cardNumber={data.cardNumber} />
+      <SBottomWrapper>
+        <CardName cardName={data.cardName} />
+        <CardDate cardDate={data.cardDate} />
+      </SBottomWrapper>
+    </SWrapper>
+  );
+};
 
 export default SidebarBalance;
