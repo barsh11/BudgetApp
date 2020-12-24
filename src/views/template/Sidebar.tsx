@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SidebarBalance from '../../components/molecules/SidebarBalance/SidebarBalance';
-import NavigationList from '../../components/organisms/NaviagtionList/NavigationList';
+import NavigationList from '../../components/organisms/NavigationList/NavigationList';
 
 type SidebarProps = {
   balance: number;
