@@ -24,7 +24,8 @@ const SWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 20%;
+  width: 15.8rem;
+  height: 3rem;
 `;
 
 const SLeftWrapper = styled.div`
