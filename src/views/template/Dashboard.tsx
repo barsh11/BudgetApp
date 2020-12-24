@@ -9,12 +9,10 @@ type DashboardProps = {
 const SWrapper = styled.div`
   background-color: var(--color-white);
   border-radius: 2rem 0 0 2rem;
-
-  width: 60rem;
-  height: 68.2rem;
-
   margin-left: -2rem;
   padding: 3.2rem;
+
+  height: 68.2rem;
 `;
 
 const Dashboard: React.FC<DashboardProps> = ({ data }) => (

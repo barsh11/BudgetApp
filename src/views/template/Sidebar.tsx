@@ -16,7 +16,6 @@ const SWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 18.8rem;
   height: 68.2rem;
 `;
 
