@@ -12,7 +12,7 @@ const SUl = styled.ul`
 
 const SLi = styled.li`
   &:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 `;
 

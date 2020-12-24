@@ -17,6 +17,8 @@ const SWrapper = styled.div`
   background-color: var(--color-primary-light);
   padding: 1.5rem 2rem;
   border-radius: 1rem;
+  margin-top: 3.2rem;
+  margin-bottom: 3.2rem;
 
   width: 12rem;
   height: 10rem;
