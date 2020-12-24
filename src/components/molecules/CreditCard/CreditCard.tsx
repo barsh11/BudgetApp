@@ -34,7 +34,7 @@ const SidebarBalance: React.FC<CreditCardProps> = (props) => {
 
   return (
     <SWrapper>
-      <Typography variant="h6" align="left" color="textPrimary">
+      <Typography variant="h5" align="left" color="textPrimary">
         Card
       </Typography>
       <CardNumber cardNumber={data.cardNumber} />

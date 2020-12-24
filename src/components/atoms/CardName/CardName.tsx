@@ -8,11 +8,11 @@ type CardNameProps = BoxProps &
   };
 
 const CardName: React.FC<CardNameProps> = ({ cardName }) => (
-  <Box component="div">
+  <Box component="div" fontWeight="fontWeightLight" letterSpacing={2}>
     <Typography variant="subtitle1" color="textPrimary">
       CARD HOLDER
     </Typography>
-    <Typography variant="h5" color="textPrimary">
+    <Typography variant="h6" color="textPrimary">
       {cardName}
     </Typography>
   </Box>

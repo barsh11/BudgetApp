@@ -19,6 +19,7 @@ const SWrapper = styled.div`
   border-radius: 1rem;
   margin-top: 3.2rem;
   margin-bottom: 3.2rem;
+  letter-spacing: 2px;
 
   width: 12rem;
   height: 10rem;

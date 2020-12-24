@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 const DashboardIcon: React.FC<IconProps> = () => {
   const classes = useStyles();
 
-  return <DashboardOutlinedIcon className={classes.iconStyle} fontSize="large" />;
+  return <DashboardOutlinedIcon className={classes.iconStyle} />;
 };
 
 export default DashboardIcon;

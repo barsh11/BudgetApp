@@ -1,9 +1,16 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 
 type CardNumberProps = TypographyProps & {
   cardNumber: number;
 };
+
+const useStyles = makeStyles({
+  numStyle: {
+    letterSpacing: '0.3rem',
+  },
+});
 
 const getHiddenNumber = (number: number) => {
   let strNum = number.toString();
@@ -12,10 +19,11 @@ const getHiddenNumber = (number: number) => {
 };
 
 const CardNumber: React.FC<CardNumberProps> = ({ cardNumber }) => {
+  const classes = useStyles();
   const content = getHiddenNumber(cardNumber);
 
   return (
-    <Typography variant="h5" color="textPrimary">
+    <Typography className={classes.numStyle} variant="h6" color="textPrimary">
       {content}
     </Typography>
   );

@@ -7,12 +7,15 @@ type NavigationListProps = {
 };
 
 const SUl = styled.ul`
+  align-self: flex-start;
+  margin-left: 2rem;
+
   list-style: none;
 `;
 
 const SLi = styled.li`
   &:not(:last-child) {
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
   }
 `;
 

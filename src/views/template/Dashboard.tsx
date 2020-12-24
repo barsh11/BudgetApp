@@ -13,6 +13,7 @@ const SWrapper = styled.div`
   width: 60rem;
   height: 68.2rem;
 
+  margin-left: -2rem;
   padding: 3.2rem;
 `;
 
