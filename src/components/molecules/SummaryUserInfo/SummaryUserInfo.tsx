@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import UserImg from '../../atoms/UserImg/UserImg';
 import UserDetails from '../../atoms/UserDetails/UserDetails';
 
-type SummaryUserInfoProps = {
+export type SummaryUserInfoProps = {
   imgSrc: string;
   userName: string;
   userEmail: string;
@@ -17,6 +17,8 @@ const SWrapper = styled.div`
 
   background-color: var(--color-tertiary-light);
   padding: 2.5rem;
+  margin-top: 3.2rem;
+  margin-bottom: 3.2rem;
   border-radius: 1rem;
 
   width: 15rem;

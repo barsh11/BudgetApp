@@ -23,7 +23,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ userName, userEmail }) => {
 
   return (
     <Box component="div" className={classes.boxStyle}>
-      <Typography variant="h4" align="center" color="textSecondary">
+      <Typography variant="h5" align="center" color="textSecondary">
         {userName}
       </Typography>
       <Typography className={classes.userEmailStyle} variant="subtitle1" align="center">

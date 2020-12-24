@@ -49,7 +49,7 @@ const SummaryList: React.FC<SummaryListProps> = (props) => {
 
   return (
     <SWrapper>
-      <Typography variant="h4" color="textSecondary">
+      <Typography variant="h5" color="textSecondary">
         Payment summary
       </Typography>
       <SUl>
