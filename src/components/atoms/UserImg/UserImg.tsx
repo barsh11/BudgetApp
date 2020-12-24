@@ -8,8 +8,8 @@ type UserImgProps = AvatarProps & {
 
 const useStyles = makeStyles({
   imageStyle: {
-    height: '5.2rem',
-    width: '5.2rem',
+    height: '6.7rem',
+    width: '6.7rem',
   },
 });
 

@@ -12,18 +12,20 @@ const SWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   background-color: var(--color-primary-light);
-  padding: 2.5rem 3rem;
+  padding: 1.5rem 2rem;
   border-radius: 1rem;
 
-  width: 15%;
+  width: 12rem;
+  height: 10rem;
 `;
 
 const SidebarBalance: React.FC<SidebarBalanceProps> = ({ balance, currency }) => (
   <SWrapper>
     <BalanceLabel balance={balance} currency={currency} />
-    <Typography variant="h6" align="center" color="textPrimary">
+    <Typography variant="subtitle1" align="center" color="textPrimary" noWrap>
       Current balance
     </Typography>
   </SWrapper>
