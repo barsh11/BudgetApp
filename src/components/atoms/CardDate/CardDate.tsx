@@ -8,11 +8,11 @@ type CardDateProps = BoxProps &
   };
 
 const CardDate: React.FC<CardDateProps> = ({ cardDate }) => (
-  <Box component="div">
+  <Box component="div" fontWeight="fontWeightLight" letterSpacing={2}>
     <Typography variant="subtitle1" align="right" color="textPrimary">
       VALID THRU
     </Typography>
-    <Typography variant="h5" align="right" color="textPrimary">
+    <Typography variant="h6" align="right" color="textPrimary">
       {cardDate}
     </Typography>
   </Box>

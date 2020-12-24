@@ -18,9 +18,11 @@ const SWrapper = styled.div`
   align-items: center;
 
   opacity: 0.6;
+  transition: all 0.2s;
 
   &:hover {
     opacity: 1;
+    transform: scale(1.2);
   }
 
   width: 10%;
@@ -45,7 +47,7 @@ const SidebarNavItem: React.FC<SidebarNavItemProps> = ({ label }) => {
   return (
     <SWrapper>
       <Suspense fallback={<FallbackIcon location="sidebar" />}>{icon}</Suspense>
-      <Typography color="textPrimary" variant="h6">
+      <Typography color="textPrimary" variant="subtitle1">
         {capitalize(label)}
       </Typography>
     </SWrapper>

@@ -10,7 +10,7 @@ type BalanceLabelProps = TypographyProps & {
 
 const useStyles = makeStyles({
   labelStyle: {
-    marginBottom: '1.5rem',
+    marginBottom: '1rem',
   },
 });
 

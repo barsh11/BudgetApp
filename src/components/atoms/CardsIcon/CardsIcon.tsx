@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 const CardsIcon: React.FC<IconProps> = () => {
   const classes = useStyles();
 
-  return <CreditCardIcon className={classes.iconStyle} fontSize="large" />;
+  return <CreditCardIcon className={classes.iconStyle} />;
 };
 
 export default CardsIcon;
