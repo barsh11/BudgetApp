@@ -5,4 +5,6 @@ export default {
   title: 'Sidebar/NavigationList',
 };
 
-export const common = () => <NavigationList data={['dashboard', 'cards', 'expenses', 'incomes']} />;
+export const common = () => (
+  <NavigationList navList={[{ label: 'dashboard' }, { label: 'cards' }, { label: 'expenses' }, { label: 'incomes' }]} />
+);

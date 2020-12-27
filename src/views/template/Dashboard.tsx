@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import CreditCard from '../../components/molecules/CreditCard/CreditCard';
+import CreditCard, { CreditCardProps } from '../../components/molecules/CreditCard/CreditCard';
 
-type DashboardProps = {
-  data: { cardNumber: number; cardName: string; cardDate: string };
-};
+export type DashboardProps = CreditCardProps;
 
 const SWrapper = styled.div`
   background-color: var(--color-white-dark);
@@ -15,10 +13,14 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Dashboard: React.FC<DashboardProps> = ({ data }) => (
-  <SWrapper>
-    <CreditCard data={data} />
-  </SWrapper>
-);
+const Dashboard: React.FC<DashboardProps> = (props) => {
+  const { cardDate, cardNumber, cardName } = props;
+
+  return (
+    <SWrapper>
+      <CreditCard cardDate={cardDate} cardName={cardName} cardNumber={cardNumber} />
+    </SWrapper>
+  );
+};
 
 export default Dashboard;

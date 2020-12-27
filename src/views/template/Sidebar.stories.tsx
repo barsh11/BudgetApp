@@ -6,5 +6,9 @@ export default {
 };
 
 export const common = () => (
-  <Sidebar currency="USD" balance={25650} labels={['dashboard', 'cards', 'expenses', 'incomes']} />
+  <Sidebar
+    currency="USD"
+    balance={25650}
+    navList={[{ label: 'dashboard' }, { label: 'cards' }, { label: 'expenses' }, { label: 'incomes' }]}
+  />
 );

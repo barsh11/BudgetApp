@@ -9,8 +9,8 @@ const DashboardIcon = React.lazy(() => import('../../atoms/DashboardIcon/Dashboa
 const SidebarExpenseIcon = React.lazy(() => import('../../atoms/SidebarExpenseIcon/SidebarExpenseIcon'));
 const SidebarIncomeIcon = React.lazy(() => import('../../atoms/SidebarIncomeIcon/SidebarIncomeIcon'));
 
-type SidebarNavItemProps = TypographyProps & {
-  label: string;
+export type SidebarNavItemProps = TypographyProps & {
+  label: 'cards' | 'dashboard' | 'expenses' | 'incomes';
 };
 
 const SWrapper = styled.div`

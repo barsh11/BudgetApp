@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 
-type CardNumberProps = TypographyProps & {
+export type CardNumberProps = TypographyProps & {
   cardNumber: number;
 };
 

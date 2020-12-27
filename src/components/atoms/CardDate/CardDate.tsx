@@ -2,7 +2,7 @@ import React from 'react';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import Box, { BoxProps } from '@material-ui/core/Box';
 
-type CardDateProps = BoxProps &
+export type CardDateProps = BoxProps &
   TypographyProps & {
     cardDate: string;
   };

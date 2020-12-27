@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import BalanceLabel from '../../atoms/BalanceLabel/BalanceLabel';
 
-type SidebarBalanceProps = TypographyProps & {
+export type SidebarBalanceProps = TypographyProps & {
   balance: number;
   currency: string;
 };

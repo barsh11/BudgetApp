@@ -3,16 +3,8 @@ import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import SummaryItem, { SummaryItemProps } from '../../molecules/SummaryItem/SummaryItem';
 
-type SummaryListProps = TypographyProps & {
-  data: {
-    isCancelled?: boolean;
-    company?: string;
-    date: string;
-    amount: number;
-    currency: string;
-    type: 'expense' | 'income' | 'cancel';
-    isPaypal?: boolean;
-  }[];
+export type SummaryListProps = TypographyProps & {
+  summaryList: SummaryItemProps[];
 };
 
 const SWrapper = styled.div``;
@@ -45,7 +37,7 @@ const SummaryList: React.FC<SummaryListProps> = (props) => {
     </SLi>
   );
 
-  const { data } = props;
+  const { summaryList } = props;
 
   return (
     <SWrapper>
@@ -53,7 +45,7 @@ const SummaryList: React.FC<SummaryListProps> = (props) => {
         Payment summary
       </Typography>
       <SUl>
-        {data?.map((el) =>
+        {summaryList?.map((el) =>
           renderSummaryItem({
             isCancelled: el.isCancelled,
             company: el.company,
