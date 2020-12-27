@@ -5,7 +5,7 @@ import Box, { BoxProps } from '@material-ui/core/Box';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 import formatNumber from '../../../utils/formatNumber';
 
-type ExpensesAmountProps = TypographyProps &
+export type ExpensesAmountProps = TypographyProps &
   BoxProps & {
     amount: number;
     currency: string;

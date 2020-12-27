@@ -10,6 +10,9 @@ export const common = () => (
     time="15:12"
     date="13 Aug 2016"
     company="amazon"
-    data={{ amount: 4500, currency: 'USD', isRefund: true, link: 'https://www.google.com' }}
+    amount={4500}
+    currency="USD"
+    isRefund
+    link="https://www.google.com"
   />
 );

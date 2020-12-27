@@ -22,17 +22,17 @@ const SLi = styled.li`
 `;
 
 const SummaryList: React.FC<SummaryListProps> = (props) => {
-  const renderSummaryItem = ({ isCancelled, company, date, amount, currency, type, isPaypal }: SummaryItemProps) => (
+  const renderSummaryItem = (item: SummaryItemProps) => (
     <SLi>
       <SummaryItem
-        key={date}
-        isCancelled={isCancelled}
-        company={company}
-        date={date}
-        amount={amount}
-        currency={currency}
-        type={type}
-        isPaypal={isPaypal}
+        key={item.date}
+        isCancelled={item.isCancelled}
+        company={item.company}
+        date={item.date}
+        amount={item.amount}
+        currency={item.currency}
+        type={item.type}
+        isPaypal={item.isPaypal}
       />
     </SLi>
   );
@@ -44,19 +44,7 @@ const SummaryList: React.FC<SummaryListProps> = (props) => {
       <Typography variant="h5" color="textSecondary">
         Payment summary
       </Typography>
-      <SUl>
-        {summaryList?.map((el) =>
-          renderSummaryItem({
-            isCancelled: el.isCancelled,
-            company: el.company,
-            date: el.date,
-            amount: el.amount,
-            currency: el.currency,
-            type: el.type,
-            isPaypal: el.isPaypal,
-          })
-        )}
-      </SUl>
+      <SUl>{summaryList.map((el) => renderSummaryItem(el))}</SUl>
     </SWrapper>
   );
 };

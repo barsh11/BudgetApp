@@ -4,7 +4,7 @@ import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import BeenhereIcon from '@material-ui/icons/Beenhere';
 import { IconProps } from '@material-ui/core/Icon';
 
-type ReceiptIconProps = IconButtonProps &
+export type ReceiptIconProps = IconButtonProps &
   IconProps & {
     link: string;
   };

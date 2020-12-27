@@ -2,17 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import ReceiptIcon from '../../atoms/ReceiptIcon/ReceiptIcon';
-import ExpensesAmount from '../../atoms/ExpensesAmount/ExpensesAmount';
+import ReceiptIcon, { ReceiptIconProps } from '../../atoms/ReceiptIcon/ReceiptIcon';
+import ExpensesAmount, { ExpensesAmountProps } from '../../atoms/ExpensesAmount/ExpensesAmount';
 
-export type ExpensesInfoProps = TypographyProps & {
-  data: {
-    amount: number;
-    currency: string;
-    isRefund?: boolean;
-    link: string;
-  };
-};
+export type ExpensesInfoProps = TypographyProps & ExpensesAmountProps & ReceiptIconProps;
 
 const SWrapper = styled.div`
   display: flex;
@@ -43,7 +36,7 @@ const useStyles = makeStyles({
 
 const ExpensesInfo: React.FC<ExpensesInfoProps> = (props) => {
   const classes = useStyles();
-  const { data } = props;
+  const { amount, currency, isRefund, link } = props;
 
   return (
     <SWrapper>
@@ -51,13 +44,13 @@ const ExpensesInfo: React.FC<ExpensesInfoProps> = (props) => {
         <Typography className={classes.titleStyle} variant="subtitle2">
           Amount
         </Typography>
-        <ExpensesAmount amount={data.amount} currency={data.currency} isRefund={data.isRefund} />
+        <ExpensesAmount amount={amount} currency={currency} isRefund={isRefund} />
       </SInfoWrapper>
       <SInfoWrapper>
         <Typography className={classes.titleStyle} variant="subtitle2">
           Receipt
         </Typography>
-        <ReceiptIcon link={data.link} />
+        <ReceiptIcon link={link} />
       </SInfoWrapper>
     </SWrapper>
   );

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Sidebar, { SidebarProps } from '../template/Sidebar';
-import Dashboard, { DashboardProps } from '../template/Dashboard';
+import Expenses, { ExpensesProps } from '../template/Expenses';
 import Summary, { SummaryProps } from '../template/Summary';
 
-type WithDashboardProps = {
+type WithExpensesProps = {
   sidebarData: SidebarProps;
-  dashboardData: DashboardProps;
+  expensesData: ExpensesProps;
   summaryData: SummaryProps;
 };
 
@@ -20,17 +20,13 @@ const SWrapper = styled.div`
   overflow-y: scroll;
 `;
 
-const WithDashboard: React.FC<WithDashboardProps> = (props) => {
-  const { sidebarData, dashboardData, summaryData } = props;
+const WithExpenses: React.FC<WithExpensesProps> = (props) => {
+  const { sidebarData, expensesData, summaryData } = props;
 
   return (
     <SWrapper>
       <Sidebar balance={sidebarData.balance} currency={sidebarData.currency} navList={sidebarData.navList} />
-      <Dashboard
-        cardDate={dashboardData.cardDate}
-        cardNumber={dashboardData.cardNumber}
-        cardName={dashboardData.cardName}
-      />
+      <Expenses expList={expensesData.expList} />
       <Summary
         imgSrc={summaryData.imgSrc}
         userName={summaryData.userName}
@@ -41,4 +37,4 @@ const WithDashboard: React.FC<WithDashboardProps> = (props) => {
   );
 };
 
-export default WithDashboard;
+export default WithExpenses;

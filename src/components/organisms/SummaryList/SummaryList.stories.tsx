@@ -18,11 +18,11 @@ export const common = () => (
       },
       {
         isCancelled: false,
-        amount: -1470,
+        amount: 0,
         currency: 'USD',
         company: 'ATL',
         date: '5 march, 18:23',
-        type: 'expense',
+        type: 'cancel',
       },
     ]}
   />

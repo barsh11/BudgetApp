@@ -5,7 +5,7 @@ import ExpensesInfo, { ExpensesInfoProps } from '../../molecules/ExpensesInfo/Ex
 import Timestamp, { TimestampProps } from '../../molecules/Timestamp/Timestamp';
 import capitalize from '../../../utils/capitalize';
 
-type ExpensesCardProps = TypographyProps &
+export type ExpensesCardProps = TypographyProps &
   ExpensesInfoProps &
   TimestampProps & {
     company: string;
@@ -37,16 +37,16 @@ const SLine = styled.div`
 `;
 
 const ExpensesCard: React.FC<ExpensesCardProps> = (props) => {
-  const { data, company, time, date } = props;
+  const { link, amount, currency, isRefund, company, time, date } = props;
 
   const content = <SLine>&nbsp;</SLine>;
 
   return (
     <SWrapper>
-      {data.isRefund && content}
+      {isRefund && content}
       <Typography variant="h5">{capitalize(company)}</Typography>
       <Timestamp time={time} date={date} />
-      <ExpensesInfo data={data} />
+      <ExpensesInfo amount={amount} currency={currency} isRefund={isRefund} link={link} />
     </SWrapper>
   );
 };
