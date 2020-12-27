@@ -5,7 +5,7 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import ClockIcon from '../../atoms/ClockIcon/ClockIcon';
 import CalenderIcon from '../../atoms/CalenderIcon/CalendarIcon';
 
-type TimestampProps = TypographyProps & {
+export type TimestampProps = TypographyProps & {
   time: string;
   date: string;
 };
@@ -18,17 +18,22 @@ const useStyles = makeStyles({
 
 const SWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 
-  width: 20rem;
+  align-self: flex-start;
+
+  margin-top: 0.5rem;
+  width: 90%;
 `;
 
 const STimeWrapper = styled.div`
   display: flex;
+  width: 45%;
 `;
 
 const SDateWrapper = styled.div`
   display: flex;
+  width: 45%;
 `;
 
 const Timestamp: React.FC<TimestampProps> = ({ time, date }) => {

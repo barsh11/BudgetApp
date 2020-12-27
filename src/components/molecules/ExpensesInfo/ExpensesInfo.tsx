@@ -5,7 +5,7 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import ReceiptIcon from '../../atoms/ReceiptIcon/ReceiptIcon';
 import ExpensesAmount from '../../atoms/ExpensesAmount/ExpensesAmount';
 
-type ExpensesInfoProps = TypographyProps & {
+export type ExpensesInfoProps = TypographyProps & {
   data: {
     amount: number;
     currency: string;
@@ -16,25 +16,28 @@ type ExpensesInfoProps = TypographyProps & {
 
 const SWrapper = styled.div`
   display: flex;
+
+  width: 100%;
 `;
 
 const SInfoWrapper = styled.div`
   width: 13rem;
-  height: 8rem;
+  height: 7rem;
 
   display: flex;
   flex-direction: column;
 
   background-color: var(--color-white);
   padding: 0.8rem;
-  margin: 3rem;
-  border-radius: 4px;
+  margin: 0.8rem;
+  border-radius: 0.4rem;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 `;
 
 const useStyles = makeStyles({
   titleStyle: {
-    marginBottom: '0.8rem',
+    marginBottom: '0.5rem',
+    color: 'var(--color-grey-light)',
   },
 });
 
@@ -51,7 +54,9 @@ const ExpensesInfo: React.FC<ExpensesInfoProps> = (props) => {
         <ExpensesAmount amount={data.amount} currency={data.currency} isRefund={data.isRefund} />
       </SInfoWrapper>
       <SInfoWrapper>
-        <Typography variant="subtitle2">Receipt</Typography>
+        <Typography className={classes.titleStyle} variant="subtitle2">
+          Receipt
+        </Typography>
         <ReceiptIcon link={data.link} />
       </SInfoWrapper>
     </SWrapper>

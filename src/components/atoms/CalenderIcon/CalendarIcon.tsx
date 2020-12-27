@@ -6,7 +6,7 @@ import { IconProps } from '@material-ui/core/Icon';
 const useStyles = makeStyles({
   iconStyle: {
     fill: 'var(--color-grey-dark)',
-    marginRight: '1rem',
+    marginRight: '0.5rem',
   },
 });
 

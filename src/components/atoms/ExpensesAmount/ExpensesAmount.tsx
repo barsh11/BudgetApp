@@ -14,7 +14,7 @@ type ExpensesAmountProps = TypographyProps &
 
 const useStyles = makeStyles({
   refundStyle: {
-    color: 'var(--color-green)',
+    color: 'var(--color-forthtiary)',
   },
 });
 

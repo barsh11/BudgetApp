@@ -13,13 +13,18 @@ const useStyles = makeStyles({
   iconStyle: {
     fill: 'var(--color-grey-light)',
   },
+  btnStyle: {
+    '&:hover, &:focus': {
+      backgroundColor: 'transparent',
+    },
+  },
 });
 
 const ReceiptIcon: React.FC<ReceiptIconProps> = ({ link }) => {
   const classes = useStyles();
 
   return (
-    <IconButton aria-label={link} onClick={() => window.open(link, '_blank', 'true')}>
+    <IconButton className={classes.btnStyle} aria-label={link} onClick={() => window.open(link, '_blank', 'true')}>
       <BeenhereIcon className={classes.iconStyle} fontSize="large" />
     </IconButton>
   );

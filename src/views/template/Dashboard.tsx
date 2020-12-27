@@ -7,7 +7,7 @@ type DashboardProps = {
 };
 
 const SWrapper = styled.div`
-  background-color: var(--color-white);
+  background-color: var(--color-white-dark);
   border-radius: 2rem 0 0 2rem;
   margin-left: -2rem;
   padding: 3.2rem;
