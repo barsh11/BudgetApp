@@ -5,4 +5,4 @@ export default {
   title: 'Expenses/ReceiptIcon',
 };
 
-export const common = () => <ReceiptIcon>common ReceiptIcon</ReceiptIcon>;
+export const common = () => <ReceiptIcon link="https://www.google.com">common ReceiptIcon</ReceiptIcon>;

@@ -1,7 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import BeenhereIcon from '@material-ui/icons/Beenhere';
 import { IconProps } from '@material-ui/core/Icon';
+
+type ReceiptIconProps = IconButtonProps &
+  IconProps & {
+    link: string;
+  };
 
 const useStyles = makeStyles({
   iconStyle: {
@@ -9,10 +15,14 @@ const useStyles = makeStyles({
   },
 });
 
-const ReceiptIcon: React.FC<IconProps> = () => {
+const ReceiptIcon: React.FC<ReceiptIconProps> = ({ link }) => {
   const classes = useStyles();
 
-  return <BeenhereIcon className={classes.iconStyle} fontSize="large" />;
+  return (
+    <IconButton aria-label={link} onClick={() => window.open(link, '_blank', 'true')}>
+      <BeenhereIcon className={classes.iconStyle} fontSize="large" />
+    </IconButton>
+  );
 };
 
 export default ReceiptIcon;
