@@ -38,6 +38,7 @@ export const generalStyles = css`
 
   --color-black: #000000;
   --color-white: #ffffff;
+  --color-green: #4bc872;
 `;
 
 const GlobalStyle = createGlobalStyle`
