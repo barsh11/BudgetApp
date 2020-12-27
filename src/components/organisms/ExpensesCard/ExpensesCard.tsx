@@ -27,7 +27,7 @@ const SWrapper = styled.div`
 `;
 
 const SLine = styled.div`
-  height: 0.5rem;
+  height: 0.4rem;
   width: 100%;
 
   position: absolute;

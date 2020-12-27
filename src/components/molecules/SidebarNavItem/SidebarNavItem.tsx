@@ -19,6 +19,7 @@ const SWrapper = styled.div`
 
   opacity: 0.6;
   transition: all 0.2s;
+  letter-spacing: 2px;
 
   &:hover {
     opacity: 1;
