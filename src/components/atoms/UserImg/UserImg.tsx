@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
 
-type UserImgProps = AvatarProps & {
+export type UserImgProps = AvatarProps & {
   imgSrc: string;
 };
 

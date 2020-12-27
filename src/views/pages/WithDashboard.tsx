@@ -1,28 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Sidebar from '../template/Sidebar';
-import Dashboard from '../template/Dashboard';
-import Summary from '../template/Summary';
+import Sidebar, { SidebarProps } from '../template/Sidebar';
+import Dashboard, { DashboardProps } from '../template/Dashboard';
+import Summary, { SummaryProps } from '../template/Summary';
 
 type WithDashboardProps = {
-  data: {
-    sidebarData: { balance: number; currency: string; labels: ('cards' | 'dashboard' | 'expenses' | 'incomes')[] };
-    dashboardData: { cardNumber: number; cardName: string; cardDate: string };
-    summaryData: {
-      data: {
-        isCancelled?: boolean;
-        company?: string;
-        date: string;
-        amount: number;
-        currency: string;
-        type: 'expense' | 'income' | 'cancel';
-        isPaypal?: boolean;
-      }[];
-      imgSrc: string;
-      userName: string;
-      userEmail: string;
-    };
-  };
+  sidebarData: SidebarProps;
+  dashboardData: DashboardProps;
+  summaryData: SummaryProps;
 };
 
 const SWrapper = styled.div`
@@ -33,17 +18,25 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const WithDashboard: React.FC<WithDashboardProps> = ({ data }) => (
-  <SWrapper>
-    <Sidebar data={data.sidebarData} />
-    <Dashboard data={data.dashboardData} />
-    <Summary
-      data={data.summaryData.data}
-      imgSrc={data.summaryData.imgSrc}
-      userName={data.summaryData.userName}
-      userEmail={data.summaryData.userEmail}
-    />
-  </SWrapper>
-);
+const WithDashboard: React.FC<WithDashboardProps> = (props) => {
+  const { sidebarData, dashboardData, summaryData } = props;
+
+  return (
+    <SWrapper>
+      <Sidebar balance={sidebarData.balance} currency={sidebarData.currency} navList={sidebarData.navList} />
+      <Dashboard
+        cardDate={dashboardData.cardDate}
+        cardNumber={dashboardData.cardNumber}
+        cardName={dashboardData.cardName}
+      />
+      <Summary
+        imgSrc={summaryData.imgSrc}
+        userName={summaryData.userName}
+        userEmail={summaryData.userEmail}
+        summaryList={summaryData.summaryList}
+      />
+    </SWrapper>
+  );
+};
 
 export default WithDashboard;

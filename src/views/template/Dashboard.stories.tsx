@@ -5,6 +5,4 @@ export default {
   title: 'Dashboard/Dashboard',
 };
 
-export const common = () => (
-  <Dashboard data={{ cardNumber: 4111111111111111, cardDate: '04/21', cardName: 'Ian Kelley' }} />
-);
+export const common = () => <Dashboard cardNumber={4111111111111111} cardDate="04/21" cardName="Ian Kelley" />;

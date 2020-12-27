@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import Box, { BoxProps } from '@material-ui/core/Box';
 
-type UserDetailsProps = BoxProps &
+export type UserDetailsProps = BoxProps &
   TypographyProps & {
     userName: string;
     userEmail: string;

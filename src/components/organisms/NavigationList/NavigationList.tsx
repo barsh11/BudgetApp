@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import SidebarNavItem from '../../molecules/SidebarNavItem/SidebarNavItem';
+import SidebarNavItem, { SidebarNavItemProps } from '../../molecules/SidebarNavItem/SidebarNavItem';
 
-type NavigationListProps = {
-  data: ('cards' | 'dashboard' | 'expenses' | 'incomes')[];
+export type NavigationListProps = {
+  navList: SidebarNavItemProps[];
 };
 
 const SUl = styled.ul`
@@ -26,18 +26,16 @@ const Sa = styled.a`
   }
 `;
 
-const NavigationList: React.FC<NavigationListProps> = (props) => {
-  const renderNavItem = (label: string) => (
-    <SLi>
-      <Sa>
-        <SidebarNavItem key={label} label={label} />
-      </Sa>
-    </SLi>
-  );
+const renderNavItem = (label: 'cards' | 'dashboard' | 'expenses' | 'incomes') => (
+  <SLi>
+    <Sa>
+      <SidebarNavItem key={label} label={label} />
+    </Sa>
+  </SLi>
+);
 
-  const { data } = props;
-
-  return <SUl>{data?.map((el) => renderNavItem(el))}</SUl>;
-};
+const NavigationList: React.FC<NavigationListProps> = ({ navList }) => (
+  <SUl>{navList.map((el) => renderNavItem(el.label))}</SUl>
+);
 
 export default NavigationList;

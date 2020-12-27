@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import SidebarBalance from '../../components/molecules/SidebarBalance/SidebarBalance';
-import NavigationList from '../../components/organisms/NavigationList/NavigationList';
+import SidebarBalance, { SidebarBalanceProps } from '../../components/molecules/SidebarBalance/SidebarBalance';
+import NavigationList, { NavigationListProps } from '../../components/organisms/NavigationList/NavigationList';
 
-type SidebarProps = {
-  data: { balance: number; currency: string; labels: ('cards' | 'dashboard' | 'expenses' | 'incomes')[] };
-};
+export type SidebarProps = SidebarBalanceProps & NavigationListProps;
 
 const SWrapper = styled.div`
   background-color: var(--color-primary);
@@ -19,11 +17,15 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Sidebar: React.FC<SidebarProps> = ({ data }) => (
-  <SWrapper>
-    <SidebarBalance balance={data?.balance} currency={data.currency} />
-    <NavigationList data={data.labels} />
-  </SWrapper>
-);
+const Sidebar: React.FC<SidebarProps> = (props) => {
+  const { balance, currency, navList } = props;
+
+  return (
+    <SWrapper>
+      <SidebarBalance balance={balance} currency={currency} />
+      <NavigationList navList={navList} />
+    </SWrapper>
+  );
+};
 
 export default Sidebar;

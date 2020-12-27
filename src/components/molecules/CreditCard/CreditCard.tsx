@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import CardDate from '../../atoms/CardDate/CardDate';
-import CardName from '../../atoms/CardName/CardName';
-import CardNumber from '../../atoms/CardNumber/CardNumber';
+import CardDate, { CardDateProps } from '../../atoms/CardDate/CardDate';
+import CardName, { CardNameProps } from '../../atoms/CardName/CardName';
+import CardNumber, { CardNumberProps } from '../../atoms/CardNumber/CardNumber';
 import img from '../../../assets/images/card.jpg';
 
-type CreditCardProps = TypographyProps & {
-  data: { cardNumber: number; cardName: string; cardDate: string };
-};
+export type CreditCardProps = TypographyProps & CardDateProps & CardNameProps & CardNumberProps;
 
 const SWrapper = styled.div`
   background-image: url(${img});
@@ -30,17 +28,17 @@ const SBottomWrapper = styled.div`
 `;
 
 const SidebarBalance: React.FC<CreditCardProps> = (props) => {
-  const { data } = props;
+  const { cardDate, cardNumber, cardName } = props;
 
   return (
     <SWrapper>
       <Typography variant="h5" align="left" color="textPrimary">
         Card
       </Typography>
-      <CardNumber cardNumber={data.cardNumber} />
+      <CardNumber cardNumber={cardNumber} />
       <SBottomWrapper>
-        <CardName cardName={data.cardName} />
-        <CardDate cardDate={data.cardDate} />
+        <CardName cardName={cardName} />
+        <CardDate cardDate={cardDate} />
       </SBottomWrapper>
     </SWrapper>
   );

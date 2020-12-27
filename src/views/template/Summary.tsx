@@ -1,19 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import SummaryUserInfo, { SummaryUserInfoProps } from '../../components/molecules/SummaryUserInfo/SummaryUserInfo';
-import SummaryList from '../../components/organisms/SummaryList/SummaryList';
+import SummaryList, { SummaryListProps } from '../../components/organisms/SummaryList/SummaryList';
 
-type SummaryProps = SummaryUserInfoProps & {
-  data: {
-    isCancelled?: boolean;
-    company?: string;
-    date: string;
-    amount: number;
-    currency: string;
-    type: 'expense' | 'income' | 'cancel';
-    isPaypal?: boolean;
-  }[];
-};
+export type SummaryProps = SummaryUserInfoProps & SummaryListProps;
 
 const SWrapper = styled.div`
   background-color: var(--color-tertiary);
@@ -26,11 +16,15 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Sidebar: React.FC<SummaryProps> = ({ imgSrc, userName, userEmail, data }) => (
-  <SWrapper>
-    <SummaryUserInfo imgSrc={imgSrc} userName={userName} userEmail={userEmail} />
-    <SummaryList data={data} />
-  </SWrapper>
-);
+const Summary: React.FC<SummaryProps> = (props) => {
+  const { imgSrc, userName, userEmail, summaryList } = props;
 
-export default Sidebar;
+  return (
+    <SWrapper>
+      <SummaryUserInfo imgSrc={imgSrc} userName={userName} userEmail={userEmail} />
+      <SummaryList summaryList={summaryList} />
+    </SWrapper>
+  );
+};
+
+export default Summary;

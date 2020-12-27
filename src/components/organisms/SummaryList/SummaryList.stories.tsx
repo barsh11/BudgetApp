@@ -7,7 +7,7 @@ export default {
 
 export const common = () => (
   <SummaryList
-    data={[
+    summaryList={[
       {
         isCancelled: false,
         amount: -1470,
