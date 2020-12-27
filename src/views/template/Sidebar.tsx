@@ -18,6 +18,7 @@ const SWrapper = styled.div`
 `;
 
 const Sidebar: React.FC<SidebarProps> = (props) => {
+  // distructure
   const { balance, currency, navList } = props;
 
   return (

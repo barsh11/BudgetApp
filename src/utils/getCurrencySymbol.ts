@@ -1,3 +1,5 @@
+// pls add test using jest for it
+
 const getCurrencySymbol = (currency: string) => {
   switch (currency) {
     case 'NIS':

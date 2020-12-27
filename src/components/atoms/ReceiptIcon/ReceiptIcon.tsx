@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 const ReceiptIcon: React.FC<ReceiptIconProps> = ({ link }) => {
   const classes = useStyles();
-
+  // onClick={() => window.open(link, '_blank', 'true')} // this is temp till we use router?
   return (
     <IconButton className={classes.btnStyle} aria-label={link} onClick={() => window.open(link, '_blank', 'true')}>
       <BeenhereIcon className={classes.iconStyle} fontSize="large" />

@@ -4,6 +4,7 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import FallbackIcon from '../../atoms/FallbackIcon/FallbackIcon';
 import capitalize from '../../../utils/capitalize';
 
+// why lazy?
 const CardsIcon = React.lazy(() => import('../../atoms/CardsIcon/CardsIcon'));
 const DashboardIcon = React.lazy(() => import('../../atoms/DashboardIcon/DashboardIcon'));
 const SidebarExpenseIcon = React.lazy(() => import('../../atoms/SidebarExpenseIcon/SidebarExpenseIcon'));
@@ -29,6 +30,7 @@ const SWrapper = styled.div`
   width: 10%;
 `;
 
+// utils?
 const getItemIcon = (label: string) => {
   switch (label) {
     case 'cards':

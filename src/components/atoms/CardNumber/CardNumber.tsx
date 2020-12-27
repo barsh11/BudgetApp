@@ -12,6 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
+// move to utils and pls add test using jest for it
 const getHiddenNumber = (number: number) => {
   let strNum = number.toString();
   strNum = strNum.replace(/\d(?=\d{4})/g, '*');

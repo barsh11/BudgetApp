@@ -17,6 +17,7 @@ const SWrapper = styled.div`
 `;
 
 const Summary: React.FC<SummaryProps> = (props) => {
+  // distructure
   const { imgSrc, userName, userEmail, summaryList } = props;
 
   return (

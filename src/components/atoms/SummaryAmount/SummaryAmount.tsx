@@ -10,16 +10,21 @@ type SummaryAmountProps = BoxProps &
     currency: string;
   };
 
+// utils?
 const getAmountColor = (amount: number) => {
   if (amount > 0) return 'var(--color-primary)';
   if (amount < 0) return 'var(--color-forthtiary)';
   return 'var(--color-black)';
 };
 
+// utils?
 const getAmountSign = (amount: number) => {
   if (amount > 0) return `+`;
   return ``;
 };
+
+// or
+// const getAmountSign = (amount: number) => amount ? '+' : ''
 
 const useStyles = makeStyles({
   currencyStyle: {

@@ -11,13 +11,11 @@ const SWrapper = styled.div`
   border-radius: 2rem 0 0 2rem;
   margin-left: -2rem;
   padding: 3.2rem;
-
   height: 68.2rem;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
-
+// distructure card pls
 const renderExpenseCard = (card: ExpensesCardProps) => (
   <ExpensesCard
     key={card.time}
@@ -31,9 +29,6 @@ const renderExpenseCard = (card: ExpensesCardProps) => (
   />
 );
 
-const Expenses: React.FC<ExpensesProps> = (props) => {
-  const { expList } = props;
-  return <SWrapper>{expList.map((el) => renderExpenseCard(el))}</SWrapper>;
-};
+const Expenses: React.FC<ExpensesProps> = ({ expList }) => <SWrapper>{expList.map(renderExpenseCard)}</SWrapper>;
 
 export default Expenses;

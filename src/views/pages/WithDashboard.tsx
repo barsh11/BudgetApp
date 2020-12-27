@@ -13,15 +13,16 @@ type WithDashboardProps = {
 const SWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-
+  // clean spaces
   width: 100rem;
   height: 68.2rem;
-
+  // clean spaces
   overflow-y: scroll;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 `;
 
 const WithDashboard: React.FC<WithDashboardProps> = (props) => {
+  // distructure
   const { sidebarData, dashboardData, summaryData } = props;
 
   return (

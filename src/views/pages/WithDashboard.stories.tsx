@@ -5,6 +5,8 @@ export default {
   title: 'AcrossApp/WithDashboard',
 };
 
+// pleasse provide mock file with all dummy data and import it everywhere you need
+
 export const common = () => (
   <WithDashboard
     dashboardData={{

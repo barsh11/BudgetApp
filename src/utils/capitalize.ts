@@ -1,3 +1,5 @@
+// pls add test using jest for it
+
 const capitalize = (str: string) => {
   const splitStr = str.split(' ');
   for (let i = 0; i < splitStr.length; i += 1) {

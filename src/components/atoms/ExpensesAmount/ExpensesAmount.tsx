@@ -21,12 +21,20 @@ const useStyles = makeStyles({
 const ExpensesAmount: React.FC<ExpensesAmountProps> = ({ amount, currency, isRefund }) => {
   const classes = useStyles();
 
+  // you can even go further and do:
+  // const deposit = getDeopsit(amount, currency);
+
   const deposit = `${formatNumber(amount)} ${getCurrencySymbol(currency)}`;
   let content = (
     <Typography color="textSecondary" variant="h6">
       {deposit}
     </Typography>
   );
+
+  // can we get refaund componenets? so it will be cleaner: wdyt?
+  // if (!isRefund) return <Deposit deposit={deposit}/>
+  // if (isRefund) return <Refaund deposit={deposit}/>
+
   if (isRefund) {
     content = (
       <Box className={classes.refundStyle} component="div">
