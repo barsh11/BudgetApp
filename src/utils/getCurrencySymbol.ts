@@ -1,10 +1,5 @@
-const getCurrencySymbol = (currency: string) => {
-  switch (currency) {
-    case 'NIS':
-      return '\u20AA';
-    default:
-      return '$';
-  }
-};
+import Symbol from '../containers/enums/CurrenciesSymbol';
+
+const getCurrencySymbol = (currency: string) => (<any>Symbol)[currency];
 
 export default getCurrencySymbol;
