@@ -10,17 +10,17 @@ type SummaryLabelProps = BoxProps &
     date: string;
   };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   box: {
     margin: '0.7rem',
   },
   description: {
-    color: 'var(--color-grey-dark)',
+    color: theme.palette.grey.A200,
   },
   date: {
-    color: 'var(--color-grey-light)',
+    color: theme.palette.grey.A100,
   },
-});
+}));
 
 const getLabel = (company?: string, isCancelled?: boolean) => {
   if (isCancelled) return 'Cancelled';

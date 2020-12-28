@@ -3,14 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import UndoOutlinedIcon from '@material-ui/icons/UndoOutlined';
 import { IconProps } from '@material-ui/core/Icon';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   iconStyle: {
     borderRadius: '50%',
     padding: '0.3rem',
-    backgroundColor: 'var(--color-white)',
-    fill: 'var(--color-grey-dark)',
+    backgroundColor: theme.palette.common.white,
+    fill: theme.palette.grey.A200,
   },
-});
+}));
 
 const ExpenseIcon: React.FC<IconProps> = () => {
   const classes = useStyles();

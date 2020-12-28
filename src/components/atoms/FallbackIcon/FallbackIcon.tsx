@@ -7,18 +7,18 @@ type FallbackIconProps = IconProps & {
   location: 'sidebar' | 'summary';
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   summaryStyle: {
     borderRadius: '50%',
     padding: '0.3rem',
-    backgroundColor: 'var(--color-grey-light)',
-    fill: 'var(--color-white)',
+    backgroundColor: theme.palette.grey.A100,
+    fill: theme.palette.common.white,
   },
   sidebarStyle: {
-    fill: 'var(--color-white)',
+    fill: theme.palette.common.white,
     marginRight: '1rem',
   },
-});
+}));
 
 const FallbackIcon: React.FC<FallbackIconProps> = ({ location }: FallbackIconProps) => {
   const classes = useStyles();

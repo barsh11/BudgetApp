@@ -10,11 +10,11 @@ export type TimestampProps = TypographyProps & {
   date: string;
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   labelStyle: {
-    color: 'var(--color-grey-light)',
+    color: theme.palette.grey.A100,
   },
-});
+}));
 
 const SWrapper = styled.div`
   display: flex;
