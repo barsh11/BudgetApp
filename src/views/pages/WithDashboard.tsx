@@ -21,25 +21,20 @@ const SWrapper = styled.div`
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 `;
 
-const WithDashboard: React.FC<WithDashboardProps> = (props) => {
-  const { sidebarData, dashboardData, summaryData } = props;
-
-  return (
-    <SWrapper>
-      <Sidebar balance={sidebarData.balance} currency={sidebarData.currency} navList={sidebarData.navList} />
-      <Dashboard
-        cardDate={dashboardData.cardDate}
-        cardNumber={dashboardData.cardNumber}
-        cardName={dashboardData.cardName}
-      />
-      <Summary
-        imgSrc={summaryData.imgSrc}
-        userName={summaryData.userName}
-        userEmail={summaryData.userEmail}
-        summaryList={summaryData.summaryList}
-      />
-    </SWrapper>
-  );
-};
-
+const WithDashboard: React.FC<WithDashboardProps> = ({ sidebarData, dashboardData, summaryData }) => (
+  <SWrapper>
+    <Sidebar balance={sidebarData.balance} currency={sidebarData.currency} navList={sidebarData.navList} />
+    <Dashboard
+      cardDate={dashboardData.cardDate}
+      cardNumber={dashboardData.cardNumber}
+      cardName={dashboardData.cardName}
+    />
+    <Summary
+      imgSrc={summaryData.imgSrc}
+      userName={summaryData.userName}
+      userEmail={summaryData.userEmail}
+      summaryList={summaryData.summaryList}
+    />
+  </SWrapper>
+);
 export default WithDashboard;

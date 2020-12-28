@@ -46,9 +46,7 @@ const getItemIcon = (type: 'expense' | 'income' | 'cancel', isPaypal?: boolean) 
   }
 };
 
-const SummaryItem: React.FC<SummaryItemProps> = (props) => {
-  const { isCancelled, company, date, amount, currency, type, isPaypal } = props;
-
+const SummaryItem: React.FC<SummaryItemProps> = ({ isCancelled, company, date, amount, currency, type, isPaypal }) => {
   const icon = getItemIcon(type, isPaypal);
 
   return (

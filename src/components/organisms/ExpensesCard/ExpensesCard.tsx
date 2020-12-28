@@ -36,9 +36,7 @@ const SLine = styled.div`
   background-color: var(--color-forthtiary);
 `;
 
-const ExpensesCard: React.FC<ExpensesCardProps> = (props) => {
-  const { link, amount, currency, isRefund, company, time, date } = props;
-
+const ExpensesCard: React.FC<ExpensesCardProps> = ({ link, amount, currency, isRefund, company, time, date }) => {
   const content = <SLine>&nbsp;</SLine>;
 
   return (

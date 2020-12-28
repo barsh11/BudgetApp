@@ -18,22 +18,21 @@ const SWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
-const renderExpenseCard = (card: ExpensesCardProps) => (
+const renderExpenseCard = ({ company, amount, currency, isRefund, link, time, date }: ExpensesCardProps) => (
   <ExpensesCard
-    key={card.time}
-    company={card.company}
-    amount={card.amount}
-    currency={card.currency}
-    isRefund={card.isRefund}
-    link={card.link}
-    time={card.time}
-    date={card.date}
+    key={time}
+    company={company}
+    amount={amount}
+    currency={currency}
+    isRefund={isRefund}
+    link={link}
+    time={time}
+    date={date}
   />
 );
 
-const Expenses: React.FC<ExpensesProps> = (props) => {
-  const { expList } = props;
-  return <SWrapper>{expList.map((el) => renderExpenseCard(el))}</SWrapper>;
-};
+const Expenses: React.FC<ExpensesProps> = ({ expList }) => (
+  <SWrapper>{expList.map((el) => renderExpenseCard(el))}</SWrapper>
+);
 
 export default Expenses;
