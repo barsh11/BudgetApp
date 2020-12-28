@@ -28,7 +28,7 @@ const Sa = styled.a`
 
 const renderNavItem = (label: 'cards' | 'dashboard' | 'expenses' | 'incomes') => (
   <SLi>
-    <Sa>
+    <Sa href={`/${label}`}>
       <SidebarNavItem key={label} label={label} />
     </Sa>
   </SLi>
