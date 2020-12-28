@@ -1,13 +1,13 @@
 import React from 'react';
-import WithDashboard from './WithDashboard';
+import WithCards from './WithCards';
 
 export default {
-  title: 'AcrossApp/WithDashboard',
+  title: 'AcrossApp/WithCards',
 };
 
 export const common = () => (
-  <WithDashboard
-    dashboardData={{
+  <WithCards
+    cardsData={{
       cardsList: [
         { cardNumber: 4111111111111111, cardDate: '04/21', cardName: 'Ian Kelley' },
         { cardNumber: 4111111111187345, cardDate: '03/25', cardName: 'Dan Kelley' },
