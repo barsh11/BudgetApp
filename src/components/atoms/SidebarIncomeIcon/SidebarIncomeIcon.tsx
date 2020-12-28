@@ -2,12 +2,12 @@ import React from 'react';
 import { SvgIcon, SvgIconProps } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   iconStyle: {
-    fill: 'var(--color-white)',
+    fill: theme.palette.common.white,
     marginRight: '1rem',
   },
-});
+}));
 
 const SidebarIncomeIcon: React.FC<SvgIconProps> = () => {
   const classes = useStyles();

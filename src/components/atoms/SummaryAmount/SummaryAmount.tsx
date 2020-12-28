@@ -21,14 +21,14 @@ const getAmountSign = (amount: number) => {
   return ``;
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   currencyStyle: {
-    color: 'var(--color-grey-light)',
+    color: theme.palette.grey.A100,
   },
   amountStyle: {
     color: (props: SummaryAmountProps) => getAmountColor(props.amount),
   },
-});
+}));
 
 const SummaryAmount: React.FC<SummaryAmountProps> = ({ amount, currency }: SummaryAmountProps) => {
   const props = {

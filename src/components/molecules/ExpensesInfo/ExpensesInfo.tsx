@@ -27,12 +27,12 @@ const SInfoWrapper = styled.div`
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 `;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   titleStyle: {
     marginBottom: '0.5rem',
-    color: 'var(--color-grey-light)',
+    color: theme.palette.grey.A100,
   },
-});
+}));
 
 const ExpensesInfo: React.FC<ExpensesInfoProps> = ({ amount, currency, isRefund, link }) => {
   const classes = useStyles();

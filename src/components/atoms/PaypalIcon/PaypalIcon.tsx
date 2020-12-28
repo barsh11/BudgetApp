@@ -2,14 +2,14 @@ import React from 'react';
 import { SvgIcon, SvgIconProps } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   iconStyle: {
     borderRadius: '50%',
     padding: '0.3rem',
-    backgroundColor: 'var(--color-primary)',
-    stroke: 'var(--color-white)',
+    backgroundColor: theme.palette.primary.main,
+    stroke: theme.palette.common.white,
   },
-});
+}));
 
 const PaypalIcon: React.FC<SvgIconProps> = () => {
   const classes = useStyles();

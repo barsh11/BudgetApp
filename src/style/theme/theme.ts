@@ -15,6 +15,10 @@ const theme = createMuiTheme({
       primary: 'white',
       secondary: 'black',
     },
+    grey: {
+      A100: '#988d8b',
+      A200: '#3f3f46',
+    },
   },
   typography: {
     fontFamily: font,

@@ -9,16 +9,16 @@ export type ReceiptIconProps = IconButtonProps &
     link: string;
   };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   iconStyle: {
-    fill: 'var(--color-grey-light)',
+    fill: theme.palette.grey.A100,
   },
   btnStyle: {
     '&:hover, &:focus': {
       backgroundColor: 'transparent',
     },
   },
-});
+}));
 
 const ReceiptIcon: React.FC<ReceiptIconProps> = ({ link }) => {
   const classes = useStyles();

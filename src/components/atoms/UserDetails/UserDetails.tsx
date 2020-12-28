@@ -9,14 +9,14 @@ export type UserDetailsProps = BoxProps &
     userEmail: string;
   };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   boxStyle: {
     marginTop: '1rem',
   },
   userEmailStyle: {
-    color: 'var(--color-grey-light)',
+    color: theme.palette.grey.A100,
   },
-});
+}));
 
 const UserDetails: React.FC<UserDetailsProps> = ({ userName, userEmail }) => {
   const classes = useStyles();
