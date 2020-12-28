@@ -18,7 +18,7 @@ const SWrapper = styled.div`
   height: 68.2rem;
 
   overflow-y: scroll;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-light);
 `;
 
 const WithDashboard: React.FC<WithDashboardProps> = ({ sidebarData, dashboardData, summaryData }) => (
