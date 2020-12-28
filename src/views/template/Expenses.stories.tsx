@@ -26,6 +26,42 @@ export const common = () => (
         isRefund: false,
         link: 'https://www.google.com',
       },
+      {
+        time: '12:22',
+        date: '15 Jun 2016',
+        company: 'bread crumbs',
+        amount: 109.3,
+        currency: 'USD',
+        isRefund: false,
+        link: 'https://www.google.com',
+      },
+      {
+        time: '14:22',
+        date: '13 Jun 2016',
+        company: 'netflix',
+        amount: 30,
+        currency: 'USD',
+        isRefund: false,
+        link: 'https://www.google.com',
+      },
+      {
+        time: '11:22',
+        date: '10 Jun 2016',
+        company: 'tamara',
+        amount: 10.01,
+        currency: 'USD',
+        isRefund: true,
+        link: 'https://www.google.com',
+      },
+      {
+        time: '10:23',
+        date: '10 Jun 2016',
+        company: 'toysRus',
+        amount: 10,
+        currency: 'USD',
+        isRefund: false,
+        link: 'https://www.google.com',
+      },
     ]}
   />
 );

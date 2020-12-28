@@ -7,15 +7,10 @@ export type ExpensesProps = {
 };
 
 const SWrapper = styled.div`
-  background-color: var(--color-white-dark);
-  border-radius: 2rem 0 0 2rem;
-  margin-left: -2rem;
-  padding: 3.2rem;
-
-  height: 68.2rem;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
+  row-gap: 1.5rem;
+  justify-items: center;
 `;
 
 const renderExpenseCard = ({ company, amount, currency, isRefund, link, time, date }: ExpensesCardProps) => (

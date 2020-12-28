@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Sidebar, { SidebarProps } from '../template/Sidebar';
 import Summary, { SummaryProps } from '../template/Summary';
 
-type LayoutProps = {
+export type LayoutProps = {
   sidebarData: SidebarProps;
   summaryData: SummaryProps;
 };
@@ -26,11 +26,8 @@ const SMain = styled.main`
   background-color: var(--color-white-dark);
   border-radius: 2rem 0 0 2rem;
   margin-left: -2rem;
-  padding: 3.2rem;
   overflow-y: scroll;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  padding: 3.2rem 3.2rem 3.2rem 5.2rem;
 `;
 
 const Layout: React.FC<LayoutProps> = (props) => (

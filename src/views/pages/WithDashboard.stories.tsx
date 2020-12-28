@@ -8,9 +8,12 @@ export default {
 export const common = () => (
   <WithDashboard
     dashboardData={{
-      cardNumber: 4111111111111111,
-      cardDate: '04/21',
-      cardName: 'Ian Kelley',
+      cardsList: [
+        { cardNumber: 4111111111111111, cardDate: '04/21', cardName: 'Ian Kelley' },
+        { cardNumber: 4111111111187345, cardDate: '03/25', cardName: 'Dan Kelley' },
+        { cardNumber: 4111111111182245, cardDate: '04/23', cardName: 'Jan Kelley' },
+        { cardNumber: 4111111111187312, cardDate: '02/25', cardName: 'Man Kelley' },
+      ],
     }}
     summaryData={{
       imgSrc:

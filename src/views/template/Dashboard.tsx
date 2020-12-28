@@ -2,21 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import CreditCard, { CreditCardProps } from '../../components/molecules/CreditCard/CreditCard';
 
-export type DashboardProps = CreditCardProps;
+export type DashboardProps = {
+  cardsList: CreditCardProps[];
+};
 
 const SWrapper = styled.div`
-  background-color: var(--color-white-dark);
-  border-radius: 2rem 0 0 2rem;
-  margin-left: -2rem;
-  padding: 3.2rem;
-
-  height: 68.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1.5rem;
+  justify-items: center;
 `;
 
-const Dashboard: React.FC<DashboardProps> = ({ cardDate, cardNumber, cardName }) => (
-  <SWrapper>
-    <CreditCard cardDate={cardDate} cardName={cardName} cardNumber={cardNumber} />
-  </SWrapper>
+const renderCard = ({ cardDate, cardName, cardNumber }: CreditCardProps) => (
+  <CreditCard key={cardNumber} cardDate={cardDate} cardName={cardName} cardNumber={cardNumber} />
+);
+
+const Dashboard: React.FC<DashboardProps> = ({ cardsList }) => (
+  <SWrapper>{cardsList.map((el) => renderCard(el))}</SWrapper>
 );
 
 export default Dashboard;
