@@ -27,21 +27,17 @@ const SBottomWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const SidebarBalance: React.FC<CreditCardProps> = (props) => {
-  const { cardDate, cardNumber, cardName } = props;
-
-  return (
-    <SWrapper>
-      <Typography variant="h5" align="left" color="textPrimary">
-        Card
-      </Typography>
-      <CardNumber cardNumber={cardNumber} />
-      <SBottomWrapper>
-        <CardName cardName={cardName} />
-        <CardDate cardDate={cardDate} />
-      </SBottomWrapper>
-    </SWrapper>
-  );
-};
+const SidebarBalance: React.FC<CreditCardProps> = ({ cardDate, cardNumber, cardName }) => (
+  <SWrapper>
+    <Typography variant="h5" align="left" color="textPrimary">
+      Card
+    </Typography>
+    <CardNumber cardNumber={cardNumber} />
+    <SBottomWrapper>
+      <CardName cardName={cardName} />
+      <CardDate cardDate={cardDate} />
+    </SBottomWrapper>
+  </SWrapper>
+);
 
 export default SidebarBalance;

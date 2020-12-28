@@ -21,21 +21,16 @@ const SWrapper = styled.div`
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 `;
 
-const WithExpenses: React.FC<WithExpensesProps> = (props) => {
-  const { sidebarData, expensesData, summaryData } = props;
-
-  return (
-    <SWrapper>
-      <Sidebar balance={sidebarData.balance} currency={sidebarData.currency} navList={sidebarData.navList} />
-      <Expenses expList={expensesData.expList} />
-      <Summary
-        imgSrc={summaryData.imgSrc}
-        userName={summaryData.userName}
-        userEmail={summaryData.userEmail}
-        summaryList={summaryData.summaryList}
-      />
-    </SWrapper>
-  );
-};
-
+const WithExpenses: React.FC<WithExpensesProps> = ({ sidebarData, expensesData, summaryData }) => (
+  <SWrapper>
+    <Sidebar balance={sidebarData.balance} currency={sidebarData.currency} navList={sidebarData.navList} />
+    <Expenses expList={expensesData.expList} />
+    <Summary
+      imgSrc={summaryData.imgSrc}
+      userName={summaryData.userName}
+      userEmail={summaryData.userEmail}
+      summaryList={summaryData.summaryList}
+    />
+  </SWrapper>
+);
 export default WithExpenses;

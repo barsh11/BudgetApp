@@ -17,15 +17,11 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Sidebar: React.FC<SidebarProps> = (props) => {
-  const { balance, currency, navList } = props;
-
-  return (
-    <SWrapper>
-      <SidebarBalance balance={balance} currency={currency} />
-      <NavigationList navList={navList} />
-    </SWrapper>
-  );
-};
+const Sidebar: React.FC<SidebarProps> = ({ balance, currency, navList }) => (
+  <SWrapper>
+    <SidebarBalance balance={balance} currency={currency} />
+    <NavigationList navList={navList} />
+  </SWrapper>
+);
 
 export default Sidebar;

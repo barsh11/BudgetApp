@@ -13,14 +13,10 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Dashboard: React.FC<DashboardProps> = (props) => {
-  const { cardDate, cardNumber, cardName } = props;
-
-  return (
-    <SWrapper>
-      <CreditCard cardDate={cardDate} cardName={cardName} cardNumber={cardNumber} />
-    </SWrapper>
-  );
-};
+const Dashboard: React.FC<DashboardProps> = ({ cardDate, cardNumber, cardName }) => (
+  <SWrapper>
+    <CreditCard cardDate={cardDate} cardName={cardName} cardNumber={cardNumber} />
+  </SWrapper>
+);
 
 export default Dashboard;

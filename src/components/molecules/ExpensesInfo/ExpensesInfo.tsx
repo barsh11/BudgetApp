@@ -34,9 +34,8 @@ const useStyles = makeStyles({
   },
 });
 
-const ExpensesInfo: React.FC<ExpensesInfoProps> = (props) => {
+const ExpensesInfo: React.FC<ExpensesInfoProps> = ({ amount, currency, isRefund, link }) => {
   const classes = useStyles();
-  const { amount, currency, isRefund, link } = props;
 
   return (
     <SWrapper>

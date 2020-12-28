@@ -21,23 +21,21 @@ const SLi = styled.li`
   }
 `;
 
-const SummaryList: React.FC<SummaryListProps> = (props) => {
-  const renderSummaryItem = (item: SummaryItemProps) => (
+const SummaryList: React.FC<SummaryListProps> = ({ summaryList }) => {
+  const renderSummaryItem = ({ isCancelled, company, date, amount, currency, type, isPaypal }: SummaryItemProps) => (
     <SLi>
       <SummaryItem
-        key={item.date}
-        isCancelled={item.isCancelled}
-        company={item.company}
-        date={item.date}
-        amount={item.amount}
-        currency={item.currency}
-        type={item.type}
-        isPaypal={item.isPaypal}
+        key={date}
+        isCancelled={isCancelled}
+        company={company}
+        date={date}
+        amount={amount}
+        currency={currency}
+        type={type}
+        isPaypal={isPaypal}
       />
     </SLi>
   );
-
-  const { summaryList } = props;
 
   return (
     <SWrapper>
