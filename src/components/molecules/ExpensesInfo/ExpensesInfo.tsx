@@ -24,7 +24,7 @@ const SInfoWrapper = styled.div`
   padding: 0.8rem;
   margin: 0.8rem;
   border-radius: 0.4rem;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-light);
 `;
 
 const useStyles = makeStyles((theme) => ({

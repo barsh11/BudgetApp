@@ -37,6 +37,9 @@ export const generalStyles = css`
   --color-black: #000000;
   --color-white: #ffffff;
   --color-white-dark: #faf9fe;
+
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
 `;
 
 const GlobalStyle = createGlobalStyle`

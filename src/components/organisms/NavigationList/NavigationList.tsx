@@ -20,6 +20,8 @@ const SLi = styled.li`
 `;
 
 const Sa = styled.a`
+  text-decoration: none;
+
   &:hover,
   &:active {
     cursor: pointer;
