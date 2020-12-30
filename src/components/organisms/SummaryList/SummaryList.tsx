@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import SummaryItem from '../../molecules/SummaryItem/SummaryItem';
-import { CardsSummaryProps } from '../../../services/axios';
-import data from '../../../mock/data.json';
+import { TransactionsSummaryProps } from '../../../services/axios';
+import useTranSumData from '../../../hooks/useTranSumData';
+import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 export type SummaryListProps = TypographyProps;
 
@@ -22,48 +23,9 @@ const SLi = styled.li`
 `;
 
 const SummaryList: React.FC<SummaryListProps> = () => {
-  const [summaryList, setSummaryList] = useState<CardsSummaryProps[]>([]);
+  const summaryList: TransactionsSummaryProps[] = useTranSumData();
 
-  const getState = useCallback(
-    (isActive: boolean) => {
-      const limitedResults: CardsSummaryProps[] = [];
-      const limit = 10;
-      if (data instanceof Array) {
-        for (let i = 0; i < limit; i += 1) {
-          limitedResults[i] = { ...data[i] };
-        }
-        if (isActive) {
-          // eslint-disable-next-line no-console
-          console.log(limitedResults);
-          setSummaryList(limitedResults);
-        }
-      }
-    },
-    [data]
-  );
-
-  useEffect(() => {
-    let isActive = true;
-
-    getState(isActive);
-
-    return () => {
-      isActive = false;
-    };
-  }, [getState]);
-
-  const getType = (someType: string): 'Income' | 'expense' | 'cancelled' => {
-    switch (someType) {
-      case 'Income':
-        return 'Income';
-      case 'expense':
-        return 'expense';
-      default:
-        return 'cancelled';
-    }
-  };
-
-  const renderSummaryItem = (curr: CardsSummaryProps) => (
+  const renderSummaryItem = (curr: TransactionsSummaryProps) => (
     <SLi>
       <SummaryItem
         key={curr.id}
@@ -71,7 +33,7 @@ const SummaryList: React.FC<SummaryListProps> = () => {
         date={curr.date}
         amount={parseFloat(curr.amount)}
         currency={curr.currency}
-        type={getType(curr.transactionType)}
+        type={narrowTransactionType(curr.transactionType)}
         isPaypal={curr.paypal}
       />
     </SLi>

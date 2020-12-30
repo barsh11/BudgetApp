@@ -6,5 +6,5 @@ export default {
 };
 
 export const common = () => (
-  <NavigationList navList={[{ label: 'dashboard' }, { label: 'cards' }, { label: 'expenses' }, { label: 'incomes' }]} />
+  <NavigationList navList={[{ label: 'dashboard' }, { label: 'cards' }, { label: 'transactions' }]} />
 );

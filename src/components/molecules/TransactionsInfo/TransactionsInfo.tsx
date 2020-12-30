@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import ReceiptIcon, { ReceiptIconProps } from '../../atoms/ReceiptIcon/ReceiptIcon';
-import ExpensesAmount, { ExpensesAmountProps } from '../../atoms/ExpensesAmount/ExpensesAmount';
+import TransactionsAmount, { TransactionsAmountProps } from '../../atoms/TransactionAmount/TransactionsAmount';
 
-export type ExpensesInfoProps = TypographyProps & ExpensesAmountProps & ReceiptIconProps;
+export type TransactionsInfoProps = TypographyProps &
+  TransactionsAmountProps & {
+    type: 'Income' | 'expense' | 'cancelled';
+  };
 
 const SWrapper = styled.div`
   display: flex;
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ExpensesInfo: React.FC<ExpensesInfoProps> = ({ amount, currency, isRefund, link }) => {
+const TransactionsInfo: React.FC<TransactionsInfoProps> = ({ amount, currency, isRefund, type }) => {
   const classes = useStyles();
 
   return (
@@ -43,16 +45,16 @@ const ExpensesInfo: React.FC<ExpensesInfoProps> = ({ amount, currency, isRefund,
         <Typography className={classes.titleStyle} variant="subtitle2">
           Amount
         </Typography>
-        <ExpensesAmount amount={amount} currency={currency} isRefund={isRefund} />
+        <TransactionsAmount amount={amount} currency={currency} isRefund={isRefund} />
       </SInfoWrapper>
       <SInfoWrapper>
         <Typography className={classes.titleStyle} variant="subtitle2">
-          Receipt
+          Transaction
         </Typography>
-        <ReceiptIcon link={link} />
+        <Typography variant="h6">{type.toUpperCase()}</Typography>
       </SInfoWrapper>
     </SWrapper>
   );
 };
 
-export default ExpensesInfo;
+export default TransactionsInfo;

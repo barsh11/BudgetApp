@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import ExpensesInfo, { ExpensesInfoProps } from '../ExpensesInfo/ExpensesInfo';
+import TransactionsInfo, { TransactionsInfoProps } from '../TransactionsInfo/TransactionsInfo';
 import Timestamp, { TimestampProps } from '../Timestamp/Timestamp';
 import capitalize from '../../../utils/capitalize';
 
-export type ExpensesCardProps = TypographyProps &
-  ExpensesInfoProps &
+export type TransactionsCardProps = TypographyProps &
+  TransactionsInfoProps &
   TimestampProps & {
     company: string;
   };
@@ -36,7 +36,15 @@ const SLine = styled.div`
   background-color: var(--color-forthtiary);
 `;
 
-const ExpensesCard: React.FC<ExpensesCardProps> = ({ link, amount, currency, isRefund, company, time, date }) => {
+const TransactionsCard: React.FC<TransactionsCardProps> = ({
+  type,
+  amount,
+  currency,
+  isRefund,
+  company,
+  time,
+  date,
+}) => {
   const content = <SLine>&nbsp;</SLine>;
 
   return (
@@ -44,9 +52,9 @@ const ExpensesCard: React.FC<ExpensesCardProps> = ({ link, amount, currency, isR
       {isRefund && content}
       <Typography variant="h5">{capitalize(company)}</Typography>
       <Timestamp time={time} date={date} />
-      <ExpensesInfo amount={amount} currency={currency} isRefund={isRefund} link={link} />
+      <TransactionsInfo amount={amount} currency={currency} isRefund={isRefund} type={type} />
     </SWrapper>
   );
 };
 
-export default ExpensesCard;
+export default TransactionsCard;

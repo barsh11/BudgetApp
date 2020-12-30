@@ -1,4 +1,4 @@
-export type CardsSummaryProps = {
+export type TransactionsSummaryProps = {
   id: string;
   transactionType: string;
   paypal: boolean;
