@@ -33,8 +33,6 @@ const SummaryList: React.FC<SummaryListProps> = () => {
           limitedResults[i] = { ...data[i] };
         }
         if (isActive) {
-          // eslint-disable-next-line no-console
-          console.log(limitedResults);
           setSummaryList(limitedResults);
         }
       }

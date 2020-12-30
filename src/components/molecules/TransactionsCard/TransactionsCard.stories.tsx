@@ -1,18 +1,18 @@
 import React from 'react';
-import ExpensesCard from './ExpensesCard';
+import TransactionsCard from './TransactionsCard';
 
 export default {
-  title: 'Expenses/ExpensesCard',
+  title: 'Transactions/TransactionsCard',
 };
 
 export const common = () => (
-  <ExpensesCard
+  <TransactionsCard
     time="15:12"
     date="13 Aug 2016"
     company="amazon"
     amount={4500}
     currency="USD"
     isRefund
-    link="https://www.google.com"
+    type="expense"
   />
 );

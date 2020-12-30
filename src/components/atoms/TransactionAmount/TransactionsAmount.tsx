@@ -5,7 +5,7 @@ import Box, { BoxProps } from '@material-ui/core/Box';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 import formatNumber from '../../../utils/formatNumber';
 
-export type ExpensesAmountProps = TypographyProps &
+export type TransactionsAmountProps = TypographyProps &
   BoxProps & {
     amount: number;
     currency: string;
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ExpensesAmount: React.FC<ExpensesAmountProps> = ({ amount, currency, isRefund }) => {
+const TransactionsAmount: React.FC<TransactionsAmountProps> = ({ amount, currency, isRefund }) => {
   const classes = useStyles();
 
   const deposit = `${formatNumber(amount)} ${getCurrencySymbol(currency)}`;
@@ -39,4 +39,4 @@ const ExpensesAmount: React.FC<ExpensesAmountProps> = ({ amount, currency, isRef
   return content;
 };
 
-export default ExpensesAmount;
+export default TransactionsAmount;
