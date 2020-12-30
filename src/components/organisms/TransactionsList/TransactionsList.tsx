@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TransactionsCard from '../../molecules/TransactionsCard/TransactionsCard';
 import { TransactionsSummaryProps } from '../../../services/axios';
 import useTranSumData from '../../../hooks/useTranSumData';
+import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 const SWrapper = styled.div`
   display: grid;
@@ -14,17 +15,6 @@ const SWrapper = styled.div`
 const TransactionsList: React.FC = () => {
   const transactionsList: TransactionsSummaryProps[] = useTranSumData();
 
-  const getType = (someType: string): 'Income' | 'expense' | 'cancelled' => {
-    switch (someType) {
-      case 'Income':
-        return 'Income';
-      case 'expense':
-        return 'expense';
-      default:
-        return 'cancelled';
-    }
-  };
-
   const renderExpenseCard = (curr: TransactionsSummaryProps) => (
     <TransactionsCard
       key={curr.id}
@@ -32,7 +22,7 @@ const TransactionsList: React.FC = () => {
       amount={parseFloat(curr.amount)}
       currency={curr.currency}
       isRefund={curr.transactionType === 'cancelled'}
-      type={getType(curr.transactionType)}
+      type={narrowTransactionType(curr.transactionType)}
       time={curr.time}
       date={curr.date}
     />

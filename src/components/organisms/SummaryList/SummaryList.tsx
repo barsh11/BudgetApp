@@ -4,6 +4,7 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import SummaryItem from '../../molecules/SummaryItem/SummaryItem';
 import { TransactionsSummaryProps } from '../../../services/axios';
 import useTranSumData from '../../../hooks/useTranSumData';
+import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 export type SummaryListProps = TypographyProps;
 
@@ -24,17 +25,6 @@ const SLi = styled.li`
 const SummaryList: React.FC<SummaryListProps> = () => {
   const summaryList: TransactionsSummaryProps[] = useTranSumData();
 
-  const getType = (someType: string): 'Income' | 'expense' | 'cancelled' => {
-    switch (someType) {
-      case 'Income':
-        return 'Income';
-      case 'expense':
-        return 'expense';
-      default:
-        return 'cancelled';
-    }
-  };
-
   const renderSummaryItem = (curr: TransactionsSummaryProps) => (
     <SLi>
       <SummaryItem
@@ -43,7 +33,7 @@ const SummaryList: React.FC<SummaryListProps> = () => {
         date={curr.date}
         amount={parseFloat(curr.amount)}
         currency={curr.currency}
-        type={getType(curr.transactionType)}
+        type={narrowTransactionType(curr.transactionType)}
         isPaypal={curr.paypal}
       />
     </SLi>
