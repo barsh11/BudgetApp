@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CreditCard, { CreditCardProps } from '../../components/molecules/CreditCard/CreditCard';
 
-export type DashboardProps = {
+export type CardsProps = {
   cardsList: CreditCardProps[];
 };
 
@@ -17,8 +17,6 @@ const renderCard = ({ cardDate, cardName, cardNumber }: CreditCardProps) => (
   <CreditCard key={cardNumber} cardDate={cardDate} cardName={cardName} cardNumber={cardNumber} />
 );
 
-const Dashboard: React.FC<DashboardProps> = ({ cardsList }) => (
-  <SWrapper>{cardsList.map((el) => renderCard(el))}</SWrapper>
-);
+const Cards: React.FC<CardsProps> = ({ cardsList }) => <SWrapper>{cardsList.map((el) => renderCard(el))}</SWrapper>;
 
-export default Dashboard;
+export default Cards;

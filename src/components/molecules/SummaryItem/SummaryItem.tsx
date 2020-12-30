@@ -11,12 +11,11 @@ const IncomeIcon = React.lazy(() => import('../../atoms/IncomeIcon/IncomeIcon'))
 const PaypalIcon = React.lazy(() => import('../../atoms/PaypalIcon/PaypalIcon'));
 
 export type SummaryItemProps = {
-  isCancelled?: boolean;
   company: string;
   date: string;
   amount: number;
   currency: string;
-  type: 'expense' | 'income' | 'cancel';
+  type: 'expense' | 'Income' | 'cancelled';
   isPaypal?: boolean;
 };
 
@@ -25,7 +24,6 @@ const SWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 15.8rem;
   height: 3rem;
 `;
 
@@ -35,27 +33,27 @@ const SLeftWrapper = styled.div`
   align-items: center;
 `;
 
-const getItemIcon = (type: 'expense' | 'income' | 'cancel', isPaypal?: boolean) => {
+const getItemIcon = (type: 'expense' | 'Income' | 'cancelled', isPaypal?: boolean) => {
   switch (type) {
     case 'expense':
       return isPaypal ? <PaypalIcon /> : <ExpenseIcon />;
-    case 'income':
+    case 'Income':
       return isPaypal ? <PaypalIcon /> : <IncomeIcon />;
     default:
       return <CancelledIcon />;
   }
 };
 
-const SummaryItem: React.FC<SummaryItemProps> = ({ isCancelled, company, date, amount, currency, type, isPaypal }) => {
+const SummaryItem: React.FC<SummaryItemProps> = ({ company, date, amount, currency, type, isPaypal }) => {
   const icon = getItemIcon(type, isPaypal);
 
   return (
     <SWrapper>
       <SLeftWrapper>
         <Suspense fallback={<FallbackIcon location="summary" />}>{icon}</Suspense>
-        <SummaryLabel isCancelled={isCancelled} company={capitalize(company)} date={date} />
+        <SummaryLabel isCancelled={type === 'cancelled'} company={capitalize(company)} date={date} />
       </SLeftWrapper>
-      <SummaryAmount amount={amount} currency={currency} />
+      <SummaryAmount amount={amount} currency={currency} type={type} />
     </SWrapper>
   );
 };
