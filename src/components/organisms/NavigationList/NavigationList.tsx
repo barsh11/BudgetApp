@@ -28,7 +28,7 @@ const Sa = styled.a`
   }
 `;
 
-const renderNavItem = (label: 'cards' | 'dashboard' | 'expenses' | 'incomes') => (
+const renderNavItem = (label: 'cards' | 'dashboard' | 'transactions') => (
   <SLi>
     <Sa href={`/${label}`}>
       <SidebarNavItem key={label} label={label} />

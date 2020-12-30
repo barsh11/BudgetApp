@@ -6,11 +6,10 @@ import capitalize from '../../../utils/capitalize';
 
 const CardsIcon = React.lazy(() => import('../../atoms/CardsIcon/CardsIcon'));
 const DashboardIcon = React.lazy(() => import('../../atoms/DashboardIcon/DashboardIcon'));
-const SidebarExpenseIcon = React.lazy(() => import('../../atoms/SidebarExpenseIcon/SidebarExpenseIcon'));
-const SidebarIncomeIcon = React.lazy(() => import('../../atoms/SidebarIncomeIcon/SidebarIncomeIcon'));
+const TransactionsIcon = React.lazy(() => import('../../atoms/TransactionsIcon/TransactionsIcon'));
 
 export type SidebarNavItemProps = TypographyProps & {
-  label: 'cards' | 'dashboard' | 'expenses' | 'incomes';
+  label: 'cards' | 'dashboard' | 'transactions';
 };
 
 const SWrapper = styled.div`
@@ -33,10 +32,8 @@ const getItemIcon = (label: string) => {
   switch (label) {
     case 'cards':
       return <CardsIcon />;
-    case 'expenses':
-      return <SidebarExpenseIcon />;
-    case 'incomes':
-      return <SidebarIncomeIcon />;
+    case 'transactions':
+      return <TransactionsIcon />;
     default:
       return <DashboardIcon />;
   }
