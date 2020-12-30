@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import TransactionsCard from '../../molecules/TransactionsCard/TransactionsCard';
-import { CardsSummaryProps } from '../../../services/axios';
-import data from '../../../mock/data.json';
+import { TransactionsSummaryProps } from '../../../services/axios';
+import useTranSumData from '../../../hooks/useTranSumData';
 
 const SWrapper = styled.div`
   display: grid;
@@ -12,33 +12,7 @@ const SWrapper = styled.div`
 `;
 
 const TransactionsList: React.FC = () => {
-  const [transactionsList, setTransactionsList] = useState<CardsSummaryProps[]>([]);
-
-  const getState = useCallback(
-    (isActive: boolean) => {
-      const limitedResults: CardsSummaryProps[] = [];
-      const limit = 10;
-      if (data instanceof Array) {
-        for (let i = 0; i < limit; i += 1) {
-          limitedResults[i] = { ...data[i] };
-        }
-        if (isActive) {
-          setTransactionsList(limitedResults);
-        }
-      }
-    },
-    [data]
-  );
-
-  useEffect(() => {
-    let isActive = true;
-
-    getState(isActive);
-
-    return () => {
-      isActive = false;
-    };
-  }, [getState]);
+  const transactionsList: TransactionsSummaryProps[] = useTranSumData();
 
   const getType = (someType: string): 'Income' | 'expense' | 'cancelled' => {
     switch (someType) {
@@ -51,7 +25,7 @@ const TransactionsList: React.FC = () => {
     }
   };
 
-  const renderExpenseCard = (curr: CardsSummaryProps) => (
+  const renderExpenseCard = (curr: TransactionsSummaryProps) => (
     <TransactionsCard
       key={curr.id}
       company={curr.company}
