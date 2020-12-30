@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import ExpensesInfo, { ExpensesInfoProps } from '../../molecules/ExpensesInfo/ExpensesInfo';
-import Timestamp, { TimestampProps } from '../../molecules/Timestamp/Timestamp';
+import ExpensesInfo, { ExpensesInfoProps } from '../ExpensesInfo/ExpensesInfo';
+import Timestamp, { TimestampProps } from '../Timestamp/Timestamp';
 import capitalize from '../../../utils/capitalize';
 
 export type ExpensesCardProps = TypographyProps &

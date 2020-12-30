@@ -9,6 +9,7 @@ const SWrapper = styled.div`
   background-color: var(--color-primary);
   border-radius: 2rem 0 0 2rem;
   padding-right: 2rem;
+  padding-top: 3.2rem;
 
   display: flex;
   flex-direction: column;

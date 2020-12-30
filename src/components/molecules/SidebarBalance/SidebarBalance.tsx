@@ -15,10 +15,8 @@ const SWrapper = styled.div`
   justify-content: center;
 
   background-color: var(--color-primary-light);
-  padding: 1.5rem 2rem;
   border-radius: 1rem;
-  margin-top: 3.2rem;
-  margin-bottom: 3.2rem;
+  margin-bottom: 2rem;
   letter-spacing: 2px;
 
   width: 12rem;
