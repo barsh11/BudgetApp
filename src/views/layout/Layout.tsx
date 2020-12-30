@@ -42,7 +42,6 @@ const Layout: React.FC<LayoutProps> = (props) => (
       imgSrc={props.summaryData.imgSrc}
       userName={props.summaryData.userName}
       userEmail={props.summaryData.userEmail}
-      summaryList={props.summaryData.summaryList}
     />
   </SWrapper>
 );

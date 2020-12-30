@@ -16,10 +16,10 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Summary: React.FC<SummaryProps> = ({ imgSrc, userName, userEmail, summaryList }) => (
+const Summary: React.FC<SummaryProps> = ({ imgSrc, userName, userEmail }) => (
   <SWrapper>
     <SummaryUserInfo imgSrc={imgSrc} userName={userName} userEmail={userEmail} />
-    <SummaryList summaryList={summaryList} />
+    <SummaryList />
   </SWrapper>
 );
 

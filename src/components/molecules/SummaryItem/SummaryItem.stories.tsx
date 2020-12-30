@@ -6,5 +6,5 @@ export default {
 };
 
 export const common = () => (
-  <SummaryItem isCancelled amount={0} currency="USD" company="ATL" date="5 march, 18:32" type="cancel" />
+  <SummaryItem amount={0} currency="USD" company="ATL" date="5 march, 18:32" type="cancelled" />
 );

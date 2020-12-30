@@ -5,25 +5,4 @@ export default {
   title: 'Summary/SummaryList',
 };
 
-export const common = () => (
-  <SummaryList
-    summaryList={[
-      {
-        isCancelled: false,
-        amount: -1470,
-        currency: 'USD',
-        company: 'ATL',
-        date: '5 march, 18:33',
-        type: 'expense',
-      },
-      {
-        isCancelled: false,
-        amount: 0,
-        currency: 'USD',
-        company: 'ATL',
-        date: '5 march, 18:23',
-        type: 'cancel',
-      },
-    ]}
-  />
-);
+export const common = () => <SummaryList />;
