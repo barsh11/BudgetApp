@@ -26,8 +26,10 @@ const getAmountSign = (type: string) => {
   switch (type) {
     case 'expense':
       return '-';
-    default:
+    case 'Income':
       return '+';
+    default:
+      return '';
   }
 };
 
@@ -50,7 +52,7 @@ const SummaryAmount: React.FC<SummaryAmountProps> = ({ amount, currency, type }:
 
   return (
     <Box component="div">
-      <Typography className={amountStyle} variant="h6" align="right">
+      <Typography className={amountStyle} variant="subtitle1" align="right">
         {getAmountSign(type)}
         {formatNumber(amount)}
       </Typography>

@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import data from '../../../mock/data.json';
 import SummaryItem from '../../molecules/SummaryItem/SummaryItem';
 import { CardsSummaryProps } from '../../../services/axios';
+import data from '../../../mock/data.json';
 
 export type SummaryListProps = TypographyProps;
 
@@ -17,25 +17,30 @@ const SUl = styled.ul`
 
 const SLi = styled.li`
   &:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
 const SummaryList: React.FC<SummaryListProps> = () => {
   const [summaryList, setSummaryList] = useState<CardsSummaryProps[]>([]);
 
-  const getState = useCallback((isActive: boolean) => {
-    const limitedResults: CardsSummaryProps[] = [];
-    const limit = 10;
-    if (data instanceof Array) {
-      for (let i = 0; i < limit; i += 1) {
-        limitedResults[i] = { ...data[i] };
+  const getState = useCallback(
+    (isActive: boolean) => {
+      const limitedResults: CardsSummaryProps[] = [];
+      const limit = 10;
+      if (data instanceof Array) {
+        for (let i = 0; i < limit; i += 1) {
+          limitedResults[i] = { ...data[i] };
+        }
+        if (isActive) {
+          // eslint-disable-next-line no-console
+          console.log(limitedResults);
+          setSummaryList(limitedResults);
+        }
       }
-      if (isActive) {
-        setSummaryList(limitedResults);
-      }
-    }
-  }, []);
+    },
+    [data]
+  );
 
   useEffect(() => {
     let isActive = true;
@@ -64,7 +69,7 @@ const SummaryList: React.FC<SummaryListProps> = () => {
         key={curr.id}
         company={curr.company}
         date={curr.date}
-        amount={parseInt(curr.amount, 10)}
+        amount={parseFloat(curr.amount)}
         currency={curr.currency}
         type={getType(curr.transactionType)}
         isPaypal={curr.paypal}

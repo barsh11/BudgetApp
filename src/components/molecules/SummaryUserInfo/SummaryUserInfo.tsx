@@ -13,8 +13,7 @@ const SWrapper = styled.div`
 
   background-color: var(--color-tertiary-light);
   padding: 2.5rem;
-  margin-top: 3.2rem;
-  margin-bottom: 3.2rem;
+  margin-bottom: 2rem;
   border-radius: 1rem;
 
   width: 15rem;

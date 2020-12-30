@@ -9,7 +9,7 @@ export type ExpensesAmountProps = TypographyProps &
   BoxProps & {
     amount: number;
     currency: string;
-    isRefund?: boolean;
+    isRefund: boolean;
   };
 
 const useStyles = makeStyles({
