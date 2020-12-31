@@ -4,6 +4,9 @@ import img from '../../../assets/images/loader.gif';
 
 const SImg = styled.img`
   width: 5rem;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 `;
 
 const Loader: React.FC = () => <SImg src={img} alt="Loading" />;

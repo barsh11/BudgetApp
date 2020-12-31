@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TransactionsCard from '../../molecules/TransactionsCard/TransactionsCard';
+import TransactionsCard from '../../../components/molecules/TransactionsCard/TransactionsCard';
 import { TransactionsSummaryProps } from '../../../services/axios';
 import useTranSumData from '../../../hooks/useTranSumData';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
