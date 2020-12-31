@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SidebarNavItem, { SidebarNavItemProps } from '../../molecules/SidebarNavItem/SidebarNavItem';
+import slugify from '../../../utils/slugify';
 
 export type NavigationListProps = {
   navList: SidebarNavItemProps[];
@@ -31,7 +32,7 @@ const Sa = styled.a`
 
 const renderNavItem = (curr: SidebarNavItemProps) => (
   <SLi key={curr.label}>
-    <Sa href={`/${curr.label}`}>
+    <Sa href={`/${slugify(curr.label)}`}>
       <SidebarNavItem label={curr.label} />
     </Sa>
   </SLi>
