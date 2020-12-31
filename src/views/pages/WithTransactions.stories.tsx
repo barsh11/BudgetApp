@@ -20,6 +20,7 @@ export const common = () => (
         { label: 'dashboard' },
         { label: 'cards' },
         { label: 'transactions' },
+        { label: 'categories' },
         { label: 'charts' },
         { label: 'user profile' },
       ],
