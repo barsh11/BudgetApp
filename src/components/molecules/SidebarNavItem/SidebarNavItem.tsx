@@ -8,9 +8,10 @@ const CardsIcon = React.lazy(() => import('../../atoms/CardsIcon/CardsIcon'));
 const DashboardIcon = React.lazy(() => import('../../atoms/DashboardIcon/DashboardIcon'));
 const TransactionsIcon = React.lazy(() => import('../../atoms/TransactionsIcon/TransactionsIcon'));
 const UserIcon = React.lazy(() => import('../../atoms/UserIcon/UserIcon'));
+const ChartsIcon = React.lazy(() => import('../../atoms/ChartsIcon/ChartsIcon'));
 
 export type SidebarNavItemProps = TypographyProps & {
-  label: 'cards' | 'dashboard' | 'transactions' | 'user profile';
+  label: 'cards' | 'dashboard' | 'transactions' | 'user profile' | 'charts';
 };
 
 const SWrapper = styled.div`
@@ -35,6 +36,8 @@ const getItemIcon = (label: string) => {
       return <TransactionsIcon />;
     case 'user profile':
       return <UserIcon />;
+    case 'charts':
+      return <ChartsIcon />;
     default:
       return <DashboardIcon />;
   }

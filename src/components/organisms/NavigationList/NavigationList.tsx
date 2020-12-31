@@ -8,7 +8,7 @@ export type NavigationListProps = {
 
 const SUl = styled.ul`
   align-self: flex-start;
-  margin-left: 2rem;
+  margin-left: 2.5rem;
 
   list-style: none;
 `;
