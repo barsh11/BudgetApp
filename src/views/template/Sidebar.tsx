@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import SidebarBalance, { SidebarBalanceProps } from '../../components/molecules/SidebarBalance/SidebarBalance';
-import NavigationList, { NavigationListProps } from '../../components/organisms/NavigationList/NavigationList';
-
-export type SidebarProps = SidebarBalanceProps & NavigationListProps;
+import { UserContext } from '../../contexts/UserContext';
+import SidebarBalance from '../../components/molecules/SidebarBalance/SidebarBalance';
+import NavigationList from '../../components/organisms/NavigationList/NavigationList';
 
 const SWrapper = styled.div`
   background-color: var(--color-primary);
@@ -18,11 +17,24 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Sidebar: React.FC<SidebarProps> = ({ balance, currency, navList }) => (
-  <SWrapper>
-    <SidebarBalance balance={balance} currency={currency} />
-    <NavigationList navList={navList} />
-  </SWrapper>
-);
+const Sidebar: React.FC = () => {
+  const balance = parseFloat(useContext(UserContext).currentBalance);
+  const currency = useContext(UserContext).currentBalanceCurrency;
+
+  return (
+    <SWrapper>
+      <SidebarBalance balance={balance} currency={currency} />
+      <NavigationList
+        navList={[
+          { label: 'dashboard' },
+          { label: 'transactions' },
+          { label: 'categories' },
+          { label: 'charts' },
+          { label: 'user profile' },
+        ]}
+      />
+    </SWrapper>
+  );
+};
 
 export default Sidebar;

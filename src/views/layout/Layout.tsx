@@ -1,13 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styled from 'styled-components';
-import Sidebar, { SidebarProps } from '../template/Sidebar';
-import Summary, { SummaryProps } from '../template/Summary';
-
-export type LayoutProps = {
-  sidebarData: SidebarProps;
-  summaryData: SummaryProps;
-};
+import Sidebar from '../template/Sidebar';
+import Summary from '../template/Summary';
 
 const SWrapper = styled.div`
   display: grid;
@@ -30,19 +25,11 @@ const SMain = styled.main`
   padding: 3.2rem 3.2rem 3.2rem 5.2rem;
 `;
 
-const Layout: React.FC<LayoutProps> = (props) => (
+const Layout: React.FC = (props) => (
   <SWrapper>
-    <Sidebar
-      balance={props.sidebarData.balance}
-      currency={props.sidebarData.currency}
-      navList={props.sidebarData.navList}
-    />
+    <Sidebar />
     <SMain>{props.children}</SMain>
-    <Summary
-      imgSrc={props.summaryData.imgSrc}
-      userName={props.summaryData.userName}
-      userEmail={props.summaryData.userEmail}
-    />
+    <Summary />
   </SWrapper>
 );
 

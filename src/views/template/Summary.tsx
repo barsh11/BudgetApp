@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import SummaryUserInfo, { SummaryUserInfoProps } from '../../components/molecules/SummaryUserInfo/SummaryUserInfo';
-import SummaryList, { SummaryListProps } from '../../components/organisms/SummaryList/SummaryList';
-
-export type SummaryProps = SummaryUserInfoProps & SummaryListProps;
+import { UserContext } from '../../contexts/UserContext';
+import SummaryUserInfo from '../../components/molecules/SummaryUserInfo/SummaryUserInfo';
+import SummaryList from '../../components/organisms/SummaryList/SummaryList';
 
 const SWrapper = styled.div`
   background-color: var(--color-tertiary);
@@ -20,11 +19,17 @@ const SWrapper = styled.div`
   height: 68.2rem;
 `;
 
-const Summary: React.FC<SummaryProps> = ({ imgSrc, userName, userEmail }) => (
-  <SWrapper>
-    <SummaryUserInfo imgSrc={imgSrc} userName={userName} userEmail={userEmail} />
-    <SummaryList />
-  </SWrapper>
-);
+const Summary: React.FC = () => {
+  const imgSrc = useContext(UserContext).avatar;
+  const userName = `${useContext(UserContext).firstName} ${useContext(UserContext).lastName}`;
+  const userEmail = useContext(UserContext).email;
+
+  return (
+    <SWrapper>
+      <SummaryUserInfo imgSrc={imgSrc} userName={userName} userEmail={userEmail} />
+      <SummaryList />
+    </SWrapper>
+  );
+};
 
 export default Summary;
