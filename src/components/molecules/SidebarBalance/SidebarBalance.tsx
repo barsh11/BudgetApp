@@ -16,10 +16,10 @@ const SWrapper = styled.div`
 
   background-color: var(--color-primary-light);
   border-radius: 1rem;
+  padding: 1.5rem;
   margin-bottom: 2rem;
   letter-spacing: 2px;
 
-  width: 12rem;
   height: 10rem;
 `;
 
