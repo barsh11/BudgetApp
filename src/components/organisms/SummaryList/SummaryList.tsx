@@ -26,9 +26,8 @@ const SummaryList: React.FC<SummaryListProps> = () => {
   const summaryList: TransactionsSummaryProps[] = useTranSumData();
 
   const renderSummaryItem = (curr: TransactionsSummaryProps) => (
-    <SLi>
+    <SLi key={curr.id}>
       <SummaryItem
-        key={curr.id}
         company={curr.company}
         date={curr.date}
         amount={parseFloat(curr.amount)}

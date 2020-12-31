@@ -7,9 +7,10 @@ import capitalize from '../../../utils/capitalize';
 const CardsIcon = React.lazy(() => import('../../atoms/CardsIcon/CardsIcon'));
 const DashboardIcon = React.lazy(() => import('../../atoms/DashboardIcon/DashboardIcon'));
 const TransactionsIcon = React.lazy(() => import('../../atoms/TransactionsIcon/TransactionsIcon'));
+const UserIcon = React.lazy(() => import('../../atoms/UserIcon/UserIcon'));
 
 export type SidebarNavItemProps = TypographyProps & {
-  label: 'cards' | 'dashboard' | 'transactions';
+  label: 'cards' | 'dashboard' | 'transactions' | 'user profile';
 };
 
 const SWrapper = styled.div`
@@ -24,8 +25,6 @@ const SWrapper = styled.div`
     opacity: 1;
     transform: scale(1.2);
   }
-
-  width: 10%;
 `;
 
 const getItemIcon = (label: string) => {
@@ -34,6 +33,8 @@ const getItemIcon = (label: string) => {
       return <CardsIcon />;
     case 'transactions':
       return <TransactionsIcon />;
+    case 'user profile':
+      return <UserIcon />;
     default:
       return <DashboardIcon />;
   }

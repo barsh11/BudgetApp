@@ -28,16 +28,16 @@ const Sa = styled.a`
   }
 `;
 
-const renderNavItem = (label: 'cards' | 'dashboard' | 'transactions') => (
-  <SLi>
-    <Sa href={`/${label}`}>
-      <SidebarNavItem key={label} label={label} />
+const renderNavItem = (curr: SidebarNavItemProps) => (
+  <SLi key={curr.label}>
+    <Sa href={`/${curr.label}`}>
+      <SidebarNavItem label={curr.label} />
     </Sa>
   </SLi>
 );
 
 const NavigationList: React.FC<NavigationListProps> = ({ navList }) => (
-  <SUl>{navList.map((el) => renderNavItem(el.label))}</SUl>
+  <SUl>{navList.map((el) => renderNavItem(el))}</SUl>
 );
 
 export default NavigationList;
