@@ -16,7 +16,13 @@ export const common = () => (
     sidebarData={{
       currency: 'USD',
       balance: 25650,
-      navList: [{ label: 'dashboard' }, { label: 'cards' }, { label: 'transactions' }],
+      navList: [
+        { label: 'dashboard' },
+        { label: 'transactions' },
+        { label: 'categories' },
+        { label: 'charts' },
+        { label: 'user profile' },
+      ],
     }}
   />
 );

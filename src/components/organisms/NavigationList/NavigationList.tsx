@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SidebarNavItem, { SidebarNavItemProps } from '../../molecules/SidebarNavItem/SidebarNavItem';
+import slugify from '../../../utils/slugify';
 
 export type NavigationListProps = {
   navList: SidebarNavItemProps[];
@@ -8,7 +9,8 @@ export type NavigationListProps = {
 
 const SUl = styled.ul`
   align-self: flex-start;
-  margin-left: 2rem;
+  margin-left: 2.5rem;
+  margin-top: 2rem;
 
   list-style: none;
 `;
@@ -28,16 +30,16 @@ const Sa = styled.a`
   }
 `;
 
-const renderNavItem = (label: 'cards' | 'dashboard' | 'transactions') => (
-  <SLi>
-    <Sa href={`/${label}`}>
-      <SidebarNavItem key={label} label={label} />
+const renderNavItem = (curr: SidebarNavItemProps) => (
+  <SLi key={curr.label}>
+    <Sa href={`/${slugify(curr.label)}`}>
+      <SidebarNavItem label={curr.label} />
     </Sa>
   </SLi>
 );
 
 const NavigationList: React.FC<NavigationListProps> = ({ navList }) => (
-  <SUl>{navList.map((el) => renderNavItem(el.label))}</SUl>
+  <SUl>{navList.map((el) => renderNavItem(el))}</SUl>
 );
 
 export default NavigationList;

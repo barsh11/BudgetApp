@@ -4,12 +4,14 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import FallbackIcon from '../../atoms/FallbackIcon/FallbackIcon';
 import capitalize from '../../../utils/capitalize';
 
-const CardsIcon = React.lazy(() => import('../../atoms/CardsIcon/CardsIcon'));
 const DashboardIcon = React.lazy(() => import('../../atoms/DashboardIcon/DashboardIcon'));
 const TransactionsIcon = React.lazy(() => import('../../atoms/TransactionsIcon/TransactionsIcon'));
+const UserIcon = React.lazy(() => import('../../atoms/UserIcon/UserIcon'));
+const ChartsIcon = React.lazy(() => import('../../atoms/ChartsIcon/ChartsIcon'));
+const CategoriesIcon = React.lazy(() => import('../../atoms/CategoriesIcon/CategoriesIcon'));
 
 export type SidebarNavItemProps = TypographyProps & {
-  label: 'cards' | 'dashboard' | 'transactions';
+  label: 'dashboard' | 'transactions' | 'user profile' | 'charts' | 'categories';
 };
 
 const SWrapper = styled.div`
@@ -24,16 +26,18 @@ const SWrapper = styled.div`
     opacity: 1;
     transform: scale(1.2);
   }
-
-  width: 10%;
 `;
 
 const getItemIcon = (label: string) => {
   switch (label) {
-    case 'cards':
-      return <CardsIcon />;
     case 'transactions':
       return <TransactionsIcon />;
+    case 'user profile':
+      return <UserIcon />;
+    case 'charts':
+      return <ChartsIcon />;
+    case 'categories':
+      return <CategoriesIcon />;
     default:
       return <DashboardIcon />;
   }
