@@ -26,7 +26,6 @@ export const common = () => (
       balance: 25650,
       navList: [
         { label: 'dashboard' },
-        { label: 'cards' },
         { label: 'transactions' },
         { label: 'categories' },
         { label: 'charts' },

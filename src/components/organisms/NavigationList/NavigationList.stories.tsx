@@ -9,7 +9,6 @@ export const common = () => (
   <NavigationList
     navList={[
       { label: 'dashboard' },
-      { label: 'cards' },
       { label: 'transactions' },
       { label: 'categories' },
       { label: 'charts' },
