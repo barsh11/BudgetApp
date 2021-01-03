@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import SummaryItem from '../../molecules/SummaryItem/SummaryItem';
-import { TransactionsSummaryProps } from '../../../services/axios';
-import useTranSumData from '../../../hooks/useTranSumData';
+import { DataListProps, DataItemProps } from '../../../contexts/DataContext';
+import useData from '../../../hooks/useData';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 export type SummaryListProps = TypographyProps;
@@ -23,9 +23,9 @@ const SLi = styled.li`
 `;
 
 const SummaryList: React.FC<SummaryListProps> = () => {
-  const summaryList: TransactionsSummaryProps[] = useTranSumData();
+  const summaryList: DataListProps = useData();
 
-  const renderSummaryItem = (curr: TransactionsSummaryProps) => (
+  const renderSummaryItem = (curr: DataItemProps) => (
     <SLi key={curr.id}>
       <SummaryItem
         company={curr.company}

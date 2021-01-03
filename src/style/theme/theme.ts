@@ -1,7 +1,10 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import createBreakepoints from '@material-ui/core/styles/createBreakpoints';
 import '../../index.css';
 
 const font = "'Ubuntu', sans-serif";
+
+const breakpoints = createBreakepoints({});
 
 const theme = createMuiTheme({
   palette: {
@@ -22,6 +25,12 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: font,
+    [breakpoints.up('md')]: {
+      fontSize: 6,
+    },
+    [breakpoints.up('sm')]: {
+      fontSize: 4,
+    },
   },
 });
 

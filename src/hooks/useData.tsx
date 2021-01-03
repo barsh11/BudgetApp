@@ -1,24 +1,24 @@
 import { useState, useCallback, useEffect } from 'react';
-import { TransactionsSummaryProps } from '../services/axios';
-import data from '../mock/data.json';
+import { DataListProps } from '../contexts/DataContext';
+import datamock from '../mock/data-mock.json';
 
-const useTranSumData: Function = () => {
-  const [dataList, setDataList] = useState<TransactionsSummaryProps[]>([]);
+const useData = () => {
+  const [dataList, setDataList] = useState<DataListProps>([]);
 
   const getState = useCallback(
     (isActive: boolean) => {
-      const limitedResults: TransactionsSummaryProps[] = [];
+      const limitedResults: DataListProps = [];
       const limit = 10;
-      if (data instanceof Array) {
+      if (datamock instanceof Array) {
         for (let i = 0; i < limit; i += 1) {
-          limitedResults[i] = { ...data[i] };
+          limitedResults[i] = { ...datamock[i], isStarred: false };
         }
         if (isActive) {
           setDataList(limitedResults);
         }
       }
     },
-    [data]
+    [datamock]
   );
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const useTranSumData: Function = () => {
   return dataList;
 };
 
-export default useTranSumData;
+export default useData;

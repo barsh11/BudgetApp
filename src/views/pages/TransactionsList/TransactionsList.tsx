@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import TransactionsCard from '../../../components/molecules/TransactionsCard/TransactionsCard';
-import { TransactionsSummaryProps } from '../../../services/axios';
-import useTranSumData from '../../../hooks/useTranSumData';
+import { DataItemProps, DataContext, DataListProps } from '../../../contexts/DataContext';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 const SWrapper = styled.div`
@@ -13,11 +12,12 @@ const SWrapper = styled.div`
 `;
 
 const TransactionsList: React.FC = () => {
-  const transactionsList: TransactionsSummaryProps[] = useTranSumData();
+  const transactionsList: DataListProps = useContext(DataContext);
 
-  const renderExpenseCard = (curr: TransactionsSummaryProps) => (
+  const renderExpenseCard = (curr: DataItemProps) => (
     <TransactionsCard
       key={curr.id}
+      id={curr.id}
       company={curr.company}
       amount={parseFloat(curr.amount)}
       currency={curr.currency}
@@ -25,10 +25,11 @@ const TransactionsList: React.FC = () => {
       type={narrowTransactionType(curr.transactionType)}
       time={curr.time}
       date={curr.date}
+      isStarred={curr.isStarred}
     />
   );
 
-  return <SWrapper>{transactionsList.map((el) => renderExpenseCard(el))}</SWrapper>;
+  return <SWrapper>{transactionsList?.map((el) => renderExpenseCard(el))}</SWrapper>;
 };
 
 export default TransactionsList;

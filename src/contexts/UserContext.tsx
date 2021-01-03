@@ -33,7 +33,6 @@ export const UserContext = React.createContext<UserProps>(initialUserContext);
 export const UserDispatchContext = React.createContext<Function>(() => {});
 
 const UserContextProvider: React.FC = ({ children }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState<UserProps>(initialUserContext);
 
   return (
