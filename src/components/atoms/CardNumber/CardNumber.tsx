@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 
 export type CardNumberProps = TypographyProps & {
-  cardNumber: number;
+  last4: number;
 };
 
 const useStyles = makeStyles({
@@ -13,14 +13,15 @@ const useStyles = makeStyles({
 });
 
 const getHiddenNumber = (number: number) => {
-  let strNum = number.toString();
-  strNum = strNum.replace(/\d(?=\d{4})/g, '*');
-  return strNum.match(/.{1,4}/g)?.join(' ');
+  const strNum = number.toString();
+  let strFull = `111111111111${strNum}`;
+  strFull = strFull.replace(/\d(?=\d{4})/g, '*');
+  return strFull.match(/.{1,4}/g)?.join(' ');
 };
 
-const CardNumber: React.FC<CardNumberProps> = ({ cardNumber }) => {
+const CardNumber: React.FC<CardNumberProps> = ({ last4 }) => {
   const classes = useStyles();
-  const content = getHiddenNumber(cardNumber);
+  const content = getHiddenNumber(last4);
 
   return (
     <Typography className={classes.numStyle} variant="h6" color="textPrimary">

@@ -5,4 +5,4 @@ export default {
   title: 'Dashboard/CardNumber',
 };
 
-export const common = () => <CardNumber cardNumber={4111111111111111} />;
+export const common = () => <CardNumber last4={7645} />;

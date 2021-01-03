@@ -11,7 +11,7 @@ const SWrapper = styled.div`
 
 const Dashboard: React.FC = () => (
   <SWrapper>
-    <CreditCard cardNumber={4111111111111111} cardDate="04/21" cardName="Ian Kelley" />
+    <CreditCard last4={4115} cardDate="04/21" cardName="Ian Kelley" />
   </SWrapper>
 );
 

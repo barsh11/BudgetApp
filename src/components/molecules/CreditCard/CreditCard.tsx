@@ -27,12 +27,12 @@ const SBottomWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const SidebarBalance: React.FC<CreditCardProps> = ({ cardDate, cardNumber, cardName }) => (
+const SidebarBalance: React.FC<CreditCardProps> = ({ cardDate, last4, cardName }) => (
   <SWrapper>
     <Typography variant="h5" align="left" color="textPrimary">
       Card
     </Typography>
-    <CardNumber cardNumber={cardNumber} />
+    <CardNumber last4={last4} />
     <SBottomWrapper>
       <CardName cardName={cardName} />
       <CardDate cardDate={cardDate} />
