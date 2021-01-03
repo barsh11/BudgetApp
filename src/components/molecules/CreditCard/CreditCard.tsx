@@ -15,8 +15,10 @@ const SWrapper = styled.div`
   padding: 1rem;
   border-radius: 1rem;
 
-  width: 25rem;
-  height: 15rem;
+  width: 100%;
+  height: 100%;
+  max-width: 25rem;
+  max-height: 15rem;
 
   display: grid;
   grid-template-rows: 3fr 2fr 1fr;
@@ -26,6 +28,7 @@ const SBottomWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
 
 const SidebarBalance: React.FC<CreditCardProps> = ({ cardDate, last4, cardName }) => (
   <SWrapper>
@@ -40,4 +43,4 @@ const SidebarBalance: React.FC<CreditCardProps> = ({ cardDate, last4, cardName }
   </SWrapper>
 );
 
-export default SidebarBalance;
+export default CreditCard;

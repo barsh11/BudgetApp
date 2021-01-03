@@ -14,7 +14,7 @@ const SWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  height: 68.2rem;
+  height: 100%;
 `;
 
 const Sidebar: React.FC = () => {

@@ -8,8 +8,8 @@ const SWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
 
-  width: 80%;
-  height: 68.2rem;
+  width: 84%;
+  height: 79%;
 
   overflow: hidden;
   border-radius: 2rem;

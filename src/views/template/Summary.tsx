@@ -16,7 +16,7 @@ const SWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
 
-  height: 68.2rem;
+  height: 100%;
 `;
 
 const Summary: React.FC = () => {
