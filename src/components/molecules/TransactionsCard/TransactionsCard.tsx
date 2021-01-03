@@ -12,8 +12,10 @@ export type TransactionsCardProps = TypographyProps &
   };
 
 const SWrapper = styled.div`
-  width: 25rem;
-  height: 15rem;
+  width: 100%;
+  height: 100%;
+  max-width: 25rem;
+  max-height: 15rem;
 
   padding: 1.5rem 2rem;
   background-color: var(--color-white);

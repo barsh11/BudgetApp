@@ -6,14 +6,10 @@ import { createGlobalStyle, css } from 'styled-components';
 // $bp-small:  37.5em; //600px
 // $bp-smallest: 31.25em; //500px*/
 
-export const bodyStyles = css`
-  font-family: 'Roboto';
-`;
+export const bodyStyles = css``;
 
 export const htmlStyles = css`
   box-sizing: border-box;
-
-  font-size: 87.5%; /*1rem==14px / 14px/16px=87.5%*/
 `;
 
 export const generalStyles = css`

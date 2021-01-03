@@ -8,7 +8,9 @@ import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 export type SummaryListProps = TypographyProps;
 
-const SWrapper = styled.div``;
+const SWrapper = styled.div`
+  height: 59%;
+`;
 
 const SUl = styled.ul`
   margin-top: 1.5rem;
@@ -18,7 +20,7 @@ const SUl = styled.ul`
 
 const SLi = styled.li`
   &:not(:last-child) {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 `;
 

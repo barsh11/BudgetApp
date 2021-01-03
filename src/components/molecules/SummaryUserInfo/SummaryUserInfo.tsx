@@ -16,7 +16,8 @@ const SWrapper = styled.div`
   margin-bottom: 2rem;
   border-radius: 1rem;
 
-  height: 13.5rem;
+  width: 77%;
+  height: 20%;
 `;
 
 const SummaryItem: React.FC<SummaryUserInfoProps> = ({ imgSrc, userName, userEmail }) => (

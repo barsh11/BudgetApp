@@ -6,12 +6,18 @@ export type UserImgProps = AvatarProps & {
   imgSrc: string;
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   imageStyle: {
-    height: '6.7rem',
-    width: '6.7rem',
+    [theme.breakpoints.up('xl')]: {
+      height: '5rem',
+      width: '5rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: '4rem',
+      width: '4rem',
+    },
   },
-});
+}));
 
 const UserImg: React.FC<UserImgProps> = ({ imgSrc }) => {
   const classes = useStyles();
