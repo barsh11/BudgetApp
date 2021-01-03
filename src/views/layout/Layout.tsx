@@ -23,6 +23,8 @@ const SMain = styled.main`
   margin-left: -2rem;
   overflow-y: scroll;
   padding: 3.2rem 3.2rem 3.2rem 5.2rem;
+
+  position: relative;
 `;
 
 const Layout: React.FC = (props) => (

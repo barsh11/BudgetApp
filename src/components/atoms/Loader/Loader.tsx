@@ -5,8 +5,10 @@ import img from '../../../assets/images/loader.gif';
 const SImg = styled.img`
   width: 5rem;
   display: block;
-  margin-right: auto;
-  margin-left: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
 `;
 
 const Loader: React.FC = () => <SImg src={img} alt="Loading" />;
