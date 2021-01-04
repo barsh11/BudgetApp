@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { DataContext, DataItemProps } from '../../../contexts/DataContext';
 import TransactionCard from '../../../components/molecules/TransactionsCard/TransactionsCard';
+import ExitIcon from '../../../components/atoms/ExitIcon/ExitIcon';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 type singleTransaction = {
@@ -10,9 +11,11 @@ type singleTransaction = {
 
 const SWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
+  padding: 2rem;
   height: 100%;
   width: 100%;
 `;
@@ -23,6 +26,7 @@ const SingleTransaction: React.FC<singleTransaction> = ({ chosenId }) => {
 
   return (
     <SWrapper>
+      <ExitIcon />
       {transactionItem ? (
         <TransactionCard
           type={narrowTransactionType(transactionItem.transactionType)}

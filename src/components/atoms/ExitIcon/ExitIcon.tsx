@@ -6,6 +6,11 @@ import { IconProps } from '@material-ui/core/Icon';
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
     fill: theme.palette.grey.A200,
+    alignSelf: 'flex-start',
+    '&:hover': {
+      transform: 'translateY(-0.2rem)',
+      cursor: 'pointer',
+    },
   },
 }));
 
