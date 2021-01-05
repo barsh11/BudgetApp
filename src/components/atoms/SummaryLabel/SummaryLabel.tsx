@@ -8,6 +8,7 @@ type SummaryLabelProps = BoxProps &
     isCancelled?: boolean;
     company?: string;
     date: string;
+    clicked: Function;
   };
 
 const useStyles = makeStyles((theme) => ({
@@ -28,12 +29,16 @@ const getLabel = (company?: string, isCancelled?: boolean) => {
   return company ? `Deposit from ${company}` : '';
 };
 
-const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled, date }) => {
+const SummaryLabel: React.FC<SummaryLabelProps> = ({ company, isCancelled, date, clicked }) => {
   const classes = useStyles();
   const content = getLabel(company, isCancelled);
 
   return (
-    <Box className={classes.box} component="div">
+    <Box
+      className={classes.box}
+      component="div"
+      onClick={(e) => clicked((e.target as HTMLElement).closest('.summaryItem'))}
+    >
       <Typography className={classes.description} variant="subtitle1">
         {content}
       </Typography>

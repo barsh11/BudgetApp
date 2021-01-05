@@ -56,10 +56,10 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
   date,
   id,
 }) => {
-  const [isFaved, setIsFaved] = useState(false);
+  const [isFaved, setIsFaved] = useState<boolean>(false);
   const transactionList = useContext(DataContext);
   const newTransactionList = transactionList.slice();
-  const updateTransactionList = useContext(DataDispatchContext);
+  const setTransactionList = useContext(DataDispatchContext);
 
   const starClickHandler = () => {
     setIsFaved((prev) => !prev);
@@ -71,7 +71,7 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
         newTransactionList[i] = { ...curr, isStarred: isFaved };
       }
     });
-    updateTransactionList(newTransactionList);
+    setTransactionList(newTransactionList);
   }, [isFaved]);
 
   const content = <SLine>&nbsp;</SLine>;
