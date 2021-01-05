@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import SummaryItem from '../../molecules/SummaryItem/SummaryItem';
-import { DataListProps, DataItemProps } from '../../../contexts/DataContext';
-import useData from '../../../hooks/useData';
+import { DataListProps, DataItemProps, DataContext } from '../../../contexts/DataContext';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 export type SummaryListProps = TypographyProps;
@@ -35,7 +34,7 @@ const SLink = styled(Link)`
 `;
 
 const SummaryList: React.FC<SummaryListProps> = () => {
-  const summaryList: DataListProps = useData();
+  const summaryList: DataListProps = useContext(DataContext);
 
   const renderSummaryItem = (curr: DataItemProps) => (
     <SLi key={curr.id}>
