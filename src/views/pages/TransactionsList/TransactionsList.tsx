@@ -25,7 +25,6 @@ const TransactionsList: React.FC = () => {
       type={narrowTransactionType(curr.transactionType)}
       time={curr.time}
       date={curr.date}
-      isStarred={curr.isStarred}
     />
   );
 

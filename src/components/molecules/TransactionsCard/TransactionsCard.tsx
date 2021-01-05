@@ -1,17 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import TransactionsInfo, { TransactionsInfoProps } from '../TransactionsInfo/TransactionsInfo';
 import StarredIcon from '../../atoms/StarredIcon/StarredIcon';
 import Timestamp, { TimestampProps } from '../Timestamp/Timestamp';
 import capitalize from '../../../utils/capitalize';
-import { DataContext, DataItemProps, DataDispatchContext } from '../../../contexts/DataContext';
+import { DataContext, DataItemProps, DataDispatchContext, DataListProps } from '../../../contexts/DataContext';
 
 export type TransactionsCardProps = TypographyProps &
   TransactionsInfoProps &
   TimestampProps & {
     company: string;
-    isStarred: boolean;
     id: string;
   };
 
@@ -65,7 +64,26 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
     setIsFaved((prev) => !prev);
   };
 
+  const getIsFaved = (list: DataListProps): boolean => {
+    let isStarred;
+    list?.every((curr: DataItemProps, i: number) => {
+      if (id === curr.id) {
+        isStarred = list[i].isStarred;
+        return false;
+      }
+      return true;
+    });
+    // eslint-disable-next-line no-console
+    console.log(isStarred);
+    return isStarred || false;
+  };
+
+  const isFirst = useRef(true);
   useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
     newTransactionList.forEach((curr: DataItemProps, i: number) => {
       if (id === curr.id) {
         newTransactionList[i] = { ...curr, isStarred: isFaved };
@@ -81,7 +99,7 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
       {isRefund && content}
       <SHeaderWrapper>
         <Typography variant="h5">{capitalize(company)}</Typography>
-        <StarredIcon clicked={starClickHandler} isStarred={isFaved} />
+        <StarredIcon clicked={starClickHandler} isStarred={getIsFaved(newTransactionList)} />
       </SHeaderWrapper>
       <Timestamp time={time} date={date} />
       <TransactionsInfo amount={amount} currency={currency} isRefund={isRefund} type={type} />

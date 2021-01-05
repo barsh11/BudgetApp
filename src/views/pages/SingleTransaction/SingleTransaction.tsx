@@ -47,7 +47,6 @@ const SingleTransaction: React.FC = () => {
           time={transactionItem.time}
           date={transactionItem.date}
           id={transactionItem.id}
-          isStarred={transactionItem.isStarred}
         />
       ) : null}
     </SWrapper>
