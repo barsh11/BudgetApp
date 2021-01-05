@@ -6,7 +6,8 @@ import { IconProps } from '@material-ui/core/Icon';
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
     fill: theme.palette.grey.A200,
-    alignSelf: 'flex-start',
+    justifySelf: 'start',
+    transition: '0.2s all',
     '&:hover': {
       transform: 'translateY(-0.2rem)',
       cursor: 'pointer',
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const ExitIcon: React.FC<IconProps> = () => {
   const classes = useStyles();
 
-  return <HighlightOffIcon className={classes.iconStyle} />;
+  return <HighlightOffIcon className={classes.iconStyle} fontSize="large" />;
 };
 
 export default ExitIcon;

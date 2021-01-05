@@ -10,14 +10,15 @@ type singleTransaction = {
 };
 
 const SWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   padding: 2rem;
   height: 100%;
   width: 100%;
+
+  display: grid;
+  grid-template-rows: 2fr 3fr;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: start;
 `;
 
 const SingleTransaction: React.FC<singleTransaction> = ({ chosenId }) => {
