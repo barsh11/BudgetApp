@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconProps } from '@material-ui/core/Icon';
 
+type ExitIconProps = IconProps & {
+  clicked: Function;
+};
+
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
     fill: theme.palette.grey.A200,
@@ -15,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ExitIcon: React.FC<IconProps> = () => {
+const ExitIcon: React.FC<ExitIconProps> = ({ clicked }) => {
   const classes = useStyles();
 
-  return <HighlightOffIcon className={classes.iconStyle} fontSize="large" />;
+  return <HighlightOffIcon className={classes.iconStyle} fontSize="large" onClick={(e) => clicked(e)} />;
 };
 
 export default ExitIcon;

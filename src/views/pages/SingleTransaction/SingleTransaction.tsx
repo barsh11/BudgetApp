@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { DataContext, DataItemProps } from '../../../contexts/DataContext';
+import { AppDispatchContext, AppContext } from '../../../contexts/AppContext';
 import TransactionCard from '../../../components/molecules/TransactionsCard/TransactionsCard';
 import ExitIcon from '../../../components/atoms/ExitIcon/ExitIcon';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
-
-type singleTransaction = {
-  chosenId: string;
-};
 
 const SWrapper = styled.div`
   padding: 2rem;
@@ -21,13 +19,24 @@ const SWrapper = styled.div`
   align-items: start;
 `;
 
-const SingleTransaction: React.FC<singleTransaction> = ({ chosenId }) => {
+const SingleTransaction: React.FC = () => {
+  const { transactionId } = useParams<{ transactionId: string }>();
+  const history = useHistory();
   const transactionsList = useContext(DataContext);
-  const transactionItem: DataItemProps = transactionsList.filter((curr) => curr.id === chosenId)[0];
+  const transactionItem: DataItemProps = transactionsList.filter((curr) => curr.id === transactionId)[0];
+  const setApp = useContext(AppDispatchContext);
+  const app = useContext(AppContext);
+  const newApp = { ...app };
+
+  const transactionCancelledHandler = () => {
+    newApp.summaryItemId = '';
+    setApp(newApp);
+    history.replace('/dashboard');
+  };
 
   return (
     <SWrapper>
-      <ExitIcon />
+      <ExitIcon clicked={transactionCancelledHandler} />
       {transactionItem ? (
         <TransactionCard
           type={narrowTransactionType(transactionItem.transactionType)}

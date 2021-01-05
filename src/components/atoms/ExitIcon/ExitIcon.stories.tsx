@@ -5,4 +5,4 @@ export default {
   title: 'Transactions/ExitIcon',
 };
 
-export const common = () => <ExitIcon>common ExitIcon</ExitIcon>;
+export const common = () => <ExitIcon clicked={() => {}}>common ExitIcon</ExitIcon>;
