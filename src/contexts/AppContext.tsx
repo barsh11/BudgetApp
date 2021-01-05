@@ -13,10 +13,6 @@ export const AppDispatchContext = React.createContext<Function>(() => {});
 
 const AppContextProvider: React.FC = ({ children }) => {
   const [app, setApp] = useState<AppProps>(initialAppContext);
-  // eslint-disable-next-line no-console
-  console.log('AppContext: ');
-  // eslint-disable-next-line no-console
-  console.log(app);
 
   return (
     <AppContext.Provider value={{ ...app }}>
