@@ -28,9 +28,6 @@ export const DataDispatchContext = React.createContext<Function>(() => {});
 const DataContextProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<DataListProps>([]);
 
-  // eslint-disable-next-line no-console
-  console.log(data);
-
   return (
     <DataContext.Provider value={data.slice()}>
       <DataDispatchContext.Provider value={setData}>{children}</DataDispatchContext.Provider>
