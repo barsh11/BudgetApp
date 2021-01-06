@@ -14,8 +14,15 @@ const SWrapper = styled.div`
 
 const SUl = styled.ul`
   margin-top: 1.5rem;
+  overflow-y: hidden;
 
   list-style: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    overflow-y: scroll;
+  }
 `;
 
 const SLi = styled.li`

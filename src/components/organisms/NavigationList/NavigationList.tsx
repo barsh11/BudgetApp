@@ -18,7 +18,7 @@ const SUl = styled.ul`
 
 const SLi = styled.li`
   &:not(:last-child) {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.6rem;
   }
 `;
 

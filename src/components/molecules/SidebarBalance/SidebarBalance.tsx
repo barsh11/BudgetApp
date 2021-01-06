@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import BalanceLabel from '../../atoms/BalanceLabel/BalanceLabel';
 
-export type SidebarBalanceProps = TypographyProps & {
-  balance: number;
-  currency: string;
-};
+export type SidebarBalanceProps = TypographyProps &
+  BoxProps & {
+    balance: number;
+    currency: string;
+  };
 
 const SWrapper = styled.div`
   display: flex;
@@ -16,7 +18,7 @@ const SWrapper = styled.div`
 
   background-color: var(--color-primary-light);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   margin-bottom: 2rem;
   letter-spacing: 2px;
 
@@ -27,8 +29,8 @@ const SWrapper = styled.div`
 const SidebarBalance: React.FC<SidebarBalanceProps> = ({ balance, currency }) => (
   <SWrapper>
     <BalanceLabel balance={balance} currency={currency} />
-    <Typography variant="subtitle1" align="center" color="textPrimary">
-      Current balance
+    <Typography variant="h6" align="center" color="textPrimary">
+      <Box fontWeight="fontWeightLight">Current balance</Box>
     </Typography>
   </SWrapper>
 );
