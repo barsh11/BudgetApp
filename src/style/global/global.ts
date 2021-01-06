@@ -1,6 +1,8 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-// /*$bp-largest: 75em; //1200px
+// /* $bp-xxxl: 110em; //1750px
+// $bp-xxl: 94em; //1500px
+// $bp-xl: 75em; //1200px
 // $bp-large: 68.75em; //1100px
 // $bp-medium: 56.25em; //900px
 // $bp-small:  37.5em; //600px
@@ -10,6 +12,12 @@ export const bodyStyles = css``;
 
 export const htmlStyles = css`
   box-sizing: border-box;
+
+  font-size: 100%; /*1rem==16px / 16px/16px=100%*/
+
+  @media only screen and (max-width: 94em) {
+    font-size: 87.5%; /*1rem==14px / 14px/16px=87.5%*/
+  }
 `;
 
 export const generalStyles = css`

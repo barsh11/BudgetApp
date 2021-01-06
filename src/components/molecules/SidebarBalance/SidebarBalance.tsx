@@ -16,7 +16,7 @@ const SWrapper = styled.div`
 
   background-color: var(--color-primary-light);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1rem;
   margin-bottom: 2rem;
   letter-spacing: 2px;
 

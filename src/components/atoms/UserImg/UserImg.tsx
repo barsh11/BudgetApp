@@ -1,28 +1,22 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/core';
 
 export type UserImgProps = AvatarProps & {
   imgSrc: string;
 };
 
-const useStyles = makeStyles((theme) => ({
-  imageStyle: {
-    [theme.breakpoints.up('xl')]: {
-      height: '5rem',
-      width: '5rem',
-    },
-    [theme.breakpoints.up('lg')]: {
-      height: '4rem',
-      width: '4rem',
-    },
+const useStyle = makeStyles({
+  imgStyle: {
+    height: '5rem',
+    width: '5rem',
   },
-}));
+});
 
 const UserImg: React.FC<UserImgProps> = ({ imgSrc }) => {
-  const classes = useStyles();
+  const classes = useStyle();
 
-  return <Avatar className={classes.imageStyle} alt="User Image" src={imgSrc} />;
+  return <Avatar className={classes.imgStyle} alt="User Image" src={imgSrc} />;
 };
 
 export default UserImg;

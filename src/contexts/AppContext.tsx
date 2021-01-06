@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 export type AppProps = {
   summaryItemId: string;
+  showSidebar: boolean;
 };
 
 const initialAppContext = {
   summaryItemId: '',
+  showSidebar: true,
 };
 
 export const AppContext = React.createContext<AppProps>(initialAppContext);
