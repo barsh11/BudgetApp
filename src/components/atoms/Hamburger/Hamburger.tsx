@@ -20,7 +20,7 @@ const SLine = styled.div`
   &,
   &::before,
   &::after {
-    width: 2.5rem;
+    width: 2.2rem;
     height: 2px;
     background-color: var(--color-primary);
     display: inline-block;

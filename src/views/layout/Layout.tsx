@@ -40,7 +40,6 @@ const SWrapper = styled.div`
   @media only screen and (max-width: 56.25em) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-
     position: relative;
   }
 `;
@@ -49,14 +48,29 @@ const SMain = styled.main`
   background-color: var(--color-white-dark);
   border-radius: 2rem 0 0 2rem;
   margin-left: -2rem;
-  overflow-y: scroll;
+  overflow-y: hidden;
   padding: 3.2rem 3.2rem 3.2rem 5.2rem;
-
   position: relative;
+
+  &:hover,
+  &:focus,
+  &:active {
+    overflow-y: scroll;
+  }
+
+  @media only screen and (max-width: 56.25em) {
+    border-radius: 0;
+    padding-top: 5.5rem;
+  }
+
+  @media only screen and (max-width: 22em) {
+    padding-left: 3.2rem;
+    padding-top: 5.5rem;
+  }
 `;
 
 const Layout: React.FC = (props) => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   const app = useContext(AppContext);
   const newApp = { ...app };
   const setApp = useContext(AppDispatchContext);

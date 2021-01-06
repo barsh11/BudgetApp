@@ -18,6 +18,10 @@ export const htmlStyles = css`
   @media only screen and (max-width: 94em) {
     font-size: 87.5%; /*1rem==14px / 14px/16px=87.5%*/
   }
+
+  @media only screen and (max-width: 37.5em) {
+    font-size: 75%; /*1rem==12px / 12px/16px=75%*/
+  }
 `;
 
 export const generalStyles = css`

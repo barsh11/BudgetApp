@@ -6,9 +6,8 @@ const SWrapper = styled.div`
   row-gap: 1.5rem;
   justify-items: center;
 
-  @media only screen and (max-width: 56.25em) {
-    padding-left: 2rem;
-    padding-top: 2rem;
+  @media only screen and (max-width: 37.5em) {
+    grid-template-columns: 1fr;
   }
 `;
 
