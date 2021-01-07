@@ -72,7 +72,6 @@ const SMain = styled.main`
 const Layout: React.FC = (props) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const app = useContext(AppContext);
-  const newApp = { ...app };
   const setApp = useContext(AppDispatchContext);
 
   const backdropClickHandler = () => {
@@ -84,6 +83,7 @@ const Layout: React.FC = (props) => {
   };
 
   useEffect(() => {
+    const newApp = { ...app };
     if (showSidebar) {
       newApp.showSidebar = true;
       setApp(newApp);

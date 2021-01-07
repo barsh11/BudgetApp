@@ -7,7 +7,7 @@ export type AppProps = {
 
 const initialAppContext = {
   summaryItemId: '',
-  showSidebar: true,
+  showSidebar: false,
 };
 
 export const AppContext = React.createContext<AppProps>(initialAppContext);
