@@ -26,9 +26,9 @@ const SingleTransaction: React.FC = () => {
   const transactionItem: DataItemProps = transactionsList.filter((curr) => curr.id === transactionId)[0];
   const setApp = useContext(AppDispatchContext);
   const app = useContext(AppContext);
-  const newApp = { ...app };
 
   const transactionCancelledHandler = () => {
+    const newApp = { ...app };
     newApp.summaryItemId = '';
     setApp(newApp);
     history.replace('/dashboard');

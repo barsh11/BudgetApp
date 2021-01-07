@@ -49,7 +49,6 @@ const getItemIcon = (type: 'expense' | 'Income' | 'cancelled', isPaypal?: boolea
 const SummaryItem: React.FC<SummaryItemProps> = ({ company, date, amount, currency, type, isPaypal, id }) => {
   const [isChosen, setIsChosen] = useState<boolean>(false);
   const app = useContext(AppContext);
-  const newApp = { ...app };
   const setApp = useContext(AppDispatchContext);
 
   const itemClickHandler = () => {
@@ -58,6 +57,7 @@ const SummaryItem: React.FC<SummaryItemProps> = ({ company, date, amount, curren
 
   useEffect(() => {
     if (isChosen) {
+      const newApp = { ...app };
       newApp.summaryItemId = id;
       setApp(newApp);
     }

@@ -58,7 +58,6 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
 }) => {
   const [isFaved, setIsFaved] = useState<boolean>(false);
   const transactionList = useContext(DataContext);
-  const newTransactionList = transactionList.slice();
   const setTransactionList = useContext(DataDispatchContext);
 
   const starClickHandler = () => {
@@ -66,17 +65,8 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
   };
 
   const getIsFaved = (list: DataListProps): boolean => {
-    let isStarred;
-    list?.every((curr: DataItemProps, i: number) => {
-      if (id === curr.id) {
-        isStarred = list[i].isStarred;
-        return false;
-      }
-      return true;
-    });
-    // eslint-disable-next-line no-console
-    console.log(isStarred);
-    return isStarred || false;
+    const index = list.findIndex((curr: DataItemProps) => curr.id === id);
+    return list[index].isStarred;
   };
 
   const isFirst = useRef(true);
@@ -85,11 +75,9 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
       isFirst.current = false;
       return;
     }
-    newTransactionList.forEach((curr: DataItemProps, i: number) => {
-      if (id === curr.id) {
-        newTransactionList[i] = { ...curr, isStarred: isFaved };
-      }
-    });
+    const newTransactionList = transactionList.slice();
+    const index = newTransactionList.findIndex((curr: DataItemProps) => curr.id === id);
+    newTransactionList[index].isStarred = isFaved;
     setTransactionList(newTransactionList);
   }, [isFaved]);
 
@@ -100,7 +88,7 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
       {isRefund && content}
       <SHeaderWrapper>
         <Typography variant="h5">{capitalize(company)}</Typography>
-        <StarredIcon clicked={starClickHandler} isStarred={getIsFaved(newTransactionList)} />
+        <StarredIcon clicked={starClickHandler} isStarred={getIsFaved(transactionList)} />
       </SHeaderWrapper>
       <Timestamp time={time} date={date} />
       <TransactionsInfo amount={amount} currency={currency} isRefund={isRefund} type={type} />
