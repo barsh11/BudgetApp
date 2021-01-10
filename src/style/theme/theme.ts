@@ -22,7 +22,7 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: font,
-    h1: { fontSize: '5rem' },
+    h3: { fontSize: '2.5rem' },
     h4: { fontSize: '2rem' },
     h6: {
       '@media only screen and (max-width: 22em)': {
