@@ -5,4 +5,4 @@ export default {
   title: 'AcrossApp/FallbackIcon',
 };
 
-export const common = () => <FallbackIcon location="sidebar">common FallbackIcon</FallbackIcon>;
+export const common = () => <FallbackIcon location="dashboard">common FallbackIcon</FallbackIcon>;
