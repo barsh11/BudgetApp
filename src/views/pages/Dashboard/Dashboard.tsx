@@ -3,6 +3,7 @@ import CreditCard from '../../../components/molecules/CreditCard/CreditCard';
 import { UserContext } from '../../../contexts/UserContext';
 import SWrapper from '../MainStyle';
 import DashboardTransactions from '../../../components/molecules/DashboardTransactions/DashboardTransactions';
+import sumLastMonths from '../../../utils/sumLastMonths';
 
 const Dashboard: React.FC = () => {
   const user = useContext(UserContext);
@@ -15,8 +16,8 @@ const Dashboard: React.FC = () => {
         cardName={`${user.firstName} ${user.lastName}`}
       />
       <div />
-      <DashboardTransactions type="expense" currency="USD" revenue={90524} />
-      <DashboardTransactions type="Income" currency="USD" revenue={60228} />
+      <DashboardTransactions type="expense" currency="USD" revenue={sumLastMonths(3, 'expenses')} />
+      <DashboardTransactions type="Income" currency="USD" revenue={sumLastMonths(3, 'incomes')} />
     </SWrapper>
   );
 };

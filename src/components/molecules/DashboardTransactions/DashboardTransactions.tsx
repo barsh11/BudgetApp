@@ -12,7 +12,7 @@ const IncomeIcon = React.lazy(() => import('../../atoms/IncomeIcon/IncomeIcon'))
 
 type DashboardTransactionsProps = TypographyProps & {
   type: 'expense' | 'Income';
-  revenue: number;
+  revenue: number | undefined;
   currency: string;
 };
 
@@ -57,7 +57,7 @@ const SBottomWrapper = styled.div`
 
 const DashboardTransactions: React.FC<DashboardTransactionsProps> = ({ type, revenue, currency }) => {
   const classes = useStyle({ type });
-  const deposit = `${getCurrencySymbol(currency)}${formatNumber(revenue)}`;
+  const deposit = `${getCurrencySymbol(currency)}${revenue && formatNumber(revenue)}`;
 
   return (
     <SWrapper>
