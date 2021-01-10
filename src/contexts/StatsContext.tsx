@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 
-export type statsProps = Map<[number, string], { expenses: number; incomes: number; cancelled: number }>;
+export type statsProps = Map<string, { expenses: number; incomes: number; cancelled: number }>;
 
-export const initialStatsContext: statsProps = new Map([[[2020, 'Jan'], { expenses: 0, incomes: 0, cancelled: 0 }]]);
+export const initialStatsContext: statsProps = new Map([['2020_Jan', { expenses: 0, incomes: 0, cancelled: 0 }]]);
 
-export const StatsContext = React.createContext<statsProps>(
-  new Map([[[2020, 'Jan'], { expenses: 0, incomes: 0, cancelled: 0 }]])
-);
+export const StatsContext = React.createContext<statsProps>(initialStatsContext);
 export const StatsDispatchContext = React.createContext<Function>(() => {});
 
 const StatsContextProvider: React.FC = ({ children }) => {

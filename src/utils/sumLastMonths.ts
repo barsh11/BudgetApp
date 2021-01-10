@@ -13,7 +13,7 @@ const sumLastmonths = (numMonths: number, type: string): number => {
     const currMonth = currDate.format('MMM');
     const currYear = parseInt(currDate.format('YYYY'), 10);
 
-    const currTransaction = stats.get([currYear, currMonth]);
+    const currTransaction = stats.get(`${currYear}_${currMonth}`);
     if (currTransaction !== undefined) {
       switch (type) {
         case 'expenses':

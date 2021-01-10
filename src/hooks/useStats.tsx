@@ -22,51 +22,52 @@ const useStats = () => {
           const currDate = moment(data[i].date, 'MM/DD/YYYY');
           if (currDate.isAfter(lastDate)) {
             const currMonth = currDate.format('MMM');
-            const currYear = parseInt(currDate.format('YYYY'), 10);
-            const arrayDate: [number, string] = [currYear, currMonth];
+            const currYear = currDate.format('YYYY');
+            const dateStr: string = `${currYear}_${currMonth}`;
+
             switch (data[i].transactionType) {
               case 'expense':
-                if (newCurrData.get(arrayDate) === undefined) {
-                  newCurrData.set(arrayDate, {
+                if (newCurrData.get(dateStr) === undefined) {
+                  newCurrData.set(dateStr, {
                     expenses: parseFloat(data[i].amount),
                     incomes: 0,
                     cancelled: 0,
                   });
                 } else {
-                  newCurrData.set(arrayDate, {
-                    expenses: newCurrData.get(arrayDate)!.expenses + parseFloat(data[i].amount),
-                    incomes: newCurrData.get(arrayDate)!.incomes,
-                    cancelled: newCurrData.get(arrayDate)!.cancelled,
+                  newCurrData.set(dateStr, {
+                    expenses: newCurrData.get(dateStr)!.expenses + parseFloat(data[i].amount),
+                    incomes: newCurrData.get(dateStr)!.incomes,
+                    cancelled: newCurrData.get(dateStr)!.cancelled,
                   });
                 }
                 break;
               case 'Income':
-                if (newCurrData.get(arrayDate) === undefined) {
-                  newCurrData.set(arrayDate, {
+                if (newCurrData.get(dateStr) === undefined) {
+                  newCurrData.set(dateStr, {
                     incomes: parseFloat(data[i].amount),
                     expenses: 0,
                     cancelled: 0,
                   });
                 } else {
-                  newCurrData.set(arrayDate, {
-                    incomes: newCurrData.get(arrayDate)!.incomes + parseFloat(data[i].amount),
-                    expenses: newCurrData.get(arrayDate)!.expenses,
-                    cancelled: newCurrData.get(arrayDate)!.cancelled,
+                  newCurrData.set(dateStr, {
+                    incomes: newCurrData.get(dateStr)!.incomes + parseFloat(data[i].amount),
+                    expenses: newCurrData.get(dateStr)!.expenses,
+                    cancelled: newCurrData.get(dateStr)!.cancelled,
                   });
                 }
                 break;
               default:
-                if (newCurrData.get(arrayDate) === undefined) {
-                  newCurrData.set(arrayDate, {
+                if (newCurrData.get(dateStr) === undefined) {
+                  newCurrData.set(dateStr, {
                     cancelled: parseFloat(data[i].amount),
                     incomes: 0,
                     expenses: 0,
                   });
                 } else {
-                  newCurrData.set(arrayDate, {
-                    cancelled: newCurrData.get(arrayDate)!.cancelled + parseFloat(data[i].amount),
-                    incomes: newCurrData.get(arrayDate)!.incomes,
-                    expenses: newCurrData.get(arrayDate)!.expenses,
+                  newCurrData.set(dateStr, {
+                    cancelled: newCurrData.get(dateStr)!.cancelled + parseFloat(data[i].amount),
+                    incomes: newCurrData.get(dateStr)!.incomes,
+                    expenses: newCurrData.get(dateStr)!.expenses,
                   });
                 }
             }
