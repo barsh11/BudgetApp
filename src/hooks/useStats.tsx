@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import moment from 'moment';
 import { statsProps, initialStatsContext } from '../contexts/StatsContext';
+/* import convertCurrency from '../utils/convertCurrency'; */
 
 const data = require('../mock/data-mock.json');
 
