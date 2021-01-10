@@ -38,7 +38,7 @@ const SLeftWrapper = styled.div`
 const getItemIcon = (type: 'expense' | 'Income' | 'cancelled', isPaypal?: boolean) => {
   switch (type) {
     case 'expense':
-      return isPaypal ? <PaypalIcon /> : <ExpenseIcon />;
+      return isPaypal ? <PaypalIcon /> : <ExpenseIcon location="summary" />;
     case 'Income':
       return isPaypal ? <PaypalIcon /> : <IncomeIcon />;
     default:
