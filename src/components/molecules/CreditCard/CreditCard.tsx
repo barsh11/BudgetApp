@@ -18,7 +18,7 @@ const SWrapper = styled.div`
   width: 100%;
   height: 100%;
   max-width: 30rem;
-  max-height: 17rem;
+  max-height: 18rem;
 
   display: grid;
   grid-template-rows: 3fr 2fr 1fr;

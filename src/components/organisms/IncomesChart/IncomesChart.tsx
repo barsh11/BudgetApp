@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Typography } from '@material-ui/core';
 import Chart from 'react-apexcharts';
+import { LoaderDispatchContext } from '../../../contexts/LoaderContext';
 import { firstDate } from '../../../hooks/useStats';
 import datamock from '../../../mock/data-mock.json';
 
@@ -12,7 +13,7 @@ const SWrapper = styled.div`
   width: 100%;
   height: 100%;
   max-width: 30rem;
-  max-height: 17rem;
+  max-height: 18rem;
   background-color: var(--color-white);
   padding: 1rem;
   border-radius: 1rem;
@@ -28,6 +29,7 @@ const SWrapper = styled.div`
 `;
 
 const IncomesChart: React.FC = () => {
+  const setLoading = useContext(LoaderDispatchContext);
   const [incomes, setIncomes] = useState<Map<string, number>>(new Map());
   const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(1, 'months');
   const [series, setSeries] = useState<{}[]>([]);
@@ -66,6 +68,7 @@ const IncomesChart: React.FC = () => {
 
   const getState = useCallback(
     (isActive: boolean) => {
+      setLoading(true);
       const incomesDaily: Map<string, number> = new Map();
       if (datamock instanceof Array) {
         let i: number = 0;
@@ -85,6 +88,7 @@ const IncomesChart: React.FC = () => {
           }
         }
       }
+      setLoading(false);
     },
     [datamock]
   );

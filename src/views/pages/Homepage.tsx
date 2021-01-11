@@ -1,13 +1,15 @@
 import React, { Suspense, useContext, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { UserDispatchContext } from '../../contexts/UserContext';
+import { LoaderContext } from '../../contexts/LoaderContext';
 import { DataDispatchContext } from '../../contexts/DataContext';
 import { StatsDispatchContext } from '../../contexts/StatsContext';
 import usermock from '../../mock/user-mock.json';
-import Layout from '../layout/Layout';
-import Loader from '../../components/atoms/Loader/Loader';
 import useData from '../../hooks/useData';
+import Layout from '../layout/Layout';
+import GeneralLoader from '../../components/organisms/GeneralLoader/GeneralLoader';
 import useStats from '../../hooks/useStats';
+import Loader from '../../components/atoms/Loader/Loader';
 
 const TransactionsList = React.lazy(() => import('./TransactionsList/TransactionsList'));
 const Dashboard = React.lazy(() => import('./Dashboard/Dashboard'));
@@ -17,6 +19,7 @@ const Homepage: React.FC = () => {
   const setUser = useContext(UserDispatchContext);
   const setData = useContext(DataDispatchContext);
   const setStats = useContext(StatsDispatchContext);
+  const isLoading = useContext(LoaderContext);
   const dataList = useData();
   const stats = useStats();
   const user = { ...usermock };
@@ -51,19 +54,20 @@ const Homepage: React.FC = () => {
     }
   }, [stats]);
 
-  const content = (
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <Switch>
-          <Route path="/transactions" exact component={dataList.length ? TransactionsList : Loader} />
-          <Route path="/transactions/:transactionId" component={SingleTransaction} />
-          <Route path="/dashboard" exact component={Dashboard} />
-          <Redirect to="/dashboard" />
-        </Switch>
-      </Suspense>
-    </Layout>
+  return (
+    <>
+      {isLoading ? <GeneralLoader /> : null}
+      <Layout>
+        <Suspense fallback={<Loader />}>
+          <Switch>
+            <Route path="/transactions" exact component={dataList.length ? TransactionsList : Loader} />
+            <Route path="/transactions/:transactionId" component={SingleTransaction} />
+            <Route path="/dashboard" exact component={Dashboard} />
+            <Redirect to="/dashboard" />
+          </Switch>
+        </Suspense>
+      </Layout>
+    </>
   );
-
-  return stats ? content : <div>Loading...</div>;
 };
 export default Homepage;
