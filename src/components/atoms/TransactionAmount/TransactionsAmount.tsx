@@ -14,7 +14,7 @@ export type TransactionsAmountProps = TypographyProps &
 
 const useStyles = makeStyles({
   refundStyle: {
-    color: 'var(--color-forthtiary)',
+    color: 'var(--color-secondary)',
   },
   contentStyle: {
     '@media only screen and (max-width: 94em)': {

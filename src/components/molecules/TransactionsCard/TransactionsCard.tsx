@@ -27,6 +27,7 @@ const SWrapper = styled.div`
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -38,7 +39,7 @@ const SLine = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--color-forthtiary);
+  background-color: var(--color-secondary);
 `;
 
 const SHeaderWrapper = styled.div`
