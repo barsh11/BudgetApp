@@ -5,6 +5,7 @@ import { StatsContext } from '../../../contexts/StatsContext';
 import SWrapper from '../MainStyle';
 import DashboardTransactions from '../../../components/molecules/DashboardTransactions/DashboardTransactions';
 import sumLastMonths from '../../../utils/sumLastMonths';
+import IncomesChart from '../../../components/organisms/IncomesChart/IncomesChart';
 import ActivitiesChart from '../../../components/organisms/ActivitiesChart/ActivitiesChart';
 
 const Dashboard: React.FC = () => {
@@ -12,13 +13,13 @@ const Dashboard: React.FC = () => {
   const stats = useContext(StatsContext);
 
   return (
-    <SWrapper className="dashboard">
+    <SWrapper>
       <CreditCard
         last4={user.creditCard.last4Digits}
         cardDate={`${user.creditCard.expMonth}/${user.creditCard.expYear}`}
         cardName={`${user.firstName} ${user.lastName}`}
       />
-      <div />
+      <IncomesChart />
       <DashboardTransactions type="expense" currency="USD" revenue={sumLastMonths(3, 'expenses', stats)} />
       <DashboardTransactions type="Income" currency="USD" revenue={sumLastMonths(3, 'incomes', stats)} />
       <ActivitiesChart />

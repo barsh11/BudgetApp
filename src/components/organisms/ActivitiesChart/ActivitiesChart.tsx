@@ -24,10 +24,11 @@ const SWrapper = styled.div`
 
   @media only screen and (max-width: 37.5em) {
     max-width: 30rem;
+    justify-self: center;
   }
 `;
 
-const ApexChart: React.FC = () => {
+const ActivitiesChart: React.FC = () => {
   const stats = useContext(StatsContext);
   const [dates, setDates] = useState<[string, string][]>([]);
   const [series, setSeries] = useState<{}[]>([]);
@@ -100,7 +101,7 @@ const ApexChart: React.FC = () => {
     return () => {
       isActive = false;
     };
-  }, [stats, options]);
+  }, [stats]);
 
   useEffect(() => {
     let isActive = true;
@@ -131,7 +132,7 @@ const ApexChart: React.FC = () => {
     return () => {
       isActive = false;
     };
-  }, [stats, options]);
+  }, [stats, dates]);
 
   return (
     <SWrapper>
@@ -145,4 +146,4 @@ const ApexChart: React.FC = () => {
   );
 };
 
-export default ApexChart;
+export default ActivitiesChart;

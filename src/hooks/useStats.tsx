@@ -75,12 +75,6 @@ const useStats = () => {
           }
         }
         if (isActive) {
-          // eslint-disable-next-line no-console
-          console.log(firstDate);
-          // eslint-disable-next-line no-console
-          console.log(lastDate);
-          // eslint-disable-next-line no-console
-          console.log(newCurrData);
           setCurrData(newCurrData);
         }
       }

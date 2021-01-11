@@ -27,6 +27,7 @@ const SWrapper = styled.div`
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
