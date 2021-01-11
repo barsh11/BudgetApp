@@ -9,6 +9,7 @@ const SImg = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, 50%);
+  z-index: 201;
 `;
 
 const Loader: React.FC = () => <SImg src={img} alt="Loading" />;
