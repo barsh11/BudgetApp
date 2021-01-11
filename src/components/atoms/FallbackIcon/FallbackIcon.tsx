@@ -4,7 +4,7 @@ import OutlinedFlagIcon from '@material-ui/icons/OutlinedFlag';
 import { IconProps } from '@material-ui/core/Icon';
 
 type FallbackIconProps = IconProps & {
-  location: 'sidebar' | 'summary';
+  location: 'sidebar' | 'summary' | 'dashboard';
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
     fill: theme.palette.common.white,
     marginRight: '1rem',
   },
+  dashboardStyle: {
+    borderRadius: '50%',
+    padding: '0.3rem',
+    backgroundColor: theme.palette.grey.A100,
+    fill: theme.palette.common.white,
+  },
 }));
 
 const FallbackIcon: React.FC<FallbackIconProps> = ({ location }: FallbackIconProps) => {
@@ -26,6 +32,8 @@ const FallbackIcon: React.FC<FallbackIconProps> = ({ location }: FallbackIconPro
   switch (location) {
     case 'summary':
       return <OutlinedFlagIcon className={classes.summaryStyle} fontSize="large" />;
+    case 'dashboard':
+      return <OutlinedFlagIcon className={classes.dashboardStyle} fontSize="large" />;
     default:
       // 'sidebar'
       return <OutlinedFlagIcon className={classes.sidebarStyle} fontSize="large" />;

@@ -1,5 +1,6 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { AppContext, AppDispatchContext } from '../../../contexts/AppContext';
 import SummaryLabel from '../../atoms/SummaryLabel/SummaryLabel';
 import SummaryAmount from '../../atoms/SummaryAmount/SummaryAmount';
 import FallbackIcon from '../../atoms/FallbackIcon/FallbackIcon';
@@ -17,6 +18,7 @@ export type SummaryItemProps = {
   currency: string;
   type: 'expense' | 'Income' | 'cancelled';
   isPaypal?: boolean;
+  id: string;
 };
 
 const SWrapper = styled.div`
@@ -36,7 +38,7 @@ const SLeftWrapper = styled.div`
 const getItemIcon = (type: 'expense' | 'Income' | 'cancelled', isPaypal?: boolean) => {
   switch (type) {
     case 'expense':
-      return isPaypal ? <PaypalIcon /> : <ExpenseIcon />;
+      return isPaypal ? <PaypalIcon /> : <ExpenseIcon location="summary" />;
     case 'Income':
       return isPaypal ? <PaypalIcon /> : <IncomeIcon />;
     default:
@@ -44,14 +46,35 @@ const getItemIcon = (type: 'expense' | 'Income' | 'cancelled', isPaypal?: boolea
   }
 };
 
-const SummaryItem: React.FC<SummaryItemProps> = ({ company, date, amount, currency, type, isPaypal }) => {
+const SummaryItem: React.FC<SummaryItemProps> = ({ company, date, amount, currency, type, isPaypal, id }) => {
+  const [isChosen, setIsChosen] = useState<boolean>(false);
+  const app = useContext(AppContext);
+  const setApp = useContext(AppDispatchContext);
+
+  const itemClickHandler = () => {
+    setIsChosen(true);
+  };
+
+  useEffect(() => {
+    if (isChosen) {
+      const newApp = { ...app };
+      newApp.summaryItemId = id;
+      setApp(newApp);
+    }
+  }, [isChosen]);
+
   const icon = getItemIcon(type, isPaypal);
 
   return (
-    <SWrapper>
+    <SWrapper className="summaryItem">
       <SLeftWrapper>
         <Suspense fallback={<FallbackIcon location="summary" />}>{icon}</Suspense>
-        <SummaryLabel isCancelled={type === 'cancelled'} company={capitalize(company)} date={date} />
+        <SummaryLabel
+          isCancelled={type === 'cancelled'}
+          company={capitalize(company)}
+          date={date}
+          clicked={itemClickHandler}
+        />
       </SLeftWrapper>
       <SummaryAmount amount={amount} currency={currency} type={type} />
     </SWrapper>

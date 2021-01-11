@@ -10,13 +10,17 @@ const SWrapper = styled.div`
   padding-top: 3.2rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
+  padding-bottom: 3.2rem;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 
-  height: 100%;
+  @media only screen and (max-width: 75em) {
+    display: none;
+  }
 `;
 
 const Summary: React.FC = () => {

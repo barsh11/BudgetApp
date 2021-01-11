@@ -14,7 +14,12 @@ export type TransactionsAmountProps = TypographyProps &
 
 const useStyles = makeStyles({
   refundStyle: {
-    color: 'var(--color-forthtiary)',
+    color: 'var(--color-secondary)',
+  },
+  contentStyle: {
+    '@media only screen and (max-width: 94em)': {
+      fontSize: '0.9rem',
+    },
   },
 });
 
@@ -30,7 +35,9 @@ const TransactionsAmount: React.FC<TransactionsAmountProps> = ({ amount, currenc
   if (isRefund) {
     content = (
       <Box className={classes.refundStyle} component="div">
-        <Typography variant="h6">{deposit}</Typography>
+        <Typography className={classes.contentStyle} variant="h6">
+          {deposit}
+        </Typography>
         <Typography variant="body1">Refunded</Typography>
       </Box>
     );

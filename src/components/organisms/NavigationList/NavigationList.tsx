@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SidebarNavItem, { SidebarNavItemProps } from '../../molecules/SidebarNavItem/SidebarNavItem';
 import slugify from '../../../utils/slugify';
@@ -17,11 +18,11 @@ const SUl = styled.ul`
 
 const SLi = styled.li`
   &:not(:last-child) {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.6rem;
   }
 `;
 
-const Sa = styled.a`
+const SLink = styled(Link)`
   text-decoration: none;
 
   &:hover,
@@ -30,16 +31,16 @@ const Sa = styled.a`
   }
 `;
 
-const renderNavItem = (curr: SidebarNavItemProps) => (
-  <SLi key={curr.label}>
-    <Sa href={`/${slugify(curr.label)}`}>
-      <SidebarNavItem label={curr.label} />
-    </Sa>
-  </SLi>
-);
+const NavigationList: React.FC<NavigationListProps> = ({ navList }) => {
+  const renderNavItem = (curr: SidebarNavItemProps) => (
+    <SLi key={curr.label}>
+      <SLink to={`/${slugify(curr.label)}`}>
+        <SidebarNavItem label={curr.label} />
+      </SLink>
+    </SLi>
+  );
 
-const NavigationList: React.FC<NavigationListProps> = ({ navList }) => (
-  <SUl>{navList.map((el) => renderNavItem(el))}</SUl>
-);
+  return <SUl>{navList.map((el) => renderNavItem(el))}</SUl>;
+};
 
 export default NavigationList;

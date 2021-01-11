@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import SummaryItem from '../../molecules/SummaryItem/SummaryItem';
-import { DataListProps, DataItemProps } from '../../../contexts/DataContext';
-import useData from '../../../hooks/useData';
+import { DataListProps, DataItemProps, DataContext } from '../../../contexts/DataContext';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 
 export type SummaryListProps = TypographyProps;
@@ -14,8 +14,15 @@ const SWrapper = styled.div`
 
 const SUl = styled.ul`
   margin-top: 1.5rem;
+  overflow-y: hidden;
 
   list-style: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    overflow-y: scroll;
+  }
 `;
 
 const SLi = styled.li`
@@ -24,19 +31,31 @@ const SLi = styled.li`
   }
 `;
 
+const SLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+  }
+`;
+
 const SummaryList: React.FC<SummaryListProps> = () => {
-  const summaryList: DataListProps = useData();
+  const summaryList: DataListProps = useContext(DataContext);
 
   const renderSummaryItem = (curr: DataItemProps) => (
     <SLi key={curr.id}>
-      <SummaryItem
-        company={curr.company}
-        date={curr.date}
-        amount={parseFloat(curr.amount)}
-        currency={curr.currency}
-        type={narrowTransactionType(curr.transactionType)}
-        isPaypal={curr.paypal}
-      />
+      <SLink to={`/transactions/${curr.id}`}>
+        <SummaryItem
+          id={curr.id}
+          company={curr.company}
+          date={curr.date}
+          amount={parseFloat(curr.amount)}
+          currency={curr.currency}
+          type={narrowTransactionType(curr.transactionType)}
+          isPaypal={curr.paypal}
+        />
+      </SLink>
     </SLi>
   );
 

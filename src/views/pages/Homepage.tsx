@@ -1,24 +1,27 @@
 import React, { Suspense, useContext, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { UserDispatchContext, initialUserContext } from '../../contexts/UserContext';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { UserDispatchContext } from '../../contexts/UserContext';
 import { DataDispatchContext } from '../../contexts/DataContext';
+import { StatsDispatchContext } from '../../contexts/StatsContext';
 import usermock from '../../mock/user-mock.json';
 import useData from '../../hooks/useData';
 import Layout from '../layout/Layout';
 import Loader from '../../components/atoms/Loader/Loader';
+import useStats from '../../hooks/useStats';
 
 const TransactionsList = React.lazy(() => import('./TransactionsList/TransactionsList'));
 const Dashboard = React.lazy(() => import('./Dashboard/Dashboard'));
+const SingleTransaction = React.lazy(() => import('./SingleTransaction/SingleTransaction'));
 
 const Homepage: React.FC = () => {
   const setUser = useContext(UserDispatchContext);
   const setData = useContext(DataDispatchContext);
-  const user = { ...usermock };
+  const setStats = useContext(StatsDispatchContext);
   const dataList = useData();
+  const stats = useStats();
+  const user = { ...usermock };
 
   useEffect(() => {
-    let isActive = true;
-
     if (user) {
       setUser({
         firstName: user.first_name,
@@ -33,39 +36,34 @@ const Homepage: React.FC = () => {
           last4Digits: user.credit_card.last4Digits,
         },
       });
-    } else if (isActive) {
-      setUser(initialUserContext);
     }
-
-    return () => {
-      isActive = false;
-    };
   }, [user]);
 
   useEffect(() => {
-    let isActive = true;
-
     if (dataList) {
       setData(dataList.slice());
-    } else if (isActive) {
-      setData([]);
     }
-
-    return () => {
-      isActive = false;
-    };
   }, [dataList]);
 
-  return (
+  useEffect(() => {
+    if (stats) {
+      setStats(new Map(stats));
+    }
+  }, [stats]);
+
+  const content = (
     <Layout>
       <Suspense fallback={<Loader />}>
         <Switch>
-          {dataList.length ? <Route path="/transactions" component={TransactionsList} /> : <Loader />}
+          <Route path="/transactions" exact component={dataList.length ? TransactionsList : Loader} />
+          <Route path="/transactions/:transactionId" component={SingleTransaction} />
           <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/" exact component={Dashboard} />
+          <Redirect to="/dashboard" />
         </Switch>
       </Suspense>
     </Layout>
   );
+
+  return stats ? content : <div>Loading...</div>;
 };
 export default Homepage;

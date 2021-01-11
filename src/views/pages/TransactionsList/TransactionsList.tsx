@@ -1,15 +1,8 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import TransactionsCard from '../../../components/molecules/TransactionsCard/TransactionsCard';
 import { DataItemProps, DataContext, DataListProps } from '../../../contexts/DataContext';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
-
-const SWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 1.5rem;
-  justify-items: center;
-`;
+import SWrapper from '../MainStyle';
 
 const TransactionsList: React.FC = () => {
   const transactionsList: DataListProps = useContext(DataContext);
@@ -25,7 +18,6 @@ const TransactionsList: React.FC = () => {
       type={narrowTransactionType(curr.transactionType)}
       time={curr.time}
       date={curr.date}
-      isStarred={curr.isStarred}
     />
   );
 
