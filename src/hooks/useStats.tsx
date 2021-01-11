@@ -21,7 +21,7 @@ const useStats = () => {
 
         for (i; i < data.length; i += 1) {
           const currDate = moment(data[i].date, 'MM/DD/YYYY');
-          if (currDate.isAfter(lastDate)) {
+          if (currDate.isAfter(lastDate) && currDate.isBefore(firstDate)) {
             const currMonth = currDate.format('MMM');
             const currYear = currDate.format('YYYY');
             const dateStr: string = `${currYear}_${currMonth}`;
@@ -74,9 +74,13 @@ const useStats = () => {
             }
           }
         }
-        // eslint-disable-next-line no-console
-        console.log(newCurrData);
         if (isActive) {
+          // eslint-disable-next-line no-console
+          console.log(firstDate);
+          // eslint-disable-next-line no-console
+          console.log(lastDate);
+          // eslint-disable-next-line no-console
+          console.log(newCurrData);
           setCurrData(newCurrData);
         }
       }

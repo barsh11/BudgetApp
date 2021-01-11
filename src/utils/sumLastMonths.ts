@@ -1,10 +1,8 @@
-import { useContext } from 'react';
 import moment from 'moment';
-import { StatsContext } from '../contexts/StatsContext';
+import { statsProps } from '../contexts/StatsContext';
 import { firstDate } from '../hooks/useStats';
 
-const sumLastmonths = (numMonths: number, type: string): number => {
-  const stats = useContext(StatsContext);
+const sumLastmonths = (numMonths: number, type: string, stats: statsProps): number => {
   let sum: number = 0;
 
   for (let i = 0; i <= numMonths; i += 1) {
@@ -24,7 +22,6 @@ const sumLastmonths = (numMonths: number, type: string): number => {
           break;
         default:
           sum += currTransaction.cancelled;
-          break;
       }
     }
   }

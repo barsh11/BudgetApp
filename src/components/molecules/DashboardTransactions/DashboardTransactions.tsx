@@ -43,12 +43,12 @@ const SWrapper = styled.div`
   border-radius: 1rem;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  width: 95%;
+  width: 100%;
   height: 100%;
   max-width: 30rem;
   max-height: 15rem;
+
+  align-self: center;
 `;
 
 const SBottomWrapper = styled.div`
