@@ -9,7 +9,7 @@ const useData = () => {
   const getState = useCallback(
     (isActive: boolean) => {
       const limitedResults: DataListProps = [];
-      const limit = 10;
+      const limit = 30;
       if (datamock instanceof Array) {
         for (let i = 0; i < limit; i += 1) {
           limitedResults[i] = { ...datamock[i], isStarred: false };
