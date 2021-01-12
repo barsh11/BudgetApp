@@ -4,8 +4,10 @@ import moment from 'moment';
 import { Typography } from '@material-ui/core';
 import Chart from 'react-apexcharts';
 import { StatsContext } from '../../../contexts/StatsContext';
+import { AppContext } from '../../../contexts/AppContext';
 import { firstDate } from '../../../hooks/useStats';
 import sumSpecMonth from '../../../utils/sumSpecMonth';
+import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
 const SWrapper = styled.div`
   grid-column: 1 / -1;
@@ -30,6 +32,7 @@ const SWrapper = styled.div`
 
 const ActivitiesChart: React.FC = () => {
   const stats = useContext(StatsContext);
+  const app = useContext(AppContext);
   const [dates, setDates] = useState<[string, string][]>([]);
   const [series, setSeries] = useState<{}[]>([]);
   const [options, setOptions] = useState({
@@ -67,7 +70,7 @@ const ActivitiesChart: React.FC = () => {
     },
     yaxis: {
       title: {
-        text: '$',
+        text: `${getCurrencySymbol(app.currency)}`,
         categories: [],
       },
       min: 0,
@@ -106,7 +109,7 @@ const ActivitiesChart: React.FC = () => {
   useEffect(() => {
     let isActive = true;
 
-    if (stats.size === 6) {
+    if (dates) {
       const cancelled = dates.map((cur) => sumSpecMonth(cur[0], cur[1], 'cancelled', stats));
       const expenses = dates.map((cur) => sumSpecMonth(cur[0], cur[1], 'expenses', stats));
       const incomes = dates.map((cur) => sumSpecMonth(cur[0], cur[1], 'incomes', stats));
@@ -115,15 +118,15 @@ const ActivitiesChart: React.FC = () => {
         setSeries([
           {
             name: 'Cancelled',
-            data: cancelled,
+            data: cancelled.map((cur) => cur.toFixed(2)),
           },
           {
             name: 'Expenses',
-            data: expenses,
+            data: expenses.map((cur) => cur.toFixed(2)),
           },
           {
             name: 'Incomes',
-            data: incomes,
+            data: incomes.map((cur) => cur.toFixed(2)),
           },
         ]);
       }
@@ -132,7 +135,7 @@ const ActivitiesChart: React.FC = () => {
     return () => {
       isActive = false;
     };
-  }, [stats, dates]);
+  }, [dates]);
 
   return (
     <SWrapper>

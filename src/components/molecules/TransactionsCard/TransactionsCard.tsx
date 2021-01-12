@@ -6,6 +6,8 @@ import StarredIcon from '../../atoms/StarredIcon/StarredIcon';
 import Timestamp, { TimestampProps } from '../Timestamp/Timestamp';
 import capitalize from '../../../utils/capitalize';
 import { DataContext, DataItemProps, DataDispatchContext, DataListProps } from '../../../contexts/DataContext';
+import { AppContext } from '../../../contexts/AppContext';
+import convertCurrency from '../../../utils/convertCurrency';
 
 export type TransactionsCardProps = TypographyProps &
   TransactionsInfoProps &
@@ -59,6 +61,7 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
   id,
 }) => {
   const [isFaved, setIsFaved] = useState<boolean>(false);
+  const app = useContext(AppContext);
   const transactionList = useContext(DataContext);
   const setTransactionList = useContext(DataDispatchContext);
 
@@ -93,7 +96,12 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
         <StarredIcon clicked={starClickHandler} isStarred={getIsFaved(transactionList)} />
       </SHeaderWrapper>
       <Timestamp time={time} date={date} />
-      <TransactionsInfo amount={amount} currency={currency} isRefund={isRefund} type={type} />
+      <TransactionsInfo
+        amount={convertCurrency(amount, currency, app.currency, app.currencyRates)}
+        currency={app.currency}
+        isRefund={isRefund}
+        type={type}
+      />
     </SWrapper>
   );
 };

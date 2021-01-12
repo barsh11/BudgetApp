@@ -4,8 +4,11 @@ import moment from 'moment';
 import { Typography } from '@material-ui/core';
 import Chart from 'react-apexcharts';
 import { LoaderDispatchContext } from '../../../contexts/LoaderContext';
+import { AppContext } from '../../../contexts/AppContext';
 import { firstDate } from '../../../hooks/useStats';
 import datamock from '../../../mock/data-mock.json';
+import convertCurrency from '../../../utils/convertCurrency';
+import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
 const SWrapper = styled.div`
   justify-self: stretch;
@@ -30,6 +33,7 @@ const SWrapper = styled.div`
 
 const IncomesChart: React.FC = () => {
   const setLoading = useContext(LoaderDispatchContext);
+  const app = useContext(AppContext);
   const [incomes, setIncomes] = useState<Map<string, number>>(new Map());
   const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(1, 'months');
   const [series, setSeries] = useState<{}[]>([]);
@@ -55,7 +59,7 @@ const IncomesChart: React.FC = () => {
     },
     yaxis: {
       title: {
-        text: '$',
+        text: `${getCurrencySymbol(app.currency)}`,
         categories: [],
       },
       min: 0,
@@ -78,9 +82,16 @@ const IncomesChart: React.FC = () => {
           const dateStr = currDate.format('DD/MM/YY');
           if (currDate.isAfter(lastDate) && currDate.isBefore(firstDate)) {
             if (incomesDaily.get(dateStr) === undefined) {
-              incomesDaily.set(dateStr, parseFloat(datamock[i].amount));
+              incomesDaily.set(
+                dateStr,
+                convertCurrency(parseFloat(datamock[i].amount), datamock[i].currency, app.currency, app.currencyRates)
+              );
             } else {
-              incomesDaily.set(dateStr, incomesDaily.get(dateStr)! + parseFloat(datamock[i].amount));
+              incomesDaily.set(
+                dateStr,
+                incomesDaily.get(dateStr)! +
+                  convertCurrency(parseFloat(datamock[i].amount), datamock[i].currency, app.currency, app.currencyRates)
+              );
             }
           }
           if (isActive) {
@@ -101,7 +112,7 @@ const IncomesChart: React.FC = () => {
     return () => {
       isActive = false;
     };
-  }, [getState, datamock]);
+  }, [getState]);
 
   useEffect(() => {
     let isActive = true;
@@ -114,7 +125,7 @@ const IncomesChart: React.FC = () => {
         setSeries([
           {
             name: 'Incomes',
-            data: newIncomes,
+            data: newIncomes.map((cur) => cur.toFixed(2)),
           },
         ]);
         const xaxisLab: string[] = dates.slice();
