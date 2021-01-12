@@ -3,11 +3,15 @@ import React, { useState } from 'react';
 export type AppProps = {
   summaryItemId: string;
   showSidebar: boolean;
+  currency: string;
+  currencyRates: { [key: string]: number };
 };
 
 const initialAppContext = {
   summaryItemId: '',
   showSidebar: false,
+  currency: 'EUR',
+  currencyRates: {},
 };
 
 export const AppContext = React.createContext<AppProps>(initialAppContext);

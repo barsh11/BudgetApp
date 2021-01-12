@@ -1,26 +1,16 @@
-import axios from '../services/axios';
-
-const convertCurrency = (amount: number, fromCurr: string, toCurr: string): number => {
-  // eslint-disable-next-line no-param-reassign
-  fromCurr = encodeURIComponent(fromCurr);
-  // eslint-disable-next-line no-param-reassign
-  toCurr = encodeURIComponent(toCurr);
-
-  let total;
-  const query = `?q=${fromCurr}_${toCurr}`;
-  axios
-    .get(query)
-    .then((res) => {
-      total = res.data[`${fromCurr}_${toCurr}`] * amount;
-      return total;
-    })
-    .catch((err) => {
-      // eslint-disable-next-line no-console
-      console.log(err);
-      return 0;
-    });
-
-  return 0;
+const convertCurrency = (
+  amount: number,
+  fromCurr: string,
+  toCurr: string,
+  rates: { [key: string]: number }
+): number => {
+  const ratio1: number = rates[fromCurr];
+  const ratio2: number = rates[toCurr];
+  const total: number = (amount / ratio1) * ratio2;
+  if (Number.isNaN(total)) {
+    return 0;
+  }
+  return total;
 };
 
 export default convertCurrency;

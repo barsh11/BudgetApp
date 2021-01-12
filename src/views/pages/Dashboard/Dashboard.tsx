@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import CreditCard from '../../../components/molecules/CreditCard/CreditCard';
 import { UserContext } from '../../../contexts/UserContext';
+import { AppContext } from '../../../contexts/AppContext';
 import { StatsContext } from '../../../contexts/StatsContext';
 import SWrapper from '../MainStyle';
 import DashboardTransactions from '../../../components/molecules/DashboardTransactions/DashboardTransactions';
@@ -9,6 +10,7 @@ import IncomesChart from '../../../components/organisms/IncomesChart/IncomesChar
 import ActivitiesChart from '../../../components/organisms/ActivitiesChart/ActivitiesChart';
 
 const Dashboard: React.FC = () => {
+  const app = useContext(AppContext);
   const user = useContext(UserContext);
   const stats = useContext(StatsContext);
 
@@ -20,8 +22,8 @@ const Dashboard: React.FC = () => {
         cardName={`${user.firstName} ${user.lastName}`}
       />
       <IncomesChart />
-      <DashboardTransactions type="expense" currency="USD" revenue={sumLastMonths(3, 'expenses', stats)} />
-      <DashboardTransactions type="Income" currency="USD" revenue={sumLastMonths(3, 'incomes', stats)} />
+      <DashboardTransactions type="expense" currency={app.currency} revenue={sumLastMonths(3, 'expenses', stats)} />
+      <DashboardTransactions type="Income" currency={app.currency} revenue={sumLastMonths(3, 'incomes', stats)} />
       <ActivitiesChart />
     </SWrapper>
   );

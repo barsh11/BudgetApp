@@ -5,6 +5,7 @@ import SummaryLabel from '../../atoms/SummaryLabel/SummaryLabel';
 import SummaryAmount from '../../atoms/SummaryAmount/SummaryAmount';
 import FallbackIcon from '../../atoms/FallbackIcon/FallbackIcon';
 import capitalize from '../../../utils/capitalize';
+import convertCurrency from '../../../utils/convertCurrency';
 
 const CancelledIcon = React.lazy(() => import('../../atoms/CancelledIcon/CancelledIcon'));
 const ExpenseIcon = React.lazy(() => import('../../atoms/ExpenseIcon/ExpenseIcon'));
@@ -76,7 +77,11 @@ const SummaryItem: React.FC<SummaryItemProps> = ({ company, date, amount, curren
           clicked={itemClickHandler}
         />
       </SLeftWrapper>
-      <SummaryAmount amount={amount} currency={currency} type={type} />
+      <SummaryAmount
+        amount={convertCurrency(amount, currency, app.currency, app.currencyRates)}
+        currency={app.currency}
+        type={type}
+      />
     </SWrapper>
   );
 };

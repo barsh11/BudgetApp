@@ -1,16 +1,19 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
 import moment from 'moment';
-import { statsProps, initialStatsContext } from '../contexts/StatsContext';
-/* import convertCurrency from '../utils/convertCurrency'; */
+import { statsProps } from '../contexts/StatsContext';
+import { AppContext } from '../contexts/AppContext';
+import { MONTHS } from '../constants/globalConst';
+import convertCurrency from '../utils/convertCurrency';
 
 const data = require('../mock/data-mock.json');
 
 export const firstDate = moment(data[0].date, 'MM/DD/YYYY');
 
 const useStats = () => {
-  const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(6, 'months');
+  const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(MONTHS, 'months');
 
-  const [currData, setCurrData] = useState<statsProps>(initialStatsContext);
+  const app = useContext(AppContext);
+  const [currData, setCurrData] = useState<statsProps>(new Map());
 
   const getState = useCallback(
     (isActive: boolean) => {
@@ -30,13 +33,20 @@ const useStats = () => {
               case 'expense':
                 if (newCurrData.get(dateStr) === undefined) {
                   newCurrData.set(dateStr, {
-                    expenses: parseFloat(data[i].amount),
+                    expenses: convertCurrency(
+                      parseFloat(data[i].amount),
+                      data[i].currency,
+                      app.currency,
+                      app.currencyRates
+                    ),
                     incomes: 0,
                     cancelled: 0,
                   });
                 } else {
                   newCurrData.set(dateStr, {
-                    expenses: newCurrData.get(dateStr)!.expenses + parseFloat(data[i].amount),
+                    expenses:
+                      newCurrData.get(dateStr)!.expenses +
+                      convertCurrency(parseFloat(data[i].amount), data[i].currency, app.currency, app.currencyRates),
                     incomes: newCurrData.get(dateStr)!.incomes,
                     cancelled: newCurrData.get(dateStr)!.cancelled,
                   });
@@ -45,13 +55,20 @@ const useStats = () => {
               case 'Income':
                 if (newCurrData.get(dateStr) === undefined) {
                   newCurrData.set(dateStr, {
-                    incomes: parseFloat(data[i].amount),
+                    incomes: convertCurrency(
+                      parseFloat(data[i].amount),
+                      data[i].currency,
+                      app.currency,
+                      app.currencyRates
+                    ),
                     expenses: 0,
                     cancelled: 0,
                   });
                 } else {
                   newCurrData.set(dateStr, {
-                    incomes: newCurrData.get(dateStr)!.incomes + parseFloat(data[i].amount),
+                    incomes:
+                      newCurrData.get(dateStr)!.incomes +
+                      convertCurrency(parseFloat(data[i].amount), data[i].currency, app.currency, app.currencyRates),
                     expenses: newCurrData.get(dateStr)!.expenses,
                     cancelled: newCurrData.get(dateStr)!.cancelled,
                   });
@@ -60,13 +77,20 @@ const useStats = () => {
               default:
                 if (newCurrData.get(dateStr) === undefined) {
                   newCurrData.set(dateStr, {
-                    cancelled: parseFloat(data[i].amount),
+                    cancelled: convertCurrency(
+                      parseFloat(data[i].amount),
+                      data[i].currency,
+                      app.currency,
+                      app.currencyRates
+                    ),
                     incomes: 0,
                     expenses: 0,
                   });
                 } else {
                   newCurrData.set(dateStr, {
-                    cancelled: newCurrData.get(dateStr)!.cancelled + parseFloat(data[i].amount),
+                    cancelled:
+                      newCurrData.get(dateStr)!.cancelled +
+                      convertCurrency(parseFloat(data[i].amount), data[i].currency, app.currency, app.currencyRates),
                     incomes: newCurrData.get(dateStr)!.incomes,
                     expenses: newCurrData.get(dateStr)!.expenses,
                   });
@@ -79,18 +103,21 @@ const useStats = () => {
         }
       }
     },
-    [data]
+    [app.currencyRates]
   );
 
   useEffect(() => {
     let isActive = true;
 
-    getState(isActive);
+    if (app.currencyRates) {
+      getState(isActive);
+    }
 
+    // eslint-disable-next-line consistent-return
     return () => {
       isActive = false;
     };
-  }, [getState]);
+  }, [getState, app.currencyRates]);
 
   return currData;
 };
