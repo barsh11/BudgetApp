@@ -11,7 +11,7 @@ const SWrapper = styled.div`
   grid-template-columns: 1fr 3fr 1fr;
 
   width: 84%;
-  height: 79%;
+  height: 80rem;
 
   position: relative;
   overflow: hidden;
@@ -21,12 +21,10 @@ const SWrapper = styled.div`
 
   @media only screen and (max-width: 110em) {
     width: 95%;
-    height: 88%;
   }
 
   @media only screen and (max-width: 94em) {
     width: 98%;
-    height: 91%;
   }
 
   @media only screen and (max-width: 75em) {
@@ -51,6 +49,7 @@ const SMain = styled.main`
   overflow-y: hidden;
   padding: 3.2rem 3.2rem 3.2rem 5.2rem;
   position: relative;
+  height: 100%;
 
   &:hover,
   &:focus,
