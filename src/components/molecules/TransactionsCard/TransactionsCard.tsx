@@ -84,6 +84,22 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
     const index = newTransactionList.findIndex((curr: DataItemProps) => curr.id === id);
     newTransactionList[index].isStarred = isFaved;
     setTransactionList(newTransactionList);
+
+    const favorites: DataListProps = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (isFaved) {
+      favorites.push({ ...newTransactionList[index] });
+      // eslint-disable-next-line no-console
+      console.log('Added favorite', newTransactionList[index]);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    } else {
+      favorites.splice(
+        favorites.findIndex((cur) => cur.id === id),
+        1
+      );
+      // eslint-disable-next-line no-console
+      console.log('Removed favorite', newTransactionList[index]);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
   }, [isFaved]);
 
   const content = <SLine>&nbsp;</SLine>;
