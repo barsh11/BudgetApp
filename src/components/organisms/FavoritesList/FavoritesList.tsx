@@ -7,16 +7,13 @@ import useFavs from '../../../hooks/useFavs';
 export type FavoritesListProps = TypographyProps;
 
 const SWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  height: 35%;
+  margin-bottom: 2.5rem;
 `;
 
 const SBottomWrapper = styled.div`
   display: flex;
 
+  margin-top: 1rem;
   overflow-x: hidden;
   padding: 1rem 0;
 
@@ -57,11 +54,7 @@ const FavoritesList: React.FC = () => {
       <Typography variant="h4" color="textSecondary">
         Favorites
       </Typography>
-      {favs.length > 0 ? (
-        <SBottomWrapper>{favs.slice(1).map((el: TransactionsCardProps) => renderFavItem(el))}</SBottomWrapper>
-      ) : (
-        <Typography>No favorites yet.</Typography>
-      )}
+      <SBottomWrapper>{favs.slice(1).map((el: TransactionsCardProps) => renderFavItem(el))}</SBottomWrapper>
     </SWrapper>
   );
 };

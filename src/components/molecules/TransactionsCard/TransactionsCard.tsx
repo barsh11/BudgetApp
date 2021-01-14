@@ -21,7 +21,7 @@ const SWrapper = styled.div`
   width: 100%;
   max-width: 25rem;
   min-width: 20rem;
-  max-height: 18rem;
+  max-height: 16rem;
   min-height: 15rem;
 
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
