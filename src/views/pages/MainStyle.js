@@ -4,11 +4,9 @@ const SWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
-  row-gap: 1.7rem;
-  column-gap: 1.7rem;
+  grid-gap: 1.7rem;
   max-width: 95%;
   margin: 0 auto;
-  height: 100%;
   overflow-y: hidden;
 
   &:focus,

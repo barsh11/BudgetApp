@@ -18,7 +18,6 @@ type UserPrefsProps = InputLabelProps &
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
     width: '10rem',
     color: 'red',
     fill: 'black',
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey.A200,
   },
   titleStyle: {
-    marginBottom: '2rem',
+    marginBottom: '1rem',
   },
 }));
 
