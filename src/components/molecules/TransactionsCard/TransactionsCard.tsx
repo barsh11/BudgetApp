@@ -12,7 +12,7 @@ export type TransactionsCardProps = TypographyProps &
   TransactionsInfoProps &
   TimestampProps & {
     company: string;
-    id?: string;
+    id: string;
     isFaved: boolean;
     onClickFavorite: (isFaved: boolean, newFav: TransactionsCardProps) => void;
   };

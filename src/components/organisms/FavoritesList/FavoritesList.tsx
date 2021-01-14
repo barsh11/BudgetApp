@@ -1,9 +1,8 @@
-/* import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { DataItemProps, DataListProps } from '../../../contexts/DataContext';
-import TransactionsCard from '../../molecules/TransactionsCard/TransactionsCard';
-import narrowTransactionType from '../../../utils/narrowTransactionType';
+import TransactionsCard, { TransactionsCardProps } from '../../molecules/TransactionsCard/TransactionsCard';
+import useFavs from '../../../hooks/useFavs';
 
 export type FavoritesListProps = TypographyProps;
 
@@ -19,6 +18,7 @@ const SBottomWrapper = styled.div`
   display: flex;
 
   overflow-x: hidden;
+  padding: 1rem 0;
 
   &:hover,
   &:active,
@@ -32,29 +32,23 @@ const SBottomWrapper = styled.div`
 `;
 
 const FavoritesList: React.FC = () => {
-  const [favs, setFavs] = useState<DataListProps>([]);
+  const [favs, updateFavs] = useFavs();
 
-  useEffect(() => {
-    (async () => {
-      const json = await localStorage.getItem('favorits');
-      if (json) {
-        const favorites = JSON.parse(json);
-        setFavs(favorites);
-      }
-    })();
-  }, []);
+  const itemInFavs = (id: string): number => favs.findIndex((item: TransactionsCardProps) => item.id === id);
 
-  const renderFavItem = (curr: DataItemProps) => (
+  const renderFavItem = (curr: TransactionsCardProps) => (
     <TransactionsCard
       key={curr.id}
       id={curr.id}
       company={curr.company}
-      amount={parseFloat(curr.amount)}
+      amount={curr.amount}
       currency={curr.currency}
-      isRefund={curr.transactionType === 'cancelled'}
-      type={narrowTransactionType(curr.transactionType)}
+      isRefund={curr.isRefund}
+      type={curr.type}
       time={curr.time}
       date={curr.date}
+      isFaved={itemInFavs(curr.id) > 0}
+      onClickFavorite={updateFavs}
     />
   );
 
@@ -63,8 +57,13 @@ const FavoritesList: React.FC = () => {
       <Typography variant="h4" color="textSecondary">
         Favorites
       </Typography>
-      <SBottomWrapper>{favs.map((el) => renderFavItem(el))}</SBottomWrapper>
+      {favs.length > 0 ? (
+        <SBottomWrapper>{favs.slice(1).map((el: TransactionsCardProps) => renderFavItem(el))}</SBottomWrapper>
+      ) : (
+        <Typography>No favorites yet.</Typography>
+      )}
     </SWrapper>
   );
-}; */
-export {};
+};
+
+export default FavoritesList;

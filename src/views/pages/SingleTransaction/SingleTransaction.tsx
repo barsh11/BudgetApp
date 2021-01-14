@@ -1,11 +1,14 @@
-/* import React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { DataContext, DataItemProps } from '../../../contexts/DataContext';
 import { AppDispatchContext, AppContext } from '../../../contexts/AppContext';
-import TransactionCard from '../../../components/molecules/TransactionsCard/TransactionsCard';
+import TransactionCard, {
+  TransactionsCardProps,
+} from '../../../components/molecules/TransactionsCard/TransactionsCard';
 import ExitIcon from '../../../components/atoms/ExitIcon/ExitIcon';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
+import useFavs from '../../../hooks/useFavs';
 
 const SWrapper = styled.div`
   padding: 2rem;
@@ -20,6 +23,7 @@ const SWrapper = styled.div`
 `;
 
 const SingleTransaction: React.FC = () => {
+  const [favs, updateFavs] = useFavs();
   const { transactionId } = useParams<{ transactionId: string }>();
   const history = useHistory();
   const transactionsList = useContext(DataContext);
@@ -34,6 +38,8 @@ const SingleTransaction: React.FC = () => {
     history.replace('/dashboard');
   };
 
+  const itemInFavs = (id: string): number => favs.findIndex((item: TransactionsCardProps) => item.id === id);
+
   return (
     <SWrapper>
       <ExitIcon clicked={transactionCancelledHandler} />
@@ -47,12 +53,12 @@ const SingleTransaction: React.FC = () => {
           time={transactionItem.time}
           date={transactionItem.date}
           id={transactionItem.id}
+          isFaved={itemInFavs(transactionItem.id) > 0}
+          onClickFavorite={updateFavs}
         />
       ) : null}
     </SWrapper>
   );
 };
 
-export default SingleTransaction; */
-
-export {};
+export default SingleTransaction;
