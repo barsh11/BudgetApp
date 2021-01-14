@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+/* import React, { useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { DataContext, DataItemProps } from '../../../contexts/DataContext';
@@ -53,4 +53,6 @@ const SingleTransaction: React.FC = () => {
   );
 };
 
-export default SingleTransaction;
+export default SingleTransaction; */
+
+export {};

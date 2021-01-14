@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import styled from 'styled-components';
 import FavoritesList from '../../../components/organisms/FavoritesList/FavoritesList';
 
@@ -13,4 +13,6 @@ const UserProfile: React.FC = () => (
   </SWrapper>
 );
 
-export default UserProfile;
+export default UserProfile; */
+
+export {};

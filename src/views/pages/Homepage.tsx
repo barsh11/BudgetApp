@@ -15,8 +15,8 @@ import axios from '../../services/axios';
 
 const TransactionsList = React.lazy(() => import('./TransactionsList/TransactionsList'));
 const Dashboard = React.lazy(() => import('./Dashboard/Dashboard'));
-const SingleTransaction = React.lazy(() => import('./SingleTransaction/SingleTransaction'));
-const UserProfile = React.lazy(() => import('./UserProfile/UserProfile'));
+/* const SingleTransaction = React.lazy(() => import('./SingleTransaction/SingleTransaction'));
+const UserProfile = React.lazy(() => import('./UserProfile/UserProfile')); */
 
 const Homepage: React.FC = () => {
   const [currRates, setCurrRates] = useState<{ [key: string]: number }>({});
@@ -89,8 +89,8 @@ const Homepage: React.FC = () => {
         <Suspense fallback={<Loader />}>
           <Switch>
             <Route path="/transactions" exact component={dataList.length ? TransactionsList : Loader} />
-            <Route path="/transactions/:transactionId" component={SingleTransaction} />
-            <Route path="/user-profile" component={UserProfile} />
+            {/* <Route path="/transactions/:transactionId" component={SingleTransaction} />
+            <Route path="/user-profile" component={UserProfile} /> */}
             <Route path="/dashboard" exact component={Dashboard} />
             <Redirect to="/dashboard" />
           </Switch>

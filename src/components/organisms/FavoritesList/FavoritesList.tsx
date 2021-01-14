@@ -1,7 +1,7 @@
-import React from 'react';
+/* import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { DataListProps, DataItemProps } from '../../../contexts/DataContext';
+import { DataItemProps, DataListProps } from '../../../contexts/DataContext';
 import TransactionsCard from '../../molecules/TransactionsCard/TransactionsCard';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 
@@ -32,7 +32,17 @@ const SBottomWrapper = styled.div`
 `;
 
 const FavoritesList: React.FC = () => {
-  const favsList: DataListProps = JSON.parse(localStorage.getItem('favorites') || '[]');
+  const [favs, setFavs] = useState<DataListProps>([]);
+
+  useEffect(() => {
+    (async () => {
+      const json = await localStorage.getItem('favorits');
+      if (json) {
+        const favorites = JSON.parse(json);
+        setFavs(favorites);
+      }
+    })();
+  }, []);
 
   const renderFavItem = (curr: DataItemProps) => (
     <TransactionsCard
@@ -53,9 +63,8 @@ const FavoritesList: React.FC = () => {
       <Typography variant="h4" color="textSecondary">
         Favorites
       </Typography>
-      <SBottomWrapper>{favsList?.map((el) => renderFavItem(el))}</SBottomWrapper>
+      <SBottomWrapper>{favs.map((el) => renderFavItem(el))}</SBottomWrapper>
     </SWrapper>
   );
-};
-
-export default FavoritesList;
+}; */
+export {};

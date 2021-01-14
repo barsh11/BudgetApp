@@ -12,7 +12,7 @@ const useData = () => {
       const limit = 30;
       if (datamock instanceof Array) {
         for (let i = 0; i < limit; i += 1) {
-          limitedResults[i] = { ...datamock[i], isStarred: false };
+          limitedResults[i] = { ...datamock[i] };
         }
         if (isActive) {
           setDataList(limitedResults);
