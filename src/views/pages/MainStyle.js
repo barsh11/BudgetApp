@@ -8,6 +8,14 @@ const SWrapper = styled.div`
   column-gap: 1.7rem;
   max-width: 95%;
   margin: 0 auto;
+  height: 100%;
+  overflow-y: hidden;
+
+  &:focus,
+  &:active,
+  &:hover {
+    overflow-y: scroll;
+  }
 
   @media only screen and (max-width: 37.5em) {
     display: flex;

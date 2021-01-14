@@ -41,7 +41,7 @@ const SLink = styled(Link)`
 `;
 
 const SummaryList: React.FC<SummaryListProps> = () => {
-  const summaryList: DataListProps = useContext(DataContext);
+  const summaryList: DataListProps = useContext(DataContext).slice(0, 10);
 
   const renderSummaryItem = (curr: DataItemProps) => (
     <SLi key={curr.id}>

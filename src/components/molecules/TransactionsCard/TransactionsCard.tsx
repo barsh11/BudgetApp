@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import TransactionsInfo, { TransactionsInfoProps } from '../TransactionsInfo/TransactionsInfo';
 import StarredIcon from '../../atoms/StarredIcon/StarredIcon';
 import Timestamp, { TimestampProps } from '../Timestamp/Timestamp';
 import capitalize from '../../../utils/capitalize';
-import { DataContext, DataItemProps, DataDispatchContext, DataListProps } from '../../../contexts/DataContext';
 import { AppContext } from '../../../contexts/AppContext';
 import convertCurrency from '../../../utils/convertCurrency';
 
@@ -14,14 +13,16 @@ export type TransactionsCardProps = TypographyProps &
   TimestampProps & {
     company: string;
     id: string;
+    isFaved: boolean;
+    onClickFavorite: (isFaved: boolean, newFav: TransactionsCardProps) => void;
   };
 
 const SWrapper = styled.div`
   width: 100%;
-  height: 100%;
   max-width: 25rem;
   min-width: 20rem;
-  max-height: 15rem;
+  max-height: 16rem;
+  min-height: 15rem;
 
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   padding: 1.5rem 2rem;
@@ -59,32 +60,16 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
   time,
   date,
   id,
+  isFaved,
+  onClickFavorite,
 }) => {
-  const [isFaved, setIsFaved] = useState<boolean>(false);
   const app = useContext(AppContext);
-  const transactionList = useContext(DataContext);
-  const setTransactionList = useContext(DataDispatchContext);
 
-  const starClickHandler = () => {
-    setIsFaved((prev) => !prev);
+  const favClickHandler = () => {
+    const newFav = { type, amount, currency, isRefund, company, time, date, id, isFaved, onClickFavorite };
+
+    onClickFavorite(isFaved, newFav);
   };
-
-  const getIsFaved = (list: DataListProps): boolean => {
-    const index = list.findIndex((curr: DataItemProps) => curr.id === id);
-    return list[index].isStarred;
-  };
-
-  const isFirst = useRef(true);
-  useEffect(() => {
-    if (isFirst.current) {
-      isFirst.current = false;
-      return;
-    }
-    const newTransactionList = transactionList.slice();
-    const index = newTransactionList.findIndex((curr: DataItemProps) => curr.id === id);
-    newTransactionList[index].isStarred = isFaved;
-    setTransactionList(newTransactionList);
-  }, [isFaved]);
 
   const content = <SLine>&nbsp;</SLine>;
 
@@ -93,7 +78,7 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
       {isRefund && content}
       <SHeaderWrapper>
         <Typography variant="h5">{capitalize(company)}</Typography>
-        <StarredIcon clicked={starClickHandler} isStarred={getIsFaved(transactionList)} />
+        <StarredIcon clicked={favClickHandler} isStarred={isFaved} />
       </SHeaderWrapper>
       <Timestamp time={time} date={date} />
       <TransactionsInfo

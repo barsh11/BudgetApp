@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
-import TransactionsCard from '../../../components/molecules/TransactionsCard/TransactionsCard';
+import TransactionsCard, {
+  TransactionsCardProps,
+} from '../../../components/molecules/TransactionsCard/TransactionsCard';
 import { DataItemProps, DataContext, DataListProps } from '../../../contexts/DataContext';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 import SWrapper from '../MainStyle';
+import useFavs from '../../../hooks/useFavs';
 
 const TransactionsList: React.FC = () => {
   const transactionsList: DataListProps = useContext(DataContext);
+  const [favs, updateFavs] = useFavs();
+
+  const itemInFavs = (id: string): number => favs.findIndex((item: TransactionsCardProps) => item.id === id);
 
   const renderExpenseCard = (curr: DataItemProps) => (
     <TransactionsCard
@@ -18,6 +24,8 @@ const TransactionsList: React.FC = () => {
       type={narrowTransactionType(curr.transactionType)}
       time={curr.time}
       date={curr.date}
+      isFaved={itemInFavs(curr.id) > 0}
+      onClickFavorite={updateFavs}
     />
   );
 

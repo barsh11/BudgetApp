@@ -17,7 +17,6 @@ export type DataItemProps = {
     lng: number;
   };
   company: string;
-  isStarred: boolean;
 };
 
 export type DataListProps = DataItemProps[];

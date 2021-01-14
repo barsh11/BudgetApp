@@ -41,19 +41,6 @@ const SLine = styled.div`
   &::after {
     top: 0.8rem;
   }
-  
-  &:hover {
-    & {
-      cursor: pointer;
-    }
-
-    &::before {
-      top: -1rem;
-    }
-
-    &::after {
-      top: 1rem;
-    }
 `;
 
 const Hamburger: React.FC<HamburgerProps> = ({ clicked }) => (
