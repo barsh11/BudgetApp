@@ -1,17 +1,26 @@
 import React, { useContext } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import TransactionsCard, {
   TransactionsCardProps,
 } from '../../../components/molecules/TransactionsCard/TransactionsCard';
 import { DataItemProps, DataContext, DataListProps } from '../../../contexts/DataContext';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
+import ExitIcon from '../../../components/atoms/ExitIcon/ExitIcon';
 import SWrapper from '../MainStyle';
 import useFavs from '../../../hooks/useFavs';
+import slugify from '../../../utils/slugify';
 
 const TransactionsList: React.FC = () => {
+  const { category } = useParams<{ category: string }>();
+  const history = useHistory();
   const transactionsList: DataListProps = useContext(DataContext);
   const [favs, updateFavs] = useFavs();
 
   const itemInFavs = (id: string): number => favs.findIndex((item: TransactionsCardProps) => item.id === id);
+
+  const transactionCancelledHandler = () => {
+    history.replace('/categories');
+  };
 
   const renderExpenseCard = (curr: DataItemProps) => (
     <TransactionsCard
@@ -29,7 +38,17 @@ const TransactionsList: React.FC = () => {
     />
   );
 
-  return <SWrapper>{transactionsList?.map((el) => renderExpenseCard(el))}</SWrapper>;
+  let content = <SWrapper>{transactionsList?.map((el) => renderExpenseCard(el))}</SWrapper>;
+  if (category) {
+    const filteredData = transactionsList.filter((cur) => slugify(cur.category) === category);
+    content = (
+      <>
+        <ExitIcon clicked={transactionCancelledHandler} />
+        <SWrapper>{filteredData?.map((el) => renderExpenseCard(el))}</SWrapper>
+      </>
+    );
+  }
+  return content;
 };
 
 export default TransactionsList;

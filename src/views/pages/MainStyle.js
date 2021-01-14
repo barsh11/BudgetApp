@@ -7,7 +7,6 @@ const SWrapper = styled.div`
   grid-gap: 1.7rem;
   max-width: 95%;
   margin: 0 auto;
-  height: 100%;
   overflow-y: hidden;
 
   &:focus,

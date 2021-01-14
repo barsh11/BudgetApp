@@ -4,15 +4,14 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 
 type CategoriesCardProp = TypographyProps & {
   category: string;
-  clicked: Function;
 };
 
 const SWrapper = styled.div`
   width: 100%;
   height: 100%;
-  max-width: 30rem;
-  max-height: 17rem;
-  min-height: 14rem;
+  max-width: 25rem;
+  max-height: 16rem;
+  min-height: 13rem;
   background-color: var(--color-white);
   padding: 1rem;
   border-radius: 1rem;
@@ -28,17 +27,18 @@ const SWrapper = styled.div`
     transform: translateY(-10px);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   }
+
+  @media only screen and (max-width: 37.5em) {
+    min-height: 9rem;
+  }
 `;
 
-const CategoriesCard: React.FC<CategoriesCardProp> = ({ category, clicked }) => {
-  console.log('rendered');
-  return (
-    <SWrapper onClick={(e) => clicked(e)}>
-      <Typography variant="h6" color="textSecondary">
-        {category.toUpperCase()}
-      </Typography>
-    </SWrapper>
-  );
-};
+const CategoriesCard: React.FC<CategoriesCardProp> = ({ category }) => (
+  <SWrapper>
+    <Typography variant="h6" color="textSecondary">
+      {category.toUpperCase()}
+    </Typography>
+  </SWrapper>
+);
 
 export default CategoriesCard;
