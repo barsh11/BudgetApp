@@ -16,6 +16,7 @@ import axios from '../../services/axios';
 const TransactionsList = React.lazy(() => import('./TransactionsList/TransactionsList'));
 const Dashboard = React.lazy(() => import('./Dashboard/Dashboard'));
 const SingleTransaction = React.lazy(() => import('./SingleTransaction/SingleTransaction'));
+const CategoriesList = React.lazy(() => import('./CategoriesList/CategoriesList'));
 const UserProfile = React.lazy(() => import('./UserProfile/UserProfile'));
 
 const Homepage: React.FC = () => {
@@ -91,6 +92,7 @@ const Homepage: React.FC = () => {
             <Route path="/transactions" exact component={dataList.length ? TransactionsList : Loader} />
             <Route path="/transactions/:transactionId" component={SingleTransaction} />
             <Route path="/user-profile" component={UserProfile} />
+            <Route path="/categories" component={CategoriesList} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Redirect to="/dashboard" />
           </Switch>
