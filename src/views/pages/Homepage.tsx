@@ -17,6 +17,7 @@ const TransactionsList = React.lazy(() => import('./TransactionsList/Transaction
 const Dashboard = React.lazy(() => import('./Dashboard/Dashboard'));
 const SingleTransaction = React.lazy(() => import('./SingleTransaction/SingleTransaction'));
 const CategoriesList = React.lazy(() => import('./CategoriesList/CategoriesList'));
+const Charts = React.lazy(() => import('./Charts/Charts'));
 const UserProfile = React.lazy(() => import('./UserProfile/UserProfile'));
 
 const Homepage: React.FC = () => {
@@ -93,6 +94,7 @@ const Homepage: React.FC = () => {
             <Route path="/transactions/:transactionId" component={SingleTransaction} />
             <Route path="/user-profile" component={UserProfile} />
             <Route path="/categories" component={CategoriesList} />
+            <Route path="/charts" component={Charts} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Redirect to="/dashboard" />
           </Switch>
