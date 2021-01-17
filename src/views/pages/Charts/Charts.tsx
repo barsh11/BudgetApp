@@ -9,7 +9,6 @@ const SWrapper = styled.div``;
 const Charts: React.FC = () => (
   <SWrapper>
     <ExpensesChart />
-    {/* <CountriesChart /> */}
     <CategoriesChart />
   </SWrapper>
 );

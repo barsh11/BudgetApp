@@ -9,26 +9,7 @@ import datamock from '../../../mock/data-mock.json';
 import convertCurrency from '../../../utils/convertCurrency';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
-const SWrapper = styled.div`
-  justify-self: stretch;
-
-  width: 100%;
-  height: 100%;
-  max-width: 30rem;
-  max-height: 18rem;
-  background-color: var(--color-white);
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media only screen and (max-width: 37.5em) {
-    justify-self: center;
-  }
-`;
+const SWrapper = styled.div``;
 
 const ExpensesChart: React.FC = () => {
   const setLoading = useContext(LoaderDispatchContext);

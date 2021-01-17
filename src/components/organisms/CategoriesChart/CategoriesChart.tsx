@@ -6,26 +6,7 @@ import { AppContext } from '../../../contexts/AppContext';
 import convertCurrency from '../../../utils/convertCurrency';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
-const SWrapper = styled.div`
-  grid-column: 1 / -1;
-  justify-self: stretch;
-
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-white);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media only screen and (max-width: 37.5em) {
-    max-width: 30rem;
-    justify-self: center;
-  }
-`;
+const SWrapper = styled.div``;
 
 const ActivitiesChart: React.FC = () => {
   const app = useContext(AppContext);
