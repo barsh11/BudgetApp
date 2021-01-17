@@ -12,6 +12,7 @@ import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 const SWrapper = styled.div`
   grid-column: 1 / -1;
   justify-self: stretch;
+  align-self: center;
 
   width: 100%;
   height: 100%;

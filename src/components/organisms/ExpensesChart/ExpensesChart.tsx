@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { Typography } from '@material-ui/core';
 import Chart from 'react-apexcharts';
 import { LoaderDispatchContext } from '../../../contexts/LoaderContext';
 import { AppContext } from '../../../contexts/AppContext';
@@ -10,31 +9,12 @@ import datamock from '../../../mock/data-mock.json';
 import convertCurrency from '../../../utils/convertCurrency';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
-const SWrapper = styled.div`
-  justify-self: stretch;
+const SWrapper = styled.div``;
 
-  width: 100%;
-  height: 100%;
-  max-width: 30rem;
-  max-height: 18rem;
-  background-color: var(--color-white);
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media only screen and (max-width: 37.5em) {
-    justify-self: center;
-  }
-`;
-
-const IncomesChart: React.FC = () => {
+const ExpensesChart: React.FC = () => {
   const setLoading = useContext(LoaderDispatchContext);
   const app = useContext(AppContext);
-  const [incomes, setIncomes] = useState<Map<string, number>>(new Map());
+  const [expenses, setExpenses] = useState<Map<string, number>>(new Map());
   const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(1, 'months');
   const [series, setSeries] = useState<{}[]>([]);
   const [options, setOptions] = useState({
@@ -47,6 +27,9 @@ const IncomesChart: React.FC = () => {
     },
     stroke: {
       width: 1,
+    },
+    title: {
+      text: `Last month expenses`,
     },
     tooltip: {
       enabled: true,
@@ -73,29 +56,29 @@ const IncomesChart: React.FC = () => {
   const getState = useCallback(
     (isActive: boolean) => {
       setLoading(true);
-      const incomesDaily: Map<string, number> = new Map();
+      const expensesDaily: Map<string, number> = new Map();
       if (datamock instanceof Array) {
         let i: number = 0;
 
         for (i; i < datamock.length; i += 1) {
           const currDate = moment(datamock[i].date, 'MM/DD/YYYY');
           const dateStr = currDate.format('DD/MM/YY');
-          if (currDate.isAfter(lastDate) && currDate.isBefore(firstDate) && datamock[i].transactionType === 'Income') {
-            if (incomesDaily.get(dateStr) === undefined) {
-              incomesDaily.set(
+          if (currDate.isAfter(lastDate) && currDate.isBefore(firstDate) && datamock[i].transactionType === 'expense') {
+            if (expensesDaily.get(dateStr) === undefined) {
+              expensesDaily.set(
                 dateStr,
                 convertCurrency(parseFloat(datamock[i].amount), datamock[i].currency, app.currency, app.currencyRates)
               );
             } else {
-              incomesDaily.set(
+              expensesDaily.set(
                 dateStr,
-                incomesDaily.get(dateStr)! +
+                expensesDaily.get(dateStr)! +
                   convertCurrency(parseFloat(datamock[i].amount), datamock[i].currency, app.currency, app.currencyRates)
               );
             }
           }
           if (isActive) {
-            setIncomes(incomesDaily);
+            setExpenses(expensesDaily);
           }
         }
       }
@@ -117,15 +100,15 @@ const IncomesChart: React.FC = () => {
   useEffect(() => {
     let isActive = true;
 
-    if (incomes.size > 28) {
-      let dates = Array.from(incomes.keys());
+    if (expenses.size > 28) {
+      let dates = Array.from(expenses.keys());
       dates = dates.sort((a, b) => moment(a, 'DD/MM/YY').diff(moment(b, 'DD/MM/YY')));
-      const newIncomes = dates.map((cur) => incomes.get(cur)!);
+      const newExpenses = dates.map((cur) => expenses.get(cur)!);
       if (isActive) {
         setSeries([
           {
-            name: 'Incomes',
-            data: newIncomes.map((cur) => cur.toFixed(2)),
+            name: 'Expenses',
+            data: newExpenses.map((cur) => cur.toFixed(2)),
           },
         ]);
         const xaxisLab: string[] = dates.slice();
@@ -136,13 +119,10 @@ const IncomesChart: React.FC = () => {
     return () => {
       isActive = false;
     };
-  }, [incomes]);
+  }, [expenses]);
 
   return (
     <SWrapper>
-      <Typography variant="h5" color="textSecondary">
-        Incomes
-      </Typography>
       <div id="chart">
         <Chart options={{ ...options }} series={series.slice()} type="area" />
       </div>
@@ -150,4 +130,4 @@ const IncomesChart: React.FC = () => {
   );
 };
 
-export default IncomesChart;
+export default ExpensesChart;
