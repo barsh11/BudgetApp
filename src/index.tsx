@@ -5,13 +5,16 @@ import './index.css';
 import theme from './style/theme/theme';
 import GlobalStyle from './style/global/global';
 import App from './App';
+import ErrorBoundary from './hoc/ErrorBoundary';
 
 const app = <App />;
 
 ReactDOM.render(
   <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>{app}</ThemeProvider>
+    <ErrorBoundary>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>{app}</ThemeProvider>
+    </ErrorBoundary>
   </>,
   document.getElementById('root')
 );

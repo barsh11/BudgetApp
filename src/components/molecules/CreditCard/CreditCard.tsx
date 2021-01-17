@@ -22,6 +22,10 @@ const SWrapper = styled.div`
 
   display: grid;
   grid-template-rows: 3fr 2fr 1fr;
+
+  @media only screen and (max-width: 22em) {
+    max-height: 15rem;
+  }
 `;
 
 const SBottomWrapper = styled.div`
