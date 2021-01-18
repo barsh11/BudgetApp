@@ -6,6 +6,7 @@ import ErrorBtn from '../../atoms/ErrorBtn/ErrorBtn';
 
 type ErrorMessageProps = {
   errorMsg: string;
+  onBtnClick: Function;
 };
 
 const SWrapper = styled.div`
@@ -21,7 +22,7 @@ const SWrapper = styled.div`
   min-height: 25rem;
   max-height: 30rem;
   width: 40%;
-  max-width: 350px;
+  max-width: 300px;
   z-index: 201;
 
   @media only screen and (max-width: 56.25em) {
@@ -36,11 +37,11 @@ const SWrapper = styled.div`
   }
 `;
 
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ errorMsg }) => (
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ errorMsg, onBtnClick }) => (
   <SWrapper>
     <ErrorImg />
     <ErrorInfo errorMsg={errorMsg} />
-    <ErrorBtn />
+    <ErrorBtn clicked={onBtnClick} />
   </SWrapper>
 );
 

@@ -6,20 +6,23 @@ import LoaderContextProvider from './contexts/LoaderContext';
 import AppContextProvider from './contexts/AppContext';
 import StatsContextProvider from './contexts/StatsContext';
 import Homepage from './views/pages/Homepage';
+import ErrorBoundary from './hoc/ErrorBoundary';
 
 const App: React.FC = () => (
   <BrowserRouter>
-    <UserContextProvider>
-      <DataContextProvider>
-        <StatsContextProvider>
-          <LoaderContextProvider>
-            <AppContextProvider>
-              <Homepage />
-            </AppContextProvider>
-          </LoaderContextProvider>
-        </StatsContextProvider>
-      </DataContextProvider>
-    </UserContextProvider>
+    <ErrorBoundary>
+      <UserContextProvider>
+        <DataContextProvider>
+          <StatsContextProvider>
+            <LoaderContextProvider>
+              <AppContextProvider>
+                <Homepage />
+              </AppContextProvider>
+            </LoaderContextProvider>
+          </StatsContextProvider>
+        </DataContextProvider>
+      </UserContextProvider>
+    </ErrorBoundary>
   </BrowserRouter>
 );
 

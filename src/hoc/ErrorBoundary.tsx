@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 import Backdrop from '../components/atoms/Backdrop/Backdrop';
 import ErrorMessage from '../components/molecules/ErrorMessage/ErrorMessage';
@@ -13,7 +14,7 @@ const SWrapper = styled.div`
   width: 100vw;
 `;
 
-interface Props {
+interface Props extends RouteComponentProps {
   children: ReactNode;
 }
 
@@ -42,11 +43,16 @@ class ErrorBoundary extends Component<Props, State> {
     console.log('Uncaught error:', error, errorInfo);
   }
 
+  BtnClickHandler = () => {
+    this.setState({ hasError: false, error: '' });
+    this.props.history.replace('/');
+  };
+
   public render() {
     if (this.state.hasError) {
       return (
         <SWrapper>
-          <ErrorMessage errorMsg={this.state.error || 'Something went wrong.'} />
+          <ErrorMessage onBtnClick={this.BtnClickHandler} errorMsg={this.state.error || 'Something went wrong.'} />
           <Backdrop open clicked={() => {}} />
         </SWrapper>
       );
@@ -56,4 +62,4 @@ class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-export default ErrorBoundary;
+export default withRouter(ErrorBoundary);
