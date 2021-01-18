@@ -40,14 +40,12 @@
 ## About The Project
 
 User interface specification:<br />
-<img src="https://github.com/barsh11/BudgetApp/blob/master/budgetapppics/UI.png?raw=true" width="300px" />
+<img src="https://github.com/barsh11/BudgetApp/blob/master/budgetapppics/UI.jpg?raw=true" width="300px" />
 <br /><br />
 Final Product:<br />
-<img src="https://github.com/barsh11/BudgetApp/blob/master/weatherapppics/budgetapp.png?raw=true" width="800px" />
+<img src="https://github.com/barsh11/BudgetApp/blob/master/budgetapppics/budgetapp.png?raw=true" width="800px" />
 
 This app is an app to review and manage ones expenses and incomes.<br/> It includes info about incomes, expenses and cancelled transactions alongside basic statistics and user preferences such as global currency and favorites transactions.
-<br/>
-<br/>
 
 ### Built With
 
