@@ -8,7 +8,9 @@ import { createGlobalStyle, css } from 'styled-components';
 // $bp-small:  37.5em; //600px
 // $bp-smallest: 31.25em; //500px*/
 
-export const bodyStyles = css``;
+export const bodyStyles = css`
+  background-color: #edecf2;
+`;
 
 export const htmlStyles = css`
   box-sizing: border-box;
