@@ -93,8 +93,8 @@ const Homepage: React.FC = () => {
             <Route path="/transactions" exact component={dataList.length ? TransactionsList : Loader} />
             <Route path="/transactions/:transactionId" component={SingleTransaction} />
             <Route path="/user-profile" component={UserProfile} />
-            <Route path="/categories" component={CategoriesList} />
             <Route path="/charts" component={Charts} />
+            <Route path="/categories" component={CategoriesList} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Redirect to="/dashboard" />
           </Switch>

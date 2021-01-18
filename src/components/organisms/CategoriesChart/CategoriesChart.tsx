@@ -6,7 +6,22 @@ import { AppContext } from '../../../contexts/AppContext';
 import convertCurrency from '../../../utils/convertCurrency';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
-const SWrapper = styled.div``;
+const SWrapper = styled.div`
+  grid-column: 1 / span 1;
+
+  width: 100%;
+  background-color: var(--color-white);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  justify-content: center;
+
+  @media only screen and (min-width: 75em) {
+    grid-column: 1 / span 2;
+  }
+`;
 
 const ActivitiesChart: React.FC = () => {
   const app = useContext(AppContext);
@@ -20,6 +35,7 @@ const ActivitiesChart: React.FC = () => {
     },
     title: {
       text: `Purchases in ${getCurrencySymbol(app.currency)} by category`,
+      align: 'center',
     },
     labels: [] as string[],
     legend: {

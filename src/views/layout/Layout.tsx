@@ -11,13 +11,14 @@ const SWrapper = styled.div`
   grid-template-columns: 1fr 3fr 1fr;
 
   width: 84%;
-  height: 78rem;
+  max-width: 1910px;
+  height: 79%;
 
   position: relative;
   overflow: hidden;
   border-radius: 2rem;
   box-shadow: var(--shadow-dark);
-  margin: 8rem auto;
+  margin: 6rem auto;
 
   @media only screen and (max-width: 110em) {
     width: 95%;
@@ -50,6 +51,7 @@ const SMain = styled.main`
   padding: 3.2rem 3.2rem 3.2rem 5.2rem;
   position: relative;
   height: 100%;
+  max-height: inherit;
 
   &:hover,
   &:focus,
