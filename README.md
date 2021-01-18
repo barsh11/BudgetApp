@@ -18,8 +18,6 @@
   </p>
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
@@ -34,37 +32,37 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 User interface specification:<br />
-<img src="https://github.com/barsh11/BudgetApp/blob/master/budgetapppics/UI.jpg?raw=true" width="300px" />
+<img src="https://github.com/barsh11/BudgetApp/blob/main/budgetapppics/UI.jpg?raw=true" width="300px" />
 <br /><br />
 Final Product:<br />
-<img src="https://github.com/barsh11/BudgetApp/blob/master/budgetapppics/budgetapp.png?raw=true" width="800px" />
+<img src="https://github.com/barsh11/BudgetApp/blob/main/budgetapppics/budgetapp.png?raw=true" width="800px" />
 
 This app is an app to review and manage ones expenses and incomes.<br/> It includes info about incomes, expenses and cancelled transactions alongside basic statistics and user preferences such as global currency and favorites transactions.
 
 ### Built With
 
-* [Storybook](https://storybook.js.org/)
-* [React](https://reactjs.org/)
-* [Typescript](https://reactjs.org/)
-* [styled-components](https://styled-components.com/)
-* [moment](https://momentjs.com/)
-* [material-UI](https://material-ui.com/)
-* [Apexcharts](https://apexcharts.com/)
+- [Storybook](https://storybook.js.org/)
+- [React](https://reactjs.org/)
+- [Typescript](https://reactjs.org/)
+- [styled-components](https://styled-components.com/)
+- [moment](https://momentjs.com/)
+- [material-UI](https://material-ui.com/)
+- [Apexcharts](https://apexcharts.com/)
 
 <!-- CONTACT -->
+
 ## Contact
 
 Project Link: [https://github.com/barsh11/BudgetApp](https://github.com/barsh11/WeatherApp)
 
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
