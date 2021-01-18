@@ -16,7 +16,7 @@ const SWrapper = styled.div`
   width: 100%;
   height: 100%;
   max-width: 30rem;
-  max-height: 18rem;
+  max-height: 21rem;
   background-color: var(--color-white);
   padding: 1rem;
   border-radius: 1rem;
@@ -56,6 +56,10 @@ const IncomesChart: React.FC = () => {
     },
     xaxis: {
       categories: [] as string[],
+      labels: {
+        rotate: 0,
+        trim: true,
+      },
     },
     yaxis: {
       title: {

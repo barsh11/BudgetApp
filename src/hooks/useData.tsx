@@ -1,10 +1,12 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
 import { DataListProps } from '../contexts/DataContext';
+import { LoaderDispatchContext } from '../contexts/LoaderContext';
 
 import datamock from '../mock/data-mock.json';
 
 const useData = () => {
   const [dataList, setDataList] = useState<DataListProps>([]);
+  const setIsLoading = useContext(LoaderDispatchContext);
 
   const getState = useCallback(
     (isActive: boolean) => {
@@ -16,6 +18,7 @@ const useData = () => {
         }
         if (isActive) {
           setDataList(limitedResults);
+          setIsLoading(false);
         }
       }
     },
@@ -24,6 +27,7 @@ const useData = () => {
 
   useEffect(() => {
     let isActive = true;
+    setIsLoading(true);
 
     getState(isActive);
 

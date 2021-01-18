@@ -46,6 +46,7 @@ const ExpensesChart: React.FC = () => {
     },
     title: {
       text: `Last month expenses`,
+      align: 'center',
     },
     tooltip: {
       enabled: true,

@@ -45,7 +45,7 @@ const Charts: React.FC = () => (
     <CategoriesChart />
     <MethodsChart />
     <ExpensesChart />
-    <SActivitiesChart />
+    <SActivitiesChart location="charts" />
   </SWrapper>
 );
 

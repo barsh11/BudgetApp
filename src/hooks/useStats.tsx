@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useContext } from 'react';
 import moment from 'moment';
 import { statsProps } from '../contexts/StatsContext';
 import { AppContext } from '../contexts/AppContext';
+import { LoaderDispatchContext } from '../contexts/LoaderContext';
 import { MONTHS } from '../constants/globalConst';
 import convertCurrency from '../utils/convertCurrency';
 
@@ -11,7 +12,7 @@ export const firstDate = moment(data[0].date, 'MM/DD/YYYY');
 
 const useStats = () => {
   const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(MONTHS, 'months');
-
+  const setIsLoading = useContext(LoaderDispatchContext);
   const app = useContext(AppContext);
   const [currData, setCurrData] = useState<statsProps>(new Map());
 
@@ -99,6 +100,7 @@ const useStats = () => {
           }
         }
         if (isActive) {
+          setIsLoading(false);
           setCurrData(newCurrData);
         }
       }
@@ -108,6 +110,7 @@ const useStats = () => {
 
   useEffect(() => {
     let isActive = true;
+    setIsLoading(true);
 
     if (app.currencyRates) {
       getState(isActive);

@@ -35,6 +35,7 @@ const ActivitiesChart: React.FC = () => {
     },
     title: {
       text: `Purchases in ${getCurrencySymbol(app.currency)} by category`,
+      align: 'center',
     },
     labels: [] as string[],
     legend: {

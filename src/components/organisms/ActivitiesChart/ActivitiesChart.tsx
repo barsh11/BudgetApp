@@ -31,7 +31,10 @@ const SWrapper = styled.div`
   }
 `;
 
-const ActivitiesChart: React.FC<{ className?: string }> = ({ className }) => {
+const ActivitiesChart: React.FC<{ className?: string; location: 'charts' | 'dashboard' }> = ({
+  className,
+  location,
+}) => {
   const stats = useContext(StatsContext);
   const app = useContext(AppContext);
   const [dates, setDates] = useState<[string, string][]>([]);
@@ -140,11 +143,21 @@ const ActivitiesChart: React.FC<{ className?: string }> = ({ className }) => {
 
   return (
     <SWrapper className={className}>
-      <Typography variant="h5" color="textSecondary">
-        Activities
-      </Typography>
+      {location === 'dashboard' ? (
+        <Typography variant="h5" color="textSecondary">
+          Activities
+        </Typography>
+      ) : null}
       <div id="chart">
-        <Chart options={{ ...options }} series={series.slice()} type="bar" />
+        <Chart
+          options={
+            location === 'dashboard'
+              ? { ...options }
+              : { ...options, title: { text: 'Last 6 months activities', align: 'center' } }
+          }
+          series={series.slice()}
+          type="bar"
+        />
       </div>
     </SWrapper>
   );

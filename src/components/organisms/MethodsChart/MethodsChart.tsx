@@ -87,6 +87,7 @@ const MethodsChart: React.FC = () => {
     },
     title: {
       text: 'No. of purchases by payment method',
+      align: 'center',
     },
   });
 
