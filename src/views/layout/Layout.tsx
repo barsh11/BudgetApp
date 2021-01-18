@@ -50,6 +50,7 @@ const SMain = styled.main`
   padding: 3.2rem 3.2rem 3.2rem 5.2rem;
   position: relative;
   height: 100%;
+  max-height: inherit;
 
   &:hover,
   &:focus,

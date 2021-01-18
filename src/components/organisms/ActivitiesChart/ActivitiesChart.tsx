@@ -31,7 +31,7 @@ const SWrapper = styled.div`
   }
 `;
 
-const ActivitiesChart: React.FC = () => {
+const ActivitiesChart: React.FC<{ className?: string }> = ({ className }) => {
   const stats = useContext(StatsContext);
   const app = useContext(AppContext);
   const [dates, setDates] = useState<[string, string][]>([]);
@@ -139,7 +139,7 @@ const ActivitiesChart: React.FC = () => {
   }, [dates]);
 
   return (
-    <SWrapper>
+    <SWrapper className={className}>
       <Typography variant="h5" color="textSecondary">
         Activities
       </Typography>
