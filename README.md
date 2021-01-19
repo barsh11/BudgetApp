@@ -10,7 +10,7 @@
     <a href="https://github.com/barsh11/BudgetApp"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://barsh11.github.io/dashboard">View Demo</a>
+    <a href="https://barsh11.github.io/BudgetApp">View Demo</a>
     ·
     <a href="https://github.com/barsh11/BudgetApp/issues">Report Bug</a>
     ·
