@@ -28,6 +28,7 @@ class ErrorBoundary extends Component<Props, State> {
     super(props);
     this.state = {
       hasError: false,
+      // eslint-disable-next-line react/no-unused-state
       error: '',
     };
   }
@@ -44,6 +45,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   BtnClickHandler = () => {
+    // eslint-disable-next-line react/no-unused-state
     this.setState({ hasError: false, error: '' });
     this.props.history.replace('/');
   };
@@ -52,7 +54,7 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <SWrapper>
-          <ErrorMessage onBtnClick={this.BtnClickHandler} errorMsg={this.state.error || 'Something went wrong.'} />
+          <ErrorMessage onBtnClick={this.BtnClickHandler} errorMsg="Something went wrong." />
           <Backdrop open clicked={() => {}} />
         </SWrapper>
       );
