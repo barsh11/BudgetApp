@@ -9,7 +9,7 @@ import narrowTransactionType from '../../../utils/narrowTransactionType';
 export type SummaryListProps = TypographyProps;
 
 const SWrapper = styled.div`
-  height: 59%;
+  height: 60%;
 `;
 
 const SUl = styled.ul`
