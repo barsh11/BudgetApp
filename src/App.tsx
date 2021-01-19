@@ -9,7 +9,7 @@ import Homepage from './views/pages/Homepage';
 import ErrorBoundary from './hoc/ErrorBoundary';
 
 const App: React.FC = () => (
-  <BrowserRouter basename="/BudgetApp">
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <ErrorBoundary>
       <UserContextProvider>
         <DataContextProvider>
