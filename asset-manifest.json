@@ -7,8 +7,8 @@
     "static/js/2.6734c48e.chunk.js": "/BudgetApp/static/js/2.6734c48e.chunk.js",
     "static/js/2.6734c48e.chunk.js.map": "/BudgetApp/static/js/2.6734c48e.chunk.js.map",
     "main.css": "/BudgetApp/static/css/main.6c0be629.chunk.css",
-    "main.js": "/BudgetApp/static/js/main.8e6193f3.chunk.js",
-    "main.js.map": "/BudgetApp/static/js/main.8e6193f3.chunk.js.map",
+    "main.js": "/BudgetApp/static/js/main.83f2b1bf.chunk.js",
+    "main.js.map": "/BudgetApp/static/js/main.83f2b1bf.chunk.js.map",
     "runtime-main.js": "/BudgetApp/static/js/runtime-main.08643b98.js",
     "runtime-main.js.map": "/BudgetApp/static/js/runtime-main.08643b98.js.map",
     "static/js/5.78019292.chunk.js": "/BudgetApp/static/js/5.78019292.chunk.js",
@@ -53,6 +53,6 @@
     "static/js/runtime-main.08643b98.js",
     "static/js/5.78019292.chunk.js",
     "static/css/main.6c0be629.chunk.css",
-    "static/js/main.8e6193f3.chunk.js"
+    "static/js/main.83f2b1bf.chunk.js"
   ]
 }
