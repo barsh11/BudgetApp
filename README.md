@@ -10,7 +10,7 @@
     <a href="https://github.com/barsh11/BudgetApp"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://barsh11.github.io/BudgetApp/">View Demo</a>
+    <a href="https://barsh11.github.io/BudgetApp">View Demo</a>
     ·
     <a href="https://github.com/barsh11/BudgetApp/issues">Report Bug</a>
     ·
@@ -58,7 +58,7 @@ This app is an app to review and manage ones expenses and incomes.<br/> It inclu
 
 ## Contact
 
-Project Link: [https://github.com/barsh11/BudgetApp](https://github.com/barsh11/WeatherApp)
+Project Link: [https://github.com/barsh11/BudgetApp](https://github.com/barsh11/BudgetApp)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
