@@ -12,7 +12,7 @@ const SWrapper = styled.div`
 
   width: 84%;
   max-width: 1910px;
-  height: 79%;
+  height: 65vw;
 
   position: relative;
   overflow: hidden;
@@ -22,10 +22,12 @@ const SWrapper = styled.div`
 
   @media only screen and (max-width: 110em) {
     width: 95%;
+    height: 75vw;
   }
 
   @media only screen and (max-width: 94em) {
     width: 98%;
+    height: 85vw;
   }
 
   @media only screen and (max-width: 75em) {
@@ -51,7 +53,6 @@ const SMain = styled.main`
   padding: 3.2rem 3.2rem 3.2rem 5.2rem;
   position: relative;
   height: 100%;
-  max-height: inherit;
 
   &:hover,
   &:focus,
