@@ -8,6 +8,7 @@
 
 # mock data
 /src/mock
+.env
 
 # eslint cache
 .eslintcache
