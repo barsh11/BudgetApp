@@ -3,7 +3,7 @@
 <p align="center">
   
    <p align="center">
-<a align="center" href="https://youtu.be/c-MYgasiX6c" target="_blank"><img display="block" src="https://github.com/barsh11/BudgetApp/blob/main/budgetapppics/Video.png" 
+<a align="center" href="https://youtu.be/Me7sLCb8tiM" target="_blank"><img display="block" src="https://github.com/barsh11/BudgetApp/blob/main/budgetapppics/Video.png" 
 alt="App Video" width="280" height="200" textAlign="center" border="10"/></a>
   </p>
 
