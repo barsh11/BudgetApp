@@ -26,8 +26,7 @@ const SWrapper = styled.div`
   justify-content: space-between;
 
   @media only screen and (max-width: 37.5em) {
-    max-width: 30rem;
-    justify-self: center;
+    display: none;
   }
 `;
 
