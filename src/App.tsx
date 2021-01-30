@@ -11,17 +11,17 @@ import ErrorBoundary from './hoc/ErrorBoundary';
 const App: React.FC = () => (
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <ErrorBoundary>
-      <UserContextProvider>
-        <DataContextProvider>
+      <AppContextProvider>
+        <LoaderContextProvider>
           <StatsContextProvider>
-            <LoaderContextProvider>
-              <AppContextProvider>
+            <DataContextProvider>
+              <UserContextProvider>
                 <Homepage />
-              </AppContextProvider>
-            </LoaderContextProvider>
+              </UserContextProvider>
+            </DataContextProvider>
           </StatsContextProvider>
-        </DataContextProvider>
-      </UserContextProvider>
+        </LoaderContextProvider>
+      </AppContextProvider>
     </ErrorBoundary>
   </BrowserRouter>
 );

@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 import Chart from 'react-apexcharts';
 import { StatsContext } from '../../../contexts/StatsContext';
 import { AppContext } from '../../../contexts/AppContext';
-import { firstDate } from '../../../hooks/useStats';
+import { DataContext } from '../../../contexts/DataContext';
 import sumSpecMonth from '../../../utils/sumSpecMonth';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
@@ -26,8 +26,7 @@ const SWrapper = styled.div`
   justify-content: space-between;
 
   @media only screen and (max-width: 37.5em) {
-    max-width: 30rem;
-    justify-self: center;
+    display: none;
   }
 `;
 
@@ -37,6 +36,7 @@ const ActivitiesChart: React.FC<{ className?: string; location: 'charts' | 'dash
 }) => {
   const stats = useContext(StatsContext);
   const app = useContext(AppContext);
+  const transactionsList = useContext(DataContext);
   const [dates, setDates] = useState<[string, string][]>([]);
   const [series, setSeries] = useState<{}[]>([]);
   const [options, setOptions] = useState({
@@ -86,11 +86,11 @@ const ActivitiesChart: React.FC<{ className?: string; location: 'charts' | 'dash
   });
 
   useEffect(() => {
-    let isActive = true;
-
-    if (stats.size === 6) {
+    if (stats.size && transactionsList.length) {
       const newDates: [string, string][] = [];
-      for (let i = 0; i < 6; i += 1) {
+      const firstDate = moment(transactionsList[0].date, 'MM/DD/YYYY');
+
+      for (let i = 0; i < stats.size; i += 1) {
         const currDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(i, 'months');
         const currMonth: string = currDate.format('MMM');
         const currYear: string = currDate.format('YYYY');
@@ -98,47 +98,33 @@ const ActivitiesChart: React.FC<{ className?: string; location: 'charts' | 'dash
         newDates.push([currMonth, currYear]);
       }
 
-      if (isActive) {
-        setDates(newDates.slice());
-        const xaxisLab: string[] = newDates.map((curr) => curr.join(' '));
-        setOptions({ ...options, xaxis: { ...options.xaxis, categories: xaxisLab } });
-      }
+      setDates(newDates.slice());
+      const xaxisLab: string[] = newDates.map((curr) => curr.join(' '));
+      setOptions({ ...options, xaxis: { ...options.xaxis, categories: xaxisLab } });
     }
-
-    return () => {
-      isActive = false;
-    };
   }, [stats]);
 
   useEffect(() => {
-    let isActive = true;
-
-    if (dates) {
+    if (dates.length) {
       const cancelled = dates.map((cur) => sumSpecMonth(cur[0], cur[1], 'cancelled', stats));
       const expenses = dates.map((cur) => sumSpecMonth(cur[0], cur[1], 'expenses', stats));
       const incomes = dates.map((cur) => sumSpecMonth(cur[0], cur[1], 'incomes', stats));
 
-      if (isActive) {
-        setSeries([
-          {
-            name: 'Cancelled',
-            data: cancelled.map((cur) => cur.toFixed(2)),
-          },
-          {
-            name: 'Expenses',
-            data: expenses.map((cur) => cur.toFixed(2)),
-          },
-          {
-            name: 'Incomes',
-            data: incomes.map((cur) => cur.toFixed(2)),
-          },
-        ]);
-      }
+      setSeries([
+        {
+          name: 'Cancelled',
+          data: cancelled.map((cur) => cur.toFixed(2)),
+        },
+        {
+          name: 'Expenses',
+          data: expenses.map((cur) => cur.toFixed(2)),
+        },
+        {
+          name: 'Incomes',
+          data: incomes.map((cur) => cur.toFixed(2)),
+        },
+      ]);
     }
-
-    return () => {
-      isActive = false;
-    };
   }, [dates]);
 
   return (

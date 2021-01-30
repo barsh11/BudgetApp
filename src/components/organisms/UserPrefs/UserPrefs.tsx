@@ -1,20 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel, { InputLabelProps } from '@material-ui/core/InputLabel';
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import Select, { SelectProps } from '@material-ui/core/Select';
-import MenuItem, { MenuItemProps } from '@material-ui/core/MenuItem';
+import { AppContext, AppDispatchContext } from '../../../contexts/AppContext';
 
-type UserPrefsProps = InputLabelProps &
-  MenuItemProps &
-  SelectProps &
-  FormControlProps &
-  TypographyProps & {
-    currencyList: string[];
-    handleChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
-  };
+type UserPrefsProps = InputLabelProps & SelectProps & FormControlProps & TypographyProps;
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -34,12 +27,20 @@ const SWrapper = styled.div`
   height: 15%;
 `;
 
-const UserPrefs: React.FC<UserPrefsProps> = ({ currencyList, handleChange }) => {
+const UserPrefs: React.FC<UserPrefsProps> = () => {
   const classes = useStyles();
+  const app = useContext(AppContext);
+  const setApp = useContext(AppDispatchContext);
+
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const newApp = { ...app };
+    setApp({ ...newApp, currency: event.target.value as typeof app.currency });
+  };
+
   const renderOption = (curr: string) => (
-    <MenuItem className={classes.menuStyle} value={curr}>
+    <option key={curr} className={classes.menuStyle} value={curr}>
       {curr}
-    </MenuItem>
+    </option>
   );
 
   return (
@@ -49,8 +50,8 @@ const UserPrefs: React.FC<UserPrefsProps> = ({ currencyList, handleChange }) => 
       </Typography>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Currency</InputLabel>
-        <Select className={classes.menuStyle} onChange={handleChange} label="Currency">
-          {currencyList.map((el) => renderOption(el))}
+        <Select native value={app.currency} onChange={handleChange} label="Currency">
+          {Object.keys(app.currencyRates).map((el) => renderOption(el))}
         </Select>
       </FormControl>
     </SWrapper>

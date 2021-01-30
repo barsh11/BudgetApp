@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import styled from 'styled-components';
 import Chart from 'react-apexcharts';
 import { DataContext } from '../../../contexts/DataContext';
@@ -22,7 +22,7 @@ const SWrapper = styled.div`
 `;
 
 const MethodsChart: React.FC = () => {
-  const transactionsList = useContext(DataContext);
+  const transactionsList = useContext(DataContext).slice(0, 40);
   const [methods, setMethods] = useState<{ paypal: number; nonPaypal: number }>({ paypal: 0, nonPaypal: 0 });
   const [series, setSeries] = useState<{}[]>([]);
   const [options] = useState({
@@ -91,43 +91,36 @@ const MethodsChart: React.FC = () => {
     },
   });
 
+  const isActive = useRef(true);
   useEffect(() => {
-    let isActive = true;
+    if (transactionsList.length) {
+      const newMethods: { paypal: number; nonPaypal: number } = { paypal: 0, nonPaypal: 0 };
+      transactionsList.forEach((cur) => {
+        if (cur.paypal) {
+          newMethods.paypal += 1;
+        } else {
+          newMethods.nonPaypal += 1;
+        }
+      });
 
-    const newMethods: { paypal: number; nonPaypal: number } = { paypal: 0, nonPaypal: 0 };
-    transactionsList.forEach((cur) => {
-      if (cur.paypal) {
-        newMethods.paypal += 1;
-      } else {
-        newMethods.nonPaypal += 1;
+      if (isActive.current) {
+        setMethods(newMethods);
       }
-    });
-
-    if (isActive) {
-      setMethods(newMethods);
     }
 
     return () => {
-      isActive = false;
+      isActive.current = false;
     };
   }, [transactionsList]);
 
   useEffect(() => {
-    let isActive = true;
-
     if (methods) {
-      if (isActive) {
-        setSeries([
-          {
-            data: [methods.paypal, methods.nonPaypal],
-          },
-        ]);
-      }
+      setSeries([
+        {
+          data: [methods.paypal, methods.nonPaypal],
+        },
+      ]);
     }
-
-    return () => {
-      isActive = false;
-    };
   }, [methods]);
 
   return (

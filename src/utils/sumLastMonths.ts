@@ -1,9 +1,9 @@
 import moment from 'moment';
 import { statsProps } from '../contexts/StatsContext';
-import { firstDate } from '../hooks/useStats';
 
-const sumLastmonths = (numMonths: number, type: string, stats: statsProps): number => {
+const sumLastmonths = (numMonths: number, type: string, stats: statsProps, date: string): number => {
   let sum: number = 0;
+  const firstDate = moment(date, 'MM/DD/YYYY');
 
   for (let i = 0; i <= numMonths; i += 1) {
     const currDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(i, 'months');

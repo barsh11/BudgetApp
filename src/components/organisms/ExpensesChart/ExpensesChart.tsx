@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useCallback, useContext } from 'react';
+import React, { useEffect, useState, useCallback, useContext, useRef } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import Chart from 'react-apexcharts';
-import { LoaderDispatchContext } from '../../../contexts/LoaderContext';
 import { AppContext } from '../../../contexts/AppContext';
-import { firstDate } from '../../../hooks/useStats';
-import datamock from '../../../mock/data-mock.json';
+import { DataContext } from '../../../contexts/DataContext';
 import convertCurrency from '../../../utils/convertCurrency';
 import getCurrencySymbol from '../../../utils/getCurrencySymbol';
 
@@ -28,10 +26,9 @@ const SWrapper = styled.div`
 `;
 
 const ExpensesChart: React.FC = () => {
-  const setLoading = useContext(LoaderDispatchContext);
   const app = useContext(AppContext);
+  const transactionsList = useContext(DataContext);
   const [expenses, setExpenses] = useState<Map<string, number>>(new Map());
-  const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(1, 'months');
   const [series, setSeries] = useState<{}[]>([]);
   const [options, setOptions] = useState({
     chart: {
@@ -72,70 +69,77 @@ const ExpensesChart: React.FC = () => {
 
   const getState = useCallback(
     (isActive: boolean) => {
-      setLoading(true);
       const expensesDaily: Map<string, number> = new Map();
-      if (datamock instanceof Array) {
+
+      if (transactionsList.length) {
+        const firstDate = moment(transactionsList[0].date, 'MM/DD/YYYY');
+        const lastDate = moment(firstDate.toDate(), 'MM/DD/YYYY').subtract(1, 'months');
         let i: number = 0;
 
-        for (i; i < datamock.length; i += 1) {
-          const currDate = moment(datamock[i].date, 'MM/DD/YYYY');
+        for (i; i < transactionsList.length; i += 1) {
+          const currDate = moment(transactionsList[i].date, 'MM/DD/YYYY');
           const dateStr = currDate.format('DD/MM/YY');
-          if (currDate.isAfter(lastDate) && currDate.isBefore(firstDate) && datamock[i].transactionType === 'expense') {
+          if (
+            currDate.isAfter(lastDate) &&
+            currDate.isBefore(firstDate) &&
+            transactionsList[i].transactionType === 'expense'
+          ) {
             if (expensesDaily.get(dateStr) === undefined) {
               expensesDaily.set(
                 dateStr,
-                convertCurrency(parseFloat(datamock[i].amount), datamock[i].currency, app.currency, app.currencyRates)
+                convertCurrency(
+                  parseFloat(transactionsList[i].amount),
+                  transactionsList[i].currency,
+                  app.currency,
+                  app.currencyRates
+                )
               );
             } else {
               expensesDaily.set(
                 dateStr,
                 expensesDaily.get(dateStr)! +
-                  convertCurrency(parseFloat(datamock[i].amount), datamock[i].currency, app.currency, app.currencyRates)
+                  convertCurrency(
+                    parseFloat(transactionsList[i].amount),
+                    transactionsList[i].currency,
+                    app.currency,
+                    app.currencyRates
+                  )
               );
             }
           }
-          if (isActive) {
-            setExpenses(expensesDaily);
-          }
+        }
+        if (isActive) {
+          setExpenses(expensesDaily);
         }
       }
-      setLoading(false);
     },
-    [datamock]
+    [transactionsList]
   );
 
+  const isActive = useRef(true);
   useEffect(() => {
-    let isActive = true;
-
-    getState(isActive);
+    getState(isActive.current);
 
     return () => {
-      isActive = false;
+      isActive.current = false;
     };
   }, [getState]);
 
   useEffect(() => {
-    let isActive = true;
-
-    if (expenses.size > 28) {
+    if (expenses.size) {
       let dates = Array.from(expenses.keys());
       dates = dates.sort((a, b) => moment(a, 'DD/MM/YY').diff(moment(b, 'DD/MM/YY')));
       const newExpenses = dates.map((cur) => expenses.get(cur)!);
-      if (isActive) {
-        setSeries([
-          {
-            name: 'Expenses',
-            data: newExpenses.map((cur) => cur.toFixed(2)),
-          },
-        ]);
-        const xaxisLab: string[] = dates.slice();
-        setOptions({ ...options, xaxis: { ...options.xaxis, categories: xaxisLab } });
-      }
-    }
 
-    return () => {
-      isActive = false;
-    };
+      setSeries([
+        {
+          name: 'Expenses',
+          data: newExpenses.map((cur) => cur.toFixed(2)),
+        },
+      ]);
+      const xaxisLab: string[] = dates.slice();
+      setOptions({ ...options, xaxis: { ...options.xaxis, categories: xaxisLab } });
+    }
   }, [expenses]);
 
   return (

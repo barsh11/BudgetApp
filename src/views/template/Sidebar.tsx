@@ -52,8 +52,7 @@ const SWrapper = styled.div`
 
 const Sidebar: React.FC<SidebarProps> = ({ closed }) => {
   const app = useContext(AppContext);
-  const currency = useContext(UserContext).currentBalanceCurrency;
-  const balance = parseFloat(useContext(UserContext).currentBalance);
+  const user = useContext(UserContext);
 
   const attachedClasses = `sidebar ${app.showSidebar ? 'open' : 'close'}`;
 
@@ -62,7 +61,12 @@ const Sidebar: React.FC<SidebarProps> = ({ closed }) => {
       <Backdrop open={app.showSidebar} clicked={closed} />
       <SWrapper className={attachedClasses}>
         <SidebarBalance
-          balance={convertCurrency(balance, currency, app.currency, app.currencyRates)}
+          balance={convertCurrency(
+            parseFloat(user.currentBalance),
+            user.currentBalanceCurrency,
+            app.currency,
+            app.currencyRates
+          )}
           currency={app.currency}
         />
         <NavigationList

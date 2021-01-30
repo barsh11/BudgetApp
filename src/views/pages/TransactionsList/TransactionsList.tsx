@@ -4,19 +4,16 @@ import TransactionsCard, {
   TransactionsCardProps,
 } from '../../../components/molecules/TransactionsCard/TransactionsCard';
 import { DataItemProps, DataContext, DataListProps } from '../../../contexts/DataContext';
-import { LoaderContext } from '../../../contexts/LoaderContext';
 import narrowTransactionType from '../../../utils/narrowTransactionType';
 import ExitIcon from '../../../components/atoms/ExitIcon/ExitIcon';
 import SWrapper from '../MainStyle';
-import GeneralLoader from '../../../components/organisms/GeneralLoader/GeneralLoader';
 import useFavs from '../../../hooks/useFavs';
 import slugify from '../../../utils/slugify';
 
 const TransactionsList: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const history = useHistory();
-  const isLoading = useContext(LoaderContext);
-  const transactionsList: DataListProps = useContext(DataContext);
+  const transactionsList: DataListProps = useContext(DataContext).slice(0, 40);
   const [favs, updateFavs] = useFavs();
 
   const itemInFavs = (id: string): number => favs.findIndex((item: TransactionsCardProps) => item.id === id);
@@ -41,17 +38,11 @@ const TransactionsList: React.FC = () => {
     />
   );
 
-  let content = (
-    <SWrapper>
-      {isLoading ? <GeneralLoader /> : null}
-      {transactionsList?.map((el) => renderExpenseCard(el))}
-    </SWrapper>
-  );
+  let content = <SWrapper>{transactionsList?.map((el) => renderExpenseCard(el))}</SWrapper>;
   if (category) {
     const filteredData = transactionsList.filter((cur) => slugify(cur.category) === category);
     content = (
       <>
-        {isLoading ? <GeneralLoader /> : null}
         <ExitIcon clicked={transactionCancelledHandler} />
         <SWrapper>{filteredData?.map((el) => renderExpenseCard(el))}</SWrapper>
       </>
