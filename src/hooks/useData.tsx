@@ -1,40 +1,81 @@
-import { useState, useCallback, useEffect, useContext } from 'react';
-import { DataListProps } from '../contexts/DataContext';
+import { useState, useEffect, useContext } from 'react';
+import { DataContext, DataDispatchContext, DataListProps } from '../contexts/DataContext';
 import { LoaderDispatchContext } from '../contexts/LoaderContext';
-
-import datamock from '../mock/data-mock.json';
+import { axiosTransactions as axios } from '../services/axios';
 
 const useData = () => {
   const [dataList, setDataList] = useState<DataListProps>([]);
+  const data = useContext(DataContext);
   const setIsLoading = useContext(LoaderDispatchContext);
+  const setData = useContext(DataDispatchContext);
 
-  const getState = useCallback(
-    (isActive: boolean) => {
-      const limitedResults: DataListProps = [];
-      const limit = 40;
-      if (datamock instanceof Array) {
-        for (let i = 0; i < limit; i += 1) {
-          limitedResults[i] = { ...datamock[i] };
-        }
-        if (isActive) {
-          setDataList(limitedResults);
+  const getState = async () => {
+    try {
+      if (!data.length) {
+        setIsLoading(true);
+
+        const newData: DataListProps = [];
+
+        const res = await axios.get('');
+        if (res.data instanceof Array) {
+          for (let i = 0; i < res.data.length; i += 1) {
+            newData[i] = { ...res.data[i] };
+          }
+
+          setDataList(newData);
+          setData(newData);
           setIsLoading(false);
         }
       }
-    },
-    [datamock]
-  );
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    let isActive = true;
-    setIsLoading(true);
+    getState();
+  }, []);
 
-    getState(isActive);
+  // const getState = useCallback(async (newApp: any) => {
+  //   const limitedResults: DataListProps = [];
 
-    return () => {
-      isActive = false;
-    };
-  }, [getState]);
+  //   await axios
+  //     .get('')
+  //     .then((res) => {
+  //       const limit = 40;
+  //       if (res.data instanceof Array) {
+  //         const firstDate = moment(res.data[0].date, 'MM/DD/YYYY');
+  //         // const newApp = { ...app };
+  //         console.log('newApp: ', newApp);
+  //         // console.log('app: ', app);
+  //         setApp({ ...newApp, firstDate });
+  //         for (let i = 0; i < limit; i += 1) {
+  //           limitedResults[i] = { ...res.data[i] };
+  //         }
+
+  //         setDataList(limitedResults);
+  //         setData(limitedResults);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       // eslint-disable-next-line no-console
+  //       console.log(err);
+  //     });
+  //   setIsLoading(false);
+  // }, []);
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+
+  //   const fetchData = async () => {
+  //     await getState(app);
+  //   };
+  //   if (app.currencyRates) {
+  //     fetchData();
+  //   }
+  // }, [app.currencyRates]);
 
   return dataList;
 };

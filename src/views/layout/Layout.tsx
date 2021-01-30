@@ -87,11 +87,9 @@ const Layout: React.FC = (props) => {
   useEffect(() => {
     const newApp = { ...app };
     if (showSidebar) {
-      newApp.showSidebar = true;
-      setApp(newApp);
+      setApp({ ...newApp, showSidebar: true });
     } else {
-      newApp.showSidebar = false;
-      setApp(newApp);
+      setApp({ ...newApp, showSidebar: false });
     }
   }, [showSidebar]);
 

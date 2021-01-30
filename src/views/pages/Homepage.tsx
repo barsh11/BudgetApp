@@ -1,17 +1,17 @@
-import React, { Suspense, useState, useContext, useEffect } from 'react';
+/* eslint-disable camelcase */
+import React, { Suspense, useContext, useEffect, useCallback, useRef } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { UserDispatchContext } from '../../contexts/UserContext';
+import { StatsContext } from '../../contexts/StatsContext';
 import { LoaderContext } from '../../contexts/LoaderContext';
-import { DataDispatchContext } from '../../contexts/DataContext';
 import { AppDispatchContext, AppContext } from '../../contexts/AppContext';
-import { StatsDispatchContext, statsProps } from '../../contexts/StatsContext';
-import usermock from '../../mock/user-mock.json';
 import useData from '../../hooks/useData';
 import Layout from '../layout/Layout';
 import GeneralLoader from '../../components/organisms/GeneralLoader/GeneralLoader';
 import useStats from '../../hooks/useStats';
 import Loader from '../../components/atoms/Loader/Loader';
-import axios from '../../services/axios';
+import { axiosCurrency, axiosUser } from '../../services/axios';
+import { DataContext } from '../../contexts/DataContext';
 
 const TransactionsList = React.lazy(() => import('./TransactionsList/TransactionsList'));
 const Dashboard = React.lazy(() => import('./Dashboard/Dashboard'));
@@ -21,68 +21,70 @@ const Charts = React.lazy(() => import('./Charts/Charts'));
 const UserProfile = React.lazy(() => import('./UserProfile/UserProfile'));
 
 const Homepage: React.FC = () => {
-  const [currRates, setCurrRates] = useState<{ [key: string]: number }>({});
   const app = useContext(AppContext);
+  const transactionsList = useContext(DataContext);
+  const statsList = useContext(StatsContext);
   const setApp = useContext(AppDispatchContext);
   const setUser = useContext(UserDispatchContext);
-  const setData = useContext(DataDispatchContext);
-  const setStats = useContext(StatsDispatchContext);
   const isLoading = useContext(LoaderContext);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dataList = useData();
-  const stats: statsProps = useStats();
-  const user = { ...usermock };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const stats = useStats();
 
-  useEffect(() => {
-    (async () => {
-      const rates = await axios
-        .get('')
-        .then((res) => {
-          const data = { ...res.data };
-          const newRates = { ...data.rates };
-          return { ...newRates };
-        })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
+  const getUser = useCallback(async (isActive: boolean) => {
+    try {
+      const res = await axiosUser.get('');
+      const newUser = res.data.slice()[0];
 
-      setCurrRates(rates);
-    })();
+      if (isActive) {
+        setUser({
+          firstName: newUser.first_name,
+          lastName: newUser.last_name,
+          email: newUser.email,
+          avatar: newUser.avatar,
+          currentBalance: newUser.current_balance,
+          currentBalanceCurrency: newUser.current_balance_currency,
+          creditCard: {
+            expYear: newUser.credit_card.exp_year,
+            expMonth: newUser.credit_card.exp_month,
+            last4Digits: newUser.credit_card.last4Digits,
+          },
+        });
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
   }, []);
 
-  useEffect(() => {
-    const newApp = { ...app };
-    newApp.currencyRates = { ...currRates };
-    setApp(newApp);
-  }, [currRates]);
+  const getCurrRates = useCallback(async (isActive: boolean) => {
+    try {
+      const res = await axiosCurrency.get('');
+      const newRates = { ...res.data.rates };
+      const newApp = { ...app };
 
-  useEffect(() => {
-    if (user) {
-      setUser({
-        firstName: user.first_name,
-        lastName: user.last_name,
-        email: user.email,
-        avatar: user.avatar,
-        currentBalance: user.current_balance,
-        currentBalanceCurrency: user.current_balance_currency,
-        creditCard: {
-          expYear: user.credit_card.exp_year,
-          expMonth: user.credit_card.exp_month,
-          last4Digits: user.credit_card.last4Digits,
-        },
-      });
+      if (isActive) {
+        setApp({ ...newApp, currencyRates: newRates });
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
     }
-  }, [user]);
+  }, []);
 
+  const isActive = useRef(true);
   useEffect(() => {
-    if (dataList) {
-      setData(dataList.slice());
-    }
-  }, [dataList]);
+    const fetchData = async () => {
+      await getCurrRates(isActive.current);
+      await getUser(isActive.current);
+    };
 
-  useEffect(() => {
-    if (stats) {
-      setStats(stats);
-    }
-  }, [stats]);
+    fetchData();
+    return () => {
+      isActive.current = false;
+    };
+  }, []);
 
   return (
     <>
@@ -90,12 +92,16 @@ const Homepage: React.FC = () => {
       <Layout>
         <Suspense fallback={<Loader />}>
           <Switch>
-            <Route path="/transactions" exact component={dataList.length ? TransactionsList : Loader} />
+            <Route path="/transactions" exact component={TransactionsList} />
             <Route path="/transactions/:transactionId" component={SingleTransaction} />
             <Route path="/user-profile" component={UserProfile} />
             <Route path="/charts" component={Charts} />
             <Route path="/categories" component={CategoriesList} />
-            <Route path="/dashboard" exact component={Dashboard} />
+            <Route
+              path="/dashboard"
+              exact
+              component={statsList.size && transactionsList.length ? Dashboard : GeneralLoader}
+            />
             <Redirect to="/dashboard" />
           </Switch>
         </Suspense>
@@ -103,4 +109,5 @@ const Homepage: React.FC = () => {
     </>
   );
 };
+
 export default Homepage;

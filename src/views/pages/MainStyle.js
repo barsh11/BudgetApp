@@ -5,7 +5,8 @@ const SWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: min-content;
   align-content: start;
-  grid-gap: 1.7rem;
+  grid-gap: 1.5rem;
+  grid-row-gap: 2.5rem;
   align-items: center;
   max-width: 95%;
   height: 100%;

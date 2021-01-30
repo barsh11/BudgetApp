@@ -20,7 +20,7 @@ export type TransactionsCardProps = TypographyProps &
 const SWrapper = styled.div`
   width: 100%;
   max-width: 25rem;
-  min-width: 20rem;
+  min-width: 22rem;
   max-height: 16rem;
   min-height: 15rem;
 

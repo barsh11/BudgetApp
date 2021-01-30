@@ -59,8 +59,7 @@ const SummaryItem: React.FC<SummaryItemProps> = ({ company, date, amount, curren
   useEffect(() => {
     if (isChosen) {
       const newApp = { ...app };
-      newApp.summaryItemId = id;
-      setApp(newApp);
+      setApp({ ...newApp, summaryItemId: id });
     }
   }, [isChosen]);
 

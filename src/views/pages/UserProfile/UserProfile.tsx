@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { AppContext, AppDispatchContext } from '../../../contexts/AppContext';
 import FavoritesList from '../../../components/organisms/FavoritesList/FavoritesList';
 import UserPrefs from '../../../components/organisms/UserPrefs/UserPrefs';
 
@@ -14,22 +13,11 @@ const SWrapper = styled.div`
   }
 `;
 
-const UserProfile: React.FC = () => {
-  const app = useContext(AppContext);
-  const setApp = useContext(AppDispatchContext);
-
-  const onCurrChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const newApp = { ...app };
-    newApp.currency = event.target.value as string;
-    setApp(newApp);
-  };
-
-  return (
-    <SWrapper>
-      <FavoritesList />
-      <UserPrefs currencyList={Object.keys(app.currencyRates)} handleChange={onCurrChange} />
-    </SWrapper>
-  );
-};
+const UserProfile: React.FC = () => (
+  <SWrapper>
+    <FavoritesList />
+    <UserPrefs />
+  </SWrapper>
+);
 
 export default UserProfile;

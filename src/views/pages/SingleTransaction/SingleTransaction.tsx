@@ -26,15 +26,14 @@ const SingleTransaction: React.FC = () => {
   const [favs, updateFavs] = useFavs();
   const { transactionId } = useParams<{ transactionId: string }>();
   const history = useHistory();
-  const transactionsList = useContext(DataContext);
+  const transactionsList = useContext(DataContext).slice(0, 40);
   const transactionItem: DataItemProps = transactionsList.filter((curr) => curr.id === transactionId)[0];
   const setApp = useContext(AppDispatchContext);
   const app = useContext(AppContext);
 
   const transactionCancelledHandler = () => {
     const newApp = { ...app };
-    newApp.summaryItemId = '';
-    setApp(newApp);
+    setApp({ ...newApp, summaryItemId: '' });
     history.replace('/dashboard');
   };
 

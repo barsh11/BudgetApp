@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import styled from 'styled-components';
 import Chart from 'react-apexcharts';
 import { DataContext } from '../../../contexts/DataContext';
@@ -23,9 +23,9 @@ const SWrapper = styled.div`
   }
 `;
 
-const ActivitiesChart: React.FC = () => {
+const CategoriesChart: React.FC = () => {
   const app = useContext(AppContext);
-  const transactionsList = useContext(DataContext);
+  const transactionsList = useContext(DataContext).slice(0, 40);
   const [categories, setCategories] = useState<string[]>([]);
   const [series, setSeries] = useState<{}[]>([]);
   const [options, setOptions] = useState({
@@ -43,29 +43,29 @@ const ActivitiesChart: React.FC = () => {
     },
   });
 
+  const isActive = useRef(true);
   useEffect(() => {
-    let isActive = true;
-
     const newCategories: string[] = [];
-    transactionsList.forEach((cur) => {
-      if (!newCategories.includes(cur.category)) {
-        newCategories.push(cur.category);
-      }
-    });
 
-    if (isActive) {
-      setCategories(newCategories);
-      setOptions({ ...options, labels: newCategories });
+    if (transactionsList.length) {
+      transactionsList.forEach((cur) => {
+        if (!newCategories.includes(cur.category)) {
+          newCategories.push(cur.category);
+        }
+      });
+
+      if (isActive.current) {
+        setCategories(newCategories);
+        setOptions({ ...options, labels: newCategories });
+      }
     }
 
     return () => {
-      isActive = false;
+      isActive.current = false;
     };
   }, [transactionsList]);
 
   useEffect(() => {
-    let isActive = true;
-
     if (categories) {
       const newCategories: { [category: string]: number } = {};
       categories.forEach((cur) => {
@@ -80,14 +80,8 @@ const ActivitiesChart: React.FC = () => {
         );
       });
       const purchases: number[] = categories.map((cur) => newCategories[cur]);
-      if (isActive) {
-        setSeries(purchases);
-      }
+      setSeries(purchases);
     }
-
-    return () => {
-      isActive = false;
-    };
   }, [categories]);
 
   return (
@@ -99,4 +93,4 @@ const ActivitiesChart: React.FC = () => {
   );
 };
 
-export default ActivitiesChart;
+export default CategoriesChart;

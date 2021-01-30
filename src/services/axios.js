@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as urlDefs from '../constants/urls';
+import * as axiosDefs from '../constants/apis';
 
 const createInstance = (url, queryParams) => {
   const instance = axios.create({
@@ -11,6 +11,8 @@ const createInstance = (url, queryParams) => {
   return instance;
 };
 
-const axiosCurrency = createInstance(urlDefs.CURR_URL, { base: 'USD' });
+export const axiosCurrency = createInstance(axiosDefs.CURR_URL, { base: 'USD' });
 
-export default axiosCurrency;
+export const axiosTransactions = createInstance(axiosDefs.TRANSACTIONS_URL, { key: axiosDefs.API_KEY });
+
+export const axiosUser = createInstance(axiosDefs.USER_URL, { key: axiosDefs.API_KEY });

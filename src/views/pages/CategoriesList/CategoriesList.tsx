@@ -44,7 +44,7 @@ const SLink = styled(Link)`
 `;
 
 const CategoriesList = () => {
-  const transactionsList = useContext(DataContext);
+  const transactionsList = useContext(DataContext).slice(0, 40);
   const { path, url } = useRouteMatch();
 
   const categories: string[] = [];
