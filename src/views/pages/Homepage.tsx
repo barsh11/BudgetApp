@@ -95,7 +95,7 @@ const Homepage: React.FC = () => {
             <Route path="/transactions" exact component={TransactionsList} />
             <Route path="/transactions/:transactionId" component={SingleTransaction} />
             <Route path="/user-profile" component={UserProfile} />
-            <Route path="/charts" component={Charts} />
+            <Route path="/charts" component={statsList.size && transactionsList.length ? Charts : GeneralLoader} />
             <Route path="/categories" component={CategoriesList} />
             <Route
               path="/dashboard"

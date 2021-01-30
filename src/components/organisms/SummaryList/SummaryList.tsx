@@ -15,7 +15,7 @@ const SWrapper = styled.div`
 const SUl = styled.ul`
   margin-top: 1.5rem;
   overflow-y: hidden;
-
+  padding: 0.5rem;
   list-style: none;
 
   &:hover,
