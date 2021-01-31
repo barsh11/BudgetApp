@@ -23,6 +23,11 @@ const SWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    grid-gap: 0;
+
+    & > *:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
   }
 `;
 
