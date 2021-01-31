@@ -17,7 +17,7 @@ const SWrapper = styled.div`
 
 const SInfoWrapper = styled.div`
   width: 13rem;
-  height: 7rem;
+  height: 8rem;
 
   display: flex;
   flex-direction: column;
