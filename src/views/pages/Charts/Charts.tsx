@@ -26,6 +26,11 @@ const SWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    grid-gap: 1.7rem;
+
+    & > *:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   @media only screen and (min-width: 75em) {
