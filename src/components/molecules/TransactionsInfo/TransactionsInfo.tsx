@@ -27,6 +27,10 @@ const SInfoWrapper = styled.div`
   margin: 0.8rem;
   border-radius: 0.4rem;
   box-shadow: var(--shadow-light);
+
+  @media only screen and (max-width: 37.5em) {
+    height: 7rem;
+  }
 `;
 
 const useStyles = makeStyles((theme) => ({
