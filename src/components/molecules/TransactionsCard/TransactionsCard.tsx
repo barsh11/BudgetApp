@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import TransactionsInfo, { TransactionsInfoProps } from '../TransactionsInfo/TransactionsInfo';
 import StarredIcon from '../../atoms/StarredIcon/StarredIcon';
+import LocationIcon from '../../atoms/LocationIcon/LocationIcon';
 import Timestamp, { TimestampProps } from '../Timestamp/Timestamp';
 import capitalize from '../../../utils/capitalize';
 import { AppContext } from '../../../contexts/AppContext';
@@ -51,6 +52,10 @@ const SHeaderWrapper = styled.div`
   justify-content: space-between;
 `;
 
+const STitleLocation = styled.div`
+  display: flex;
+`;
+
 const TransactionsCard: React.FC<TransactionsCardProps> = ({
   type,
   amount,
@@ -77,7 +82,10 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
     <SWrapper>
       {isRefund && content}
       <SHeaderWrapper>
-        <Typography variant="h5">{capitalize(company)}</Typography>
+        <STitleLocation>
+          <Typography variant="h5">{capitalize(company)}</Typography>
+          <LocationIcon clicked={() => {}} />
+        </STitleLocation>
         <StarredIcon clicked={favClickHandler} isStarred={isFaved} />
       </SHeaderWrapper>
       <Timestamp time={time} date={date} />
