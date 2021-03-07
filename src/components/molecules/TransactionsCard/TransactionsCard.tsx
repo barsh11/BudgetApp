@@ -14,8 +14,10 @@ export type TransactionsCardProps = TypographyProps &
   TimestampProps & {
     company: string;
     id: string;
+    location: { lat: Number; lng: Number };
     isFaved: boolean;
     onClickFavorite: (isFaved: boolean, newFav: TransactionsCardProps) => void;
+    onClickMap: (lat: Number, lng: Number, comapny: string) => void;
   };
 
 const SWrapper = styled.div`
@@ -63,17 +65,36 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
   isRefund,
   company,
   time,
+  location,
   date,
   id,
   isFaved,
   onClickFavorite,
+  onClickMap,
 }) => {
   const app = useContext(AppContext);
 
   const favClickHandler = () => {
-    const newFav = { type, amount, currency, isRefund, company, time, date, id, isFaved, onClickFavorite };
+    const newFav = {
+      type,
+      amount,
+      currency,
+      isRefund,
+      company,
+      time,
+      date,
+      location,
+      id,
+      isFaved,
+      onClickFavorite,
+      onClickMap,
+    };
 
     onClickFavorite(isFaved, newFav);
+  };
+
+  const mapClickHandler = () => {
+    onClickMap(location.lat, location.lng, company);
   };
 
   const content = <SLine>&nbsp;</SLine>;
@@ -84,7 +105,7 @@ const TransactionsCard: React.FC<TransactionsCardProps> = ({
       <SHeaderWrapper>
         <STitleLocation>
           <Typography variant="h5">{capitalize(company)}</Typography>
-          <LocationIcon clicked={() => {}} />
+          <LocationIcon clicked={mapClickHandler} />
         </STitleLocation>
         <StarredIcon clicked={favClickHandler} isStarred={isFaved} />
       </SHeaderWrapper>

@@ -38,45 +38,6 @@ const useData = () => {
     getState();
   }, []);
 
-  // const getState = useCallback(async (newApp: any) => {
-  //   const limitedResults: DataListProps = [];
-
-  //   await axios
-  //     .get('')
-  //     .then((res) => {
-  //       const limit = 40;
-  //       if (res.data instanceof Array) {
-  //         const firstDate = moment(res.data[0].date, 'MM/DD/YYYY');
-  //         // const newApp = { ...app };
-  //         console.log('newApp: ', newApp);
-  //         // console.log('app: ', app);
-  //         setApp({ ...newApp, firstDate });
-  //         for (let i = 0; i < limit; i += 1) {
-  //           limitedResults[i] = { ...res.data[i] };
-  //         }
-
-  //         setDataList(limitedResults);
-  //         setData(limitedResults);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       // eslint-disable-next-line no-console
-  //       console.log(err);
-  //     });
-  //   setIsLoading(false);
-  // }, []);
-
-  // useEffect(() => {
-  //   setIsLoading(true);
-
-  //   const fetchData = async () => {
-  //     await getState(app);
-  //   };
-  //   if (app.currencyRates) {
-  //     fetchData();
-  //   }
-  // }, [app.currencyRates]);
-
   return dataList;
 };
 
