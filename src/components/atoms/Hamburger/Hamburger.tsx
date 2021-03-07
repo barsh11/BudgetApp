@@ -6,6 +6,7 @@ type HamburgerProps = {
 };
 
 const SWrapper = styled.div`
+  z-index: 101;
   @media only screen and (min-width: 56.25em) {
     display: none;
   }

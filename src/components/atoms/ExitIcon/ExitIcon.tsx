@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
       transform: 'translateY(-0.2rem)',
       cursor: 'pointer',
     },
+    position: 'relative',
+    zIndex: 101,
   },
 }));
 

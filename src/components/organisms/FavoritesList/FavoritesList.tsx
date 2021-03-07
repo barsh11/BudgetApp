@@ -4,7 +4,9 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import TransactionsCard, { TransactionsCardProps } from '../../molecules/TransactionsCard/TransactionsCard';
 import useFavs from '../../../hooks/useFavs';
 
-export type FavoritesListProps = TypographyProps;
+type FavoritesListProps = TypographyProps & {
+  updateLoc: (lat: Number, lng: Number, company: string) => void;
+};
 
 const SWrapper = styled.div`
   margin-bottom: 2.5rem;
@@ -28,26 +30,32 @@ const SBottomWrapper = styled.div`
   }
 `;
 
-const FavoritesList: React.FC = () => {
+const FavoritesList: React.FC<FavoritesListProps> = ({ updateLoc }) => {
   const [favs, updateFavs] = useFavs();
 
   const itemInFavs = (id: string): number => favs.findIndex((item: TransactionsCardProps) => item.id === id);
 
-  const renderFavItem = (curr: TransactionsCardProps) => (
-    <TransactionsCard
-      key={curr.id}
-      id={curr.id}
-      company={curr.company}
-      amount={curr.amount}
-      currency={curr.currency}
-      isRefund={curr.isRefund}
-      type={curr.type}
-      time={curr.time}
-      date={curr.date}
-      isFaved={itemInFavs(curr.id) > 0}
-      onClickFavorite={updateFavs}
-    />
-  );
+  const renderFavItem = (curr: TransactionsCardProps) => {
+    const { lat, lng } = curr.location;
+
+    return (
+      <TransactionsCard
+        key={curr.id}
+        id={curr.id}
+        company={curr.company}
+        amount={curr.amount}
+        currency={curr.currency}
+        isRefund={curr.isRefund}
+        type={curr.type}
+        time={curr.time}
+        location={{ lat, lng }}
+        date={curr.date}
+        isFaved={itemInFavs(curr.id) > 0}
+        onClickFavorite={updateFavs}
+        onClickMap={updateLoc}
+      />
+    );
+  };
 
   return (
     <SWrapper>
