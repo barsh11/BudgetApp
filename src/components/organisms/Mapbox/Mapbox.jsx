@@ -1,10 +1,7 @@
-/* eslint-disable spaced-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useEffect } from 'react';
-import styled from 'styled-components';
 /* eslint-disable import/no-unresolved */
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
-import MarkerIcon from '../../atoms/MarkerIcon/MarkerIcon';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
