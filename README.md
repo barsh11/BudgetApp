@@ -59,6 +59,7 @@ This app is an app to review and manage ones expenses and incomes.<br/> It inclu
 - [moment](https://momentjs.com/)
 - [material-UI](https://material-ui.com/)
 - [Apexcharts](https://apexcharts.com/)
+- [mapbox](https://www.mapbox.com/)
 
 <!-- CONTACT -->
 
